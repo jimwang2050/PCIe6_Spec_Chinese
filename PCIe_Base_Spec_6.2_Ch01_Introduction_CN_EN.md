@@ -137,10 +137,10 @@ The primary Link attributes for PCI Express Link are:
 >
 
 - **The basic Link** — PCI Express Link consists of dual unidirectional differential Links, implemented as a Transmit pair and a Receive pair. A data clock is embedded using an encoding scheme (see Chapter 4) to achieve very high data rates.
-- **基本链路** — PCI Express 链路由双单向差分链路组成，实现为一对发送对和一对接收对。数据时钟使用编码方案嵌入（见第4章），以实现非常高的数据速率。
+> **基本链路** — PCI Express 链路由双单向差分链路组成，实现为一对发送对和一对接收对。数据时钟使用编码方案嵌入（见第4章），以实现非常高的数据速率。
 
 - **The Signaling method** — Each major revision of PCI Express signaling has evolved one (or more) characteristics to increase bandwidth. Throughout this specification, the term GT/s is used to refer to the number of encoded bits transferred in a second on a direction of a Lane. The actual effective data rate is dependent on a combination of modulation method, encoding method, and data rate. Table 1-1 provides a summary of Max Data Rate, Modulation Scheme, Encoding Method, and Effective Max Data Rate with the accounting of only encoding overhead for all the six major revisions of PCI Express. See Chapter 4 for more information about the combined signaling method and Chapter 8 for electrical specification details for each major PCI Express revision.
-- **信号方法** — PCI Express 信号的每个主要修订版都演进了一项（或多项）特性以增加带宽。在本规范中，术语 GT/s 用于指代一条通道的一个方向上每秒传输的编码比特数。实际有效数据速率取决于调制方法、编码方法和数据速率的组合。表 1-1 总结了 PCI Express 所有六个主要修订版的最大数据速率、调制方案、编码方法和扣除编码开销后的有效最大数据速率。有关组合信号方法的更多信息，请参见第4章，有关每个主要 PCI Express 修订版的电气规范详情，请参见第8章。
+> **信号方法** — PCI Express 信号的每个主要修订版都演进了一项（或多项）特性以增加带宽。在本规范中，术语 GT/s 用于指代一条通道的一个方向上每秒传输的编码比特数。实际有效数据速率取决于调制方法、编码方法和数据速率的组合。表 1-1 总结了 PCI Express 所有六个主要修订版的最大数据速率、调制方案、编码方法和扣除编码开销后的有效最大数据速率。有关组合信号方法的更多信息，请参见第4章，有关每个主要 PCI Express 修订版的电气规范详情，请参见第8章。
 
 **Table 1-1: PCIe Signaling Characteristics / 表1-1：PCIe 信号特性**
 
@@ -154,18 +154,17 @@ The primary Link attributes for PCI Express Link are:
 | 64.0 GT/s | PAM4 | 1b/1b | 64 Gbit/s | 6.x |
 
 > *Note: Terms like "PCIe Gen3" are ambiguous and should be avoided. For example, "gen3" could mean (1) compliant with Base 3.0, (2) compliant with Base 3.1 (last revision of 3.x), (3) compliant with Base 3.0 and supporting 8.0 GT/s, (4) compliant with Base 3.0 or later and supporting 8.0 GT/s, etc. 注意：像"PCIe Gen3"这样的术语是模糊的，应避免使用。例如，"gen3"可能意味着(1)符合Base 3.0，(2)符合Base 3.1（3.x的最后一个修订版），(3)符合Base 3.0并支持8.0 GT/s，(4)符合Base 3.0或更高版本并支持8.0 GT/s等。*
-
 - **Lanes** — A Link must support at least one Lane — each Lane represents a set of differential signal pairs (one pair for transmission, one pair for reception). To scale bandwidth, a Link may aggregate multiple Lanes denoted by xN where N may be any of the supported Link widths. A x8 Link operating at the 2.5 GT/s data rate represents an aggregate bandwidth of 20 Gigabits/second of raw bandwidth in each direction. This specification describes operations for x1, x2, x4, x8, and x16 Lane widths.
->- **通道（Lanes）** — 链路必须支持至少一条通道 — 每条通道代表一组差分信号对（一对用于发送，一对用于接收）。为扩展带宽，链路可以聚合多个通道，用 xN 表示，其中 N 可以是任何支持的链路宽度。以 2.5 GT/s 数据速率运行的 x8 链路在每个方向上表示 20 Gbps 的原始聚合带宽。本规范描述了 x1、x2、x4、x8 和 x16 通道宽度的操作。
+> **通道（Lanes）** — 链路必须支持至少一条通道 — 每条通道代表一组差分信号对（一对用于发送，一对用于接收）。为扩展带宽，链路可以聚合多个通道，用 xN 表示，其中 N 可以是任何支持的链路宽度。以 2.5 GT/s 数据速率运行的 x8 链路在每个方向上表示 20 Gbps 的原始聚合带宽。本规范描述了 x1、x2、x4、x8 和 x16 通道宽度的操作。
 
 - **Data Stream** — PCI Express uses Data Stream in Flit Mode and Data Stream in Non-Flit Mode (see Section 4.2, including Table 4-1 and Table 4-2). Support of Data Stream in Non-Flit Mode is mandatory, while support of Data Stream in Flit Mode is mandatory only if a data rate that exceeds 32.0 GT/s is supported.
->- **数据流（Data Stream）** — PCI Express 使用 Flit 模式下的数据流和非 Flit 模式下的数据流（见第4.2节，包括表4-1和表4-2）。支持非 Flit 模式的数据流是强制性的，而支持 Flit 模式的数据流仅在支持超过 32.0 GT/s 的数据速率时才是强制性的。
+> **数据流（Data Stream）** — PCI Express 使用 Flit 模式下的数据流和非 Flit 模式下的数据流（见第4.2节，包括表4-1和表4-2）。支持非 Flit 模式的数据流是强制性的，而支持 Flit 模式的数据流仅在支持超过 32.0 GT/s 的数据速率时才是强制性的。
 
 - **Initialization** — During hardware initialization, each PCI Express Link is set up following a negotiation of Link width, data rate, and Flit mode by the two agents at each end of the Link. No firmware or operating system software is involved.
->- **初始化** — 在硬件初始化期间，每个 PCI Express 链路由链路两端的两个代理协商链路宽度、数据速率和 Flit 模式后进行设置。不涉及固件或操作系统软件。
+> **初始化** — 在硬件初始化期间，每个 PCI Express 链路由链路两端的两个代理协商链路宽度、数据速率和 Flit 模式后进行设置。不涉及固件或操作系统软件。
 
 - **Symmetry** — Each Link must support a symmetric number of Lanes in each direction, i.e., a x16 Link indicates there are 16 differential signal pairs in each direction.
->- **对称性** — 每条链路必须在每个方向上支持对称数量的通道，即 x16 链路表示每个方向有16对差分信号对。
+> **对称性** — 每条链路必须在每个方向上支持对称数量的通道，即 x16 链路表示每个方向有16对差分信号对。
 
 ---
 
@@ -184,7 +183,7 @@ A fabric is composed of point-to-point Links that interconnect a set of componen
 #### 1.3.1 Root Complex / 根复合体
 
 - An RC denotes the root of an I/O hierarchy that connects the CPU/memory subsystem to the I/O.
-- RC 表示将 CPU/内存子系统连接到 I/O 的 I/O 层次结构的根。
+>- RC 表示将 CPU/内存子系统连接到 I/O 的 I/O 层次结构的根。
 
 - As illustrated in Figure 1-2, an RC may support one or more PCI Express Ports. Each interface defines a separate hierarchy domain. Each hierarchy domain may be composed of a single Endpoint or a sub-hierarchy containing one or more Switch components and Endpoints.
 > - 如图1-2所示，一个RC可以支持一个或多个 PCI Express 端口。每个接口定义了一个独立的层次结构域。每个层次结构域可以由单个端点或包含一个或多个交换机组件和端点的子层次结构组成。
@@ -196,27 +195,27 @@ A fabric is composed of point-to-point Links that interconnect a set of componen
 > - 与交换机的规则不同，RC 通常被允许在层次结构域之间对等路由事务时将数据包拆分为更小的数据包（除非下文另有说明），例如，将一个具有256字节有效载荷的单个数据包拆分为两个各具有128字节有效载荷的数据包。生成的数据包受本规范中包含的常规数据包形成规则的约束（例如，Max_Payload_Size、Read Completion Boundary (RCB) 等）。组件设计者应注意，将数据包拆分为更小的数据包可能会对性能产生负面影响，特别是对于寻址 PCI Express 到 PCI/PCI-X 桥后面设备的事务。
 
 - **Exception**: An RC that supports UIO peer-to-peer routing is permitted to split UIO Memory Write Requests only at naturally aligned 64B boundaries.
-- **例外**：支持 UIO 对等路由的 RC 仅允许在自然对齐的 64B 边界上拆分 UIO 存储器写请求。
+> - **例外**：支持 UIO 对等路由的 RC 仅允许在自然对齐的 64B 边界上拆分 UIO 存储器写请求。
 
 - **Exception**: An RC that supports peer-to-peer routing of Deferrable Memory Write Requests is not permitted to split a Deferrable Memory Write Request packet into smaller packets (see Section 6.32).
-- **例外**：支持可延迟存储器写请求对等路由的 RC 不允许将可延迟存储器写请求数据包拆分为更小的数据包（见第6.32节）。
+> - **例外**：支持可延迟存储器写请求对等路由的 RC 不允许将可延迟存储器写请求数据包拆分为更小的数据包（见第6.32节）。
 
 - **Exception**: An RC that supports peer-to-peer routing of Vendor-Defined Messages is not permitted to split a Vendor-Defined Message packet into smaller packets except at 128-byte boundaries (i.e., all resulting packets except the last must be an integral multiple of 128 bytes in length) in order to retain the ability to forward the Message across a PCI Express to PCI/PCI-X Bridge.
-- **例外**：支持供应商定义消息对等路由的 RC 不允许将供应商定义消息数据包拆分为更小的数据包，除非在128字节边界上（即，除最后一个外，所有生成的数据包长度必须是128字节的整数倍），以便保留通过 PCI Express 到 PCI/PCI-X 桥转发消息的能力。
+> - **例外**：支持供应商定义消息对等路由的 RC 不允许将供应商定义消息数据包拆分为更小的数据包，除非在128字节边界上（即，除最后一个外，所有生成的数据包长度必须是128字节的整数倍），以便保留通过 PCI Express 到 PCI/PCI-X 桥转发消息的能力。
 
 - An RC must support generation of Configuration Requests as a Requester.
-- RC 必须支持作为请求者生成配置请求。
+> - RC 必须支持作为请求者生成配置请求。
 
 - An RC is permitted to support the generation of I/O Requests as a Requester.
   - An RC is permitted to generate I/O Requests to either or both of locations 80h and 84h to a selected Root Port, without regard to that Root Port's PCI Bridge I/O decode configuration; it is recommended that this mechanism only be enabled when specifically needed.
-- RC 被允许支持作为请求者生成 I/O 请求。
-  - RC 被允许向选定的根端口的 80h 和 84h 位置之一或两者生成 I/O 请求，而不考虑该根端口的 PCI 桥 I/O 解码配置；建议仅在特别需要时启用此机制。
+> - RC 被允许支持作为请求者生成 I/O 请求。
+   >- RC 被允许向选定的根端口的 80h 和 84h 位置之一或两者生成 I/O 请求，而不考虑该根端口的 PCI 桥 I/O 解码配置；建议仅在特别需要时启用此机制。
 
 - An RC must not support Lock semantics as a Completer.
-- RC 不得作为完成者支持锁定语义。
+>- RC 不得作为完成者支持锁定语义。
 
 - An RC is permitted to support generation of Locked Requests as a Requester.
-- RC 被允许支持作为请求者生成锁定请求。
+> - RC 被允许支持作为请求者生成锁定请求。
 
 #### 1.3.2 Endpoints / 端点
 
