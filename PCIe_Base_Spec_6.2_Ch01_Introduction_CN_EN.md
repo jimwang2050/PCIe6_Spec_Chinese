@@ -187,13 +187,13 @@ A fabric is composed of point-to-point Links that interconnect a set of componen
 - RC 表示将 CPU/内存子系统连接到 I/O 的 I/O 层次结构的根。
 
 - As illustrated in Figure 1-2, an RC may support one or more PCI Express Ports. Each interface defines a separate hierarchy domain. Each hierarchy domain may be composed of a single Endpoint or a sub-hierarchy containing one or more Switch components and Endpoints.
-- 如图1-2所示，一个RC可以支持一个或多个 PCI Express 端口。每个接口定义了一个独立的层次结构域。每个层次结构域可以由单个端点或包含一个或多个交换机组件和端点的子层次结构组成。
+> - 如图1-2所示，一个RC可以支持一个或多个 PCI Express 端口。每个接口定义了一个独立的层次结构域。每个层次结构域可以由单个端点或包含一个或多个交换机组件和端点的子层次结构组成。
 
 - The capability to route peer-to-peer transactions between hierarchy domains through an RC is optional and implementation dependent. An RC is permitted to "take ownership" of Requests that pass peer-to-peer between Root Ports, reforming and potentially splitting a Request such that it may appear to the ultimate Completer that the RC was the origin of the Request, and subsequently the RC must reform the Completion(s) being returned to the original Requester. Alternatively, an RC implementation may incorporate a real or virtual Switch internally within the Root Complex to enable full peer-to-peer support in a software transparent way.
-- 通过 RC 在层次结构域之间路由对等事务的能力是可选的，且取决于具体实现。RC 被允许"接管"在根端口之间通过对等传输的请求，重新构造并可能拆分请求，使得最终的完成者看起来 RC 是请求的发起者，随后 RC 必须重新构造返回给原始请求者的完成。或者，RC 实现可以在根复合体内部包含一个真实或虚拟的交换机，以软件透明的方式实现完全的对等支持。
+> - 通过 RC 在层次结构域之间路由对等事务的能力是可选的，且取决于具体实现。RC 被允许"接管"在根端口之间通过对等传输的请求，重新构造并可能拆分请求，使得最终的完成者看起来 RC 是请求的发起者，随后 RC 必须重新构造返回给原始请求者的完成。或者，RC 实现可以在根复合体内部包含一个真实或虚拟的交换机，以软件透明的方式实现完全的对等支持。
 
 - Unlike the rules for a Switch, an RC is generally permitted to split a packet into smaller packets when routing transactions peer-to-peer between hierarchy domains (except as noted below), e.g., split a single packet with a 256-byte payload into two packets of 128 bytes payload each. The resulting packets are subject to the normal packet formation rules contained in this specification (e.g., Max_Payload_Size, Read Completion Boundary (RCB), etc.). Component designers should note that splitting a packet into smaller packets may have negative performance consequences, especially for a transaction addressing a device behind a PCI Express to PCI/PCI-X bridge.
-- 与交换机的规则不同，RC 通常被允许在层次结构域之间对等路由事务时将数据包拆分为更小的数据包（除非下文另有说明），例如，将一个具有256字节有效载荷的单个数据包拆分为两个各具有128字节有效载荷的数据包。生成的数据包受本规范中包含的常规数据包形成规则的约束（例如，Max_Payload_Size、Read Completion Boundary (RCB) 等）。组件设计者应注意，将数据包拆分为更小的数据包可能会对性能产生负面影响，特别是对于寻址 PCI Express 到 PCI/PCI-X 桥后面设备的事务。
+> - 与交换机的规则不同，RC 通常被允许在层次结构域之间对等路由事务时将数据包拆分为更小的数据包（除非下文另有说明），例如，将一个具有256字节有效载荷的单个数据包拆分为两个各具有128字节有效载荷的数据包。生成的数据包受本规范中包含的常规数据包形成规则的约束（例如，Max_Payload_Size、Read Completion Boundary (RCB) 等）。组件设计者应注意，将数据包拆分为更小的数据包可能会对性能产生负面影响，特别是对于寻址 PCI Express 到 PCI/PCI-X 桥后面设备的事务。
 
 - **Exception**: An RC that supports UIO peer-to-peer routing is permitted to split UIO Memory Write Requests only at naturally aligned 64B boundaries.
 - **例外**：支持 UIO 对等路由的 RC 仅允许在自然对齐的 64B 边界上拆分 UIO 存储器写请求。
@@ -229,39 +229,39 @@ Endpoint refers to a type of Function that can be the Requester or Completer of 
 ##### 1.3.2.1 Legacy Endpoint Rules / 传统端点规则
 
 - A Legacy Endpoint must be a Function with a Type 00h Configuration Space header.
-- 传统端点必须是具有 Type 00h 配置空间头的功能。
+> - 传统端点必须是具有 Type 00h 配置空间头的功能。
 
 - A Legacy Endpoint must support Configuration Requests as a Completer.
-- 传统端点必须支持作为完成者处理配置请求。
+> - 传统端点必须支持作为完成者处理配置请求。
 
 - A Legacy Endpoint may support I/O Requests as a Completer.
   - A Legacy Endpoint is permitted to accept I/O Requests to either or both of locations 80h and 84h, without regard to that Endpoint's I/O decode configuration.
-- 传统端点可以支持作为完成者处理 I/O 请求。
-  - 传统端点被允许接受 80h 和 84h 位置之一或两者的 I/O 请求，而不考虑该端点的 I/O 解码配置。
+> - 传统端点可以支持作为完成者处理 I/O 请求。
+>   - 传统端点被允许接受 80h 和 84h 位置之一或两者的 I/O 请求，而不考虑该端点的 I/O 解码配置。
 
 - A Legacy Endpoint may generate I/O Requests.
-- 传统端点可以生成 I/O 请求。
+> - 传统端点可以生成 I/O 请求。
 
 - A Legacy Endpoint may support Lock memory semantics as a Completer if that is required by the device's legacy software support requirements.
-- 如果设备的传统软件支持要求需要，传统端点可以支持作为完成者的锁定存储器语义。
+> - 如果设备的传统软件支持要求需要，传统端点可以支持作为完成者的锁定存储器语义。
 
 - A Legacy Endpoint must not issue a Locked Request.
-- 传统端点不得发出锁定请求。
+> - 传统端点不得发出锁定请求。
 
 - A Legacy Endpoint may implement Extended Configuration Space Capabilities, but such Capabilities may be ignored by software.
-- 传统端点可以实现扩展配置空间能力，但软件可能会忽略这些能力。
+> - 传统端点可以实现扩展配置空间能力，但软件可能会忽略这些能力。
 
 - A Legacy Endpoint operating as the Requester of a Memory Transaction is not required to be capable of generating addresses 4 GB or greater.
-- 作为存储器事务请求者操作的传统端点不需要能够生成 4 GB 或更大的地址。
+> - 作为存储器事务请求者操作的传统端点不需要能够生成 4 GB 或更大的地址。
 
 - A Legacy Endpoint is required to support MSI or MSI-X or both if an interrupt resource is requested. If MSI is implemented, a Legacy Endpoint is permitted to support either the 32-bit or 64-bit Message Address version of the MSI Capability structure.
-- 如果请求中断资源，传统端点需要支持 MSI 或 MSI-X 或两者。如果实现了 MSI，传统端点被允许支持 MSI 能力结构的 32 位或 64 位消息地址版本。
+> - 如果请求中断资源，传统端点需要支持 MSI 或 MSI-X 或两者。如果实现了 MSI，传统端点被允许支持 MSI 能力结构的 32 位或 64 位消息地址版本。
 
 - A Legacy Endpoint is permitted to support 32-bit addressing for Base Address Registers that request memory resources.
-- 传统端点被允许为请求存储器资源的基地址寄存器支持 32 位寻址。
+> - 传统端点被允许为请求存储器资源的基地址寄存器支持 32 位寻址。
 
 - A Legacy Endpoint must appear within one of the hierarchy domains originated by the Root Complex.
-- 传统端点必须出现在由根复合体发起的层次结构域之一内。
+> - 传统端点必须出现在由根复合体发起的层次结构域之一内。
 
 ##### 1.3.2.2 PCI Express Endpoint Rules / PCI Express 端点规则
 
@@ -281,16 +281,16 @@ Endpoint refers to a type of Function that can be the Requester or Completer of 
 - PCI Express 端点不得支持作为完成者的锁定请求，也不得作为请求者生成锁定请求。PCI Express 兼容的设备驱动程序和应用程序必须编写为防止在访问 PCI Express 端点时使用锁定语义。
 
 - A PCI Express Endpoint operating as the Requester of a Memory Transaction is required to be capable of generating addresses greater than 4 GB.
-- 作为存储器事务请求者操作的 PCI Express 端点需要能够生成大于 4 GB 的地址。
+> - 作为存储器事务请求者操作的 PCI Express 端点需要能够生成大于 4 GB 的地址。
 
 - A PCI Express Endpoint is required to support MSI or MSI-X or both if an interrupt resource is requested. If MSI is implemented, a PCI Express Endpoint must support the 64-bit Message Address version of the MSI Capability structure.
-- 如果请求中断资源，PCI Express 端点需要支持 MSI 或 MSI-X 或两者。如果实现了 MSI，PCI Express 端点必须支持 MSI 能力结构的 64 位消息地址版本。
+> - 如果请求中断资源，PCI Express 端点需要支持 MSI 或 MSI-X 或两者。如果实现了 MSI，PCI Express 端点必须支持 MSI 能力结构的 64 位消息地址版本。
 
 - A PCI Express Endpoint requesting memory resources through a BAR must set the BAR's Prefetchable bit unless the range contains locations with read side-effects or locations in which the Function does not tolerate write merging. See Section 7.5.1.2.1 for additional guidance on having the Prefetchable bit Set.
-- 通过 BAR 请求存储器资源的 PCI Express 端点必须设置 BAR 的预取位，除非该范围包含具有读副作用的地址或功能不允许写合并的地址。有关设置预取位的其他指导，请参见第7.5.1.2.1节。
+> - 通过 BAR 请求存储器资源的 PCI Express 端点必须设置 BAR 的预取位，除非该范围包含具有读副作用的地址或功能不允许写合并的地址。有关设置预取位的其他指导，请参见第7.5.1.2.1节。
 
 - For a PCI Express Endpoint, 64-bit addressing must be supported for all BARs that have the Prefetchable bit Set. 32-bit addressing is permitted for all BARs that do not have the Prefetchable bit Set.
-- 对于 PCI Express 端点，必须为所有设置了预取位的 BAR 支持 64 位寻址。允许为所有未设置预取位的 BAR 支持 32 位寻址。
+> - 对于 PCI Express 端点，必须为所有设置了预取位的 BAR 支持 64 位寻址。允许为所有未设置预取位的 BAR 支持 32 位寻址。
 
 - The minimum memory address range requested by a BAR is 128 bytes.
 - BAR 请求的最小存储器地址范围是 128 字节。
@@ -301,7 +301,7 @@ Endpoint refers to a type of Function that can be the Requester or Completer of 
 ##### 1.3.2.3 Root Complex Integrated Endpoint Rules / 根复合体集成端点规则
 
 - A Root Complex Integrated Endpoint (RCiEP) is implemented on internal logic of Root Complexes that contains the Root Ports.
-- 根复合体集成端点（RCiEP）在包含根端口的根复合体的内部逻辑上实现。
+> - 根复合体集成端点（RCiEP）在包含根端口的根复合体的内部逻辑上实现。
 
 - An RCiEP must be a Function with a Type 00h Configuration Space header.
 - RCiEP 必须是具有 Type 00h 配置空间头的功能。
@@ -319,10 +319,10 @@ Endpoint refers to a type of Function that can be the Requester or Completer of 
 - RCiEP 不得支持作为完成者的锁定请求，也不得作为请求者生成锁定请求。PCI Express 兼容的设备驱动程序和应用程序必须编写为防止在访问 RCiEP 时使用锁定语义。
 
 - An RCiEP operating as the Requester of a Memory Transaction is required to be capable of generating addresses equal to or greater than the Host is capable of handling as a Completer.
-- 作为存储器事务请求者操作的 RCiEP 需要能够生成等于或大于主机作为完成者能够处理的地址。
+> - 作为存储器事务请求者操作的 RCiEP 需要能够生成等于或大于主机作为完成者能够处理的地址。
 
 - An RCiEP is required to support MSI or MSI-X or both if an interrupt resource is requested. If MSI is implemented, an RCiEP is permitted to support either the 32-bit or 64-bit Message Address version of the MSI Capability structure.
-- 如果请求中断资源，RCiEP 需要支持 MSI 或 MSI-X 或两者。如果实现了 MSI，RCiEP 被允许支持 MSI 能力结构的 32 位或 64 位消息地址版本。
+> - 如果请求中断资源，RCiEP 需要支持 MSI 或 MSI-X 或两者。如果实现了 MSI，RCiEP 被允许支持 MSI 能力结构的 32 位或 64 位消息地址版本。
 
 - An RCiEP is permitted to support 32-bit addressing for Base Address Registers that request memory resources.
 - RCiEP 被允许为请求存储器资源的基地址寄存器支持 32 位寻址。
@@ -331,7 +331,7 @@ Endpoint refers to a type of Function that can be the Requester or Completer of 
 - RCiEP 不得在 PCI Express 扩展能力中实现链路能力、链路状态、链路控制、链路能力2、链路状态2和链路控制2寄存器。
 
 - If an RCiEP is associated with an optional Root Complex Event Collector, it must signal PME and error conditions through the Root Complex Event Collector.
-- 如果 RCiEP 与可选的根复合体事件收集器关联，则必须通过根复合体事件收集器发出 PME 和错误条件信号。
+> - 如果 RCiEP 与可选的根复合体事件收集器关联，则必须通过根复合体事件收集器发出 PME 和错误条件信号。
 
 - An RCiEP must not be associated with more than one Root Complex Event Collector.
 - RCiEP 不得与多个根复合体事件收集器关联。
@@ -363,56 +363,56 @@ A Switch is defined as a logical assembly of multiple virtual PCI-to-PCI Bridge 
 > *Figure 1-3: Logical Block Diagram of a Switch. Shows an Upstream Port connected to multiple Downstream Ports through virtual PCI-to-PCI Bridges. 图1-3：交换机逻辑框图。显示了一个上行端口通过虚拟PCI-to-PCI桥连接到多个下行端口。*
 
 - Switches appear to configuration software as two or more logical PCI-to-PCI Bridges.
-- 交换机在配置软件中呈现为两个或多个逻辑 PCI-to-PCI 桥。
+> - 交换机在配置软件中呈现为两个或多个逻辑 PCI-to-PCI 桥。
 
 - A Switch forwards transactions using PCI Bridge mechanisms; e.g., address-based routing except when engaged in a Multicast, as defined in Section 6.14.
-- 交换机使用 PCI 桥机制转发事务；例如，基于地址的路由，除非在进行了多播时（如第6.14节所定义）。
+> - 交换机使用 PCI 桥机制转发事务；例如，基于地址的路由，除非在进行了多播时（如第6.14节所定义）。
 
 - Except as noted in this document, a Switch must forward all types of Transaction Layer Packets (TLPs) between any set of Ports.
-- 除非本文件另有说明，交换机必须在任意端口组之间转发所有类型的事务层数据包（TLP）。
+> - 除非本文件另有说明，交换机必须在任意端口组之间转发所有类型的事务层数据包（TLP）。
 
 - Locked Requests must be supported as specified in Section 6.5. Switches are not required to support Downstream Ports as initiating Ports for Locked Requests.
-- 必须按照第6.5节的规定支持锁定请求。不要求交换机支持下行端口作为锁定请求的发起端口。
+> - 必须按照第6.5节的规定支持锁定请求。不要求交换机支持下行端口作为锁定请求的发起端口。
 
 - Each enabled Switch Port must comply with the Flow Control specification within this document.
-- 每个启用的交换机端口必须符合本文件中的流控制规范。
+> - 每个启用的交换机端口必须符合本文件中的流控制规范。
 
 - A Switch is not allowed to split a packet into smaller packets, e.g., a single packet with a 256-byte payload must not be divided into two packets of 128 bytes payload each.
-- 不允许交换机将数据包拆分为更小的数据包，例如，不得将具有256字节有效载荷的单个数据包拆分为各具有128字节有效载荷的两个数据包。
+> - 不允许交换机将数据包拆分为更小的数据包，例如，不得将具有256字节有效载荷的单个数据包拆分为各具有128字节有效载荷的两个数据包。
 
 - Arbitration between Ingress Ports (inbound Link) of a Switch may be implemented using round robin or weighted round robin when contention occurs on the same Virtual Channel. This is described in more detail later within the specification.
-- 当在同一虚拟通道上发生竞争时，交换机入口端口（入站链路）之间的仲裁可以使用轮询或加权轮询来实现。这将在本规范的后续部分中更详细地描述。
+> - 当在同一虚拟通道上发生竞争时，交换机入口端口（入站链路）之间的仲裁可以使用轮询或加权轮询来实现。这将在本规范的后续部分中更详细地描述。
 
 - Endpoints (represented by Type 00h Configuration Space headers) must not appear to configuration software on the Switch's internal bus as peers of the virtual PCI-to-PCI Bridges representing the Switch Downstream Ports.
-- 端点（由 Type 00h 配置空间头表示）不得在配置软件中作为交换机内部总线上代表交换机下行端口的虚拟 PCI-to-PCI 桥的对等体出现。
+> - 端点（由 Type 00h 配置空间头表示）不得在配置软件中作为交换机内部总线上代表交换机下行端口的虚拟 PCI-to-PCI 桥的对等体出现。
 
 ---
 
 ### 1.3.4 Root Complex Event Collector / 根复合体事件收集器
 
 - A Root Complex Event Collector (RCEC) provides support for terminating error and PME messages from RCiEPs.
-- 根复合体事件收集器（RCEC）为终止来自 RCiEP 的错误和 PME 消息提供支持。
+> - 根复合体事件收集器（RCEC）为终止来自 RCiEP 的错误和 PME 消息提供支持。
 
 - A Root Complex Event Collector must follow all rules for an RCiEP (unless otherwise specified).
-- 根复合体事件收集器必须遵循 RCiEP 的所有规则（除非另有规定）。
+> - 根复合体事件收集器必须遵循 RCiEP 的所有规则（除非另有规定）。
 
 - A Root Complex Event Collector is not required to decode any memory or I/O resources.
-- 根复合体事件收集器不需要解码任何存储器或 I/O 资源。
+> - 根复合体事件收集器不需要解码任何存储器或 I/O 资源。
 
 - A Root Complex Event Collector is identified by its Device/Port Type value (see Section 7.5.3.2).
-- 根复合体事件收集器通过其设备/端口类型值来识别（见第7.5.3.2节）。
+> - 根复合体事件收集器通过其设备/端口类型值来识别（见第7.5.3.2节）。
 
 - A Root Complex Event Collector has the Base Class 08h, Sub-Class 07h and Programming Interface 00h. (Since an earlier version of this specification used Sub-Class 06h for this purpose, an implementation is still permitted to use Sub-Class 06h, but this is strongly discouraged.)
-- 根复合体事件收集器的基类为 08h，子类为 07h，编程接口为 00h。（由于本规范的早期版本为此目的使用了子类 06h，仍然允许实现使用子类 06h，但强烈不建议这样做。）
+> - 根复合体事件收集器的基类为 08h，子类为 07h，编程接口为 00h。（由于本规范的早期版本为此目的使用了子类 06h，仍然允许实现使用子类 06h，但强烈不建议这样做。）
 
 - A Root Complex Event Collector resides on a Bus in the Root Complex. Multiple Root Complex Event Collectors are permitted to reside on a single Bus.
-- 根复合体事件收集器驻留在根复合体中的总线上。允许多个根复合体事件收集器驻留在单条总线上。
+> - 根复合体事件收集器驻留在根复合体中的总线上。允许多个根复合体事件收集器驻留在单条总线上。
 
 - A Root Complex Event Collector explicitly declares supported RCiEPs through the Root Complex Event Collector Endpoint Association Extended Capability.
-- 根复合体事件收集器通过根复合体事件收集器端点关联扩展能力显式声明支持的 RCiEP。
+> - 根复合体事件收集器通过根复合体事件收集器端点关联扩展能力显式声明支持的 RCiEP。
 
 - Root Complex Event Collectors are optional.
-- 根复合体事件收集器是可选的。
+> - 根复合体事件收集器是可选的。
 
 ### 1.3.5 PCI Express to PCI/PCI-X Bridge / PCI Express 到 PCI/PCI-X 桥
 
@@ -430,16 +430,16 @@ The PCI/PCIe hardware/software model includes architectural constructs necessary
 >
 
 - A configuration model which provides system software the means to discover hardware Functions available in a system
-- 配置模型，为系统软件提供发现系统中可用硬件功能的手段
+> - 配置模型，为系统软件提供发现系统中可用硬件功能的手段
 
 - Mechanisms to perform basic resource allocation for addressable resources such as memory space and interrupts
-- 为可寻址资源（如存储空间和中断）执行基本资源分配的机制
+> - 为可寻址资源（如存储空间和中断）执行基本资源分配的机制
 
 - Enable/disable controls for Function response to received Requests, and initiation of Requests
-- 启用/禁用控制，用于功能对接收到的请求的响应以及请求的发起
+> - 启用/禁用控制，用于功能对接收到的请求的响应以及请求的发起
 
 - Well-defined ordering and flow control models to support the consistent and robust implementation of hardware/software interfaces
-- 定义良好的排序和流控制模型，以支持硬件/软件接口的一致和健壮实现
+> - 定义良好的排序和流控制模型，以支持硬件/软件接口的一致和健壮实现
 
 The PCI Express configuration model supports two mechanisms:
 
@@ -602,9 +602,9 @@ Ordering rules:
 > - PCI/PCI-X 兼容的生产者/消费者排序模型，
 >
 
-- 支持 Relaxed Ordering 的扩展，
-- 支持 ID-Based Ordering 的扩展，
-- 支持 UIO 排序模型。
+> - 支持 Relaxed Ordering 的扩展，
+> - 支持 ID-Based Ordering 的扩展，
+> - 支持 UIO 排序模型。
 
 Power management services:
 - Software-controlled power management through mechanisms, as dictated by system software.
