@@ -156,16 +156,16 @@ The primary Link attributes for PCI Express Link are:
 > *Note: Terms like "PCIe Gen3" are ambiguous and should be avoided. For example, "gen3" could mean (1) compliant with Base 3.0, (2) compliant with Base 3.1 (last revision of 3.x), (3) compliant with Base 3.0 and supporting 8.0 GT/s, (4) compliant with Base 3.0 or later and supporting 8.0 GT/s, etc. 注意：像"PCIe Gen3"这样的术语是模糊的，应避免使用。例如，"gen3"可能意味着(1)符合Base 3.0，(2)符合Base 3.1（3.x的最后一个修订版），(3)符合Base 3.0并支持8.0 GT/s，(4)符合Base 3.0或更高版本并支持8.0 GT/s等。*
 
 - **Lanes** — A Link must support at least one Lane — each Lane represents a set of differential signal pairs (one pair for transmission, one pair for reception). To scale bandwidth, a Link may aggregate multiple Lanes denoted by xN where N may be any of the supported Link widths. A x8 Link operating at the 2.5 GT/s data rate represents an aggregate bandwidth of 20 Gigabits/second of raw bandwidth in each direction. This specification describes operations for x1, x2, x4, x8, and x16 Lane widths.
-- **通道（Lanes）** — 链路必须支持至少一条通道 — 每条通道代表一组差分信号对（一对用于发送，一对用于接收）。为扩展带宽，链路可以聚合多个通道，用 xN 表示，其中 N 可以是任何支持的链路宽度。以 2.5 GT/s 数据速率运行的 x8 链路在每个方向上表示 20 Gbps 的原始聚合带宽。本规范描述了 x1、x2、x4、x8 和 x16 通道宽度的操作。
+>- **通道（Lanes）** — 链路必须支持至少一条通道 — 每条通道代表一组差分信号对（一对用于发送，一对用于接收）。为扩展带宽，链路可以聚合多个通道，用 xN 表示，其中 N 可以是任何支持的链路宽度。以 2.5 GT/s 数据速率运行的 x8 链路在每个方向上表示 20 Gbps 的原始聚合带宽。本规范描述了 x1、x2、x4、x8 和 x16 通道宽度的操作。
 
 - **Data Stream** — PCI Express uses Data Stream in Flit Mode and Data Stream in Non-Flit Mode (see Section 4.2, including Table 4-1 and Table 4-2). Support of Data Stream in Non-Flit Mode is mandatory, while support of Data Stream in Flit Mode is mandatory only if a data rate that exceeds 32.0 GT/s is supported.
-- **数据流（Data Stream）** — PCI Express 使用 Flit 模式下的数据流和非 Flit 模式下的数据流（见第4.2节，包括表4-1和表4-2）。支持非 Flit 模式的数据流是强制性的，而支持 Flit 模式的数据流仅在支持超过 32.0 GT/s 的数据速率时才是强制性的。
+>- **数据流（Data Stream）** — PCI Express 使用 Flit 模式下的数据流和非 Flit 模式下的数据流（见第4.2节，包括表4-1和表4-2）。支持非 Flit 模式的数据流是强制性的，而支持 Flit 模式的数据流仅在支持超过 32.0 GT/s 的数据速率时才是强制性的。
 
 - **Initialization** — During hardware initialization, each PCI Express Link is set up following a negotiation of Link width, data rate, and Flit mode by the two agents at each end of the Link. No firmware or operating system software is involved.
-- **初始化** — 在硬件初始化期间，每个 PCI Express 链路由链路两端的两个代理协商链路宽度、数据速率和 Flit 模式后进行设置。不涉及固件或操作系统软件。
+>- **初始化** — 在硬件初始化期间，每个 PCI Express 链路由链路两端的两个代理协商链路宽度、数据速率和 Flit 模式后进行设置。不涉及固件或操作系统软件。
 
 - **Symmetry** — Each Link must support a symmetric number of Lanes in each direction, i.e., a x16 Link indicates there are 16 differential signal pairs in each direction.
-- **对称性** — 每条链路必须在每个方向上支持对称数量的通道，即 x16 链路表示每个方向有16对差分信号对。
+>- **对称性** — 每条链路必须在每个方向上支持对称数量的通道，即 x16 链路表示每个方向有16对差分信号对。
 
 ---
 
