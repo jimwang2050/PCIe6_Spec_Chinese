@@ -154,7 +154,7 @@ Figure 11-2 illustrates key elements of the TDISP reference architecture. Typica
 ---
 
 <p align="center">
-<img src="./images/ch11/fig11_2_p1613.png" alt="Figure 11-2 TDISP Host/Device Reference Architecture" width="95%">
+<img src="images/ch11/fig11_2_p1613.png" alt="Figure 11-2 TDISP Host/Device Reference Architecture" width="95%">
 <br><em>Figure 11-2 TDISP Host/Device Reference Architecture</em>
 </p>
 
