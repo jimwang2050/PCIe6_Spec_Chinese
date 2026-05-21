@@ -251,9 +251,82 @@ Key Translation Completion fields:
 
 ---
 
-### 10.2.4 Completions with Multiple Translations | 多翻译完成
+### 10.2.4 Completions with Multiple Translations
+### 10.2.4 多翻译完成
 
-When the TA supports page sizes larger than the minimum, a single Translation Request can result in up to two Translation Completion TLPs with different sizes. This allows the TA to report the largest available translation.
+An ATC is allowed to request that the TA provide translations for a virtually contiguous range of addresses. It does this by setting the Length field in the Translation Request to a value that is two times the number of requested translations as long as the request size (Total Completion Length × 4) is not larger than Read Completion Boundary (RCB) in the Link Control Register.
+
+> ATC 允许请求 TA 为一个虚拟连续的地址范围提供转换。它通过将翻译请求中的 Length 字段设置为请求的转换数量的两倍来实现，只要请求大小（Total Completion Length × 4）不大于链路控制寄存器中的读完成边界（RCB）即可。
+
+---
+
+If multiple translations are requested, the TA may return one or more translations as long as the number of translations does not exceed the number of requested translations. It is not an error for the TA to return fewer translations than requested and no error indication is sent unless there is an error in accessing the data.
+
+> 如果请求了多个转换，TA 可以返回一个或多个转换，只要转换的数量不超过请求的转换数量。TA 返回的转换数量少于请求的数量不算错误，除非在访问数据时发生错误，否则不发送错误指示。
+
+---
+
+If the Translation Completion contains multiple translations, all translations must have the same indicated size. Also, successive translations must apply to the virtual address range that abuts the previous translation in the same completion.
+
+> 如果翻译完成包含多个转换，所有转换必须具有相同的指示大小。此外，连续的转换必须应用于与同一完成中的前一个转换相邻的虚拟地址范围。
+
+---
+
+If a translation has both R = 0b and W = 0b, the TA must still set the Size field and the lower bits of the Translated Address field used to encode the completion size to appropriate values.
+
+> 如果某个转换同时具有 R = 0b 和 W = 0b，TA 仍必须将 Size 字段和用于编码完成大小的已转换地址字段的低位设置为适当的值。
+
+---
+
+Each translation in a Translation Completion will have some overlap with the implied memory range of the Translation Request (see Section 10.2.2).
+
+> 翻译完成中的每个转换都会与翻译请求所隐含的内存范围有一些重叠（见第 10.2.2 节）。
+
+---
+
+A successful Translation Completion must consist of one or two CplDs. Each CplD must contain an integral number of Translations (i.e., Length must be a multiple of 2).
+
+> 成功的翻译完成必须由一个或两个 CplD 组成。每个 CplD 必须包含整数数量的转换（即 Length 必须是 2 的倍数）。
+
+---
+
+The TA is permitted to choose:
+
+1. The number of translations it returns for each Translation Request (e.g., Byte Count of the first or only CplD)
+2. If it returns more than one translation, whether it uses one or two CplDs
+3. If it returns two CplDs, how many translations are returned in each CplD
+
+> TA 可以选择：
+>
+> 1. 为每个翻译请求返回的转换数量（例如，第一个或唯一 CplD 的 Byte Count）
+> 2. 如果返回多个转换，是使用一个还是两个 CplD
+> 3. 如果返回两个 CplD，每个 CplD 中返回多少转换
+
+---
+
+The Byte Count and Length fields in each CplD are used to convey these choices to the ATC. The Lower Address field should not be needed by the ATC (its value is computed as defined in Section 10.2.3 to satisfy RCB rules but the field otherwise conveys no additional information).
+
+> 每个 CplD 中的 Byte Count 和 Length 字段用于向 ATC 传达这些选择。ATC 不应需要 Lower Address 字段（其值按照第 10.2.3 节的定义计算以满足 RCB 规则，但该字段除此之外不传达任何额外信息）。
+
+---
+
+- If a Translation Completion CplD has a Byte Count that is greater than four times the Length field, then this is the **first of two CplDs** for the transaction.
+- If a Translation Completion CplD has a Byte Count that is equal to four times the Length field, then this is the **second or only CplD** for the request.
+
+> - 如果翻译完成 CplD 的 Byte Count 大于 Length 字段的四倍，则这是该事务的**两个 CplD 中的第一个**。
+> - 如果翻译完成 CplD 的 Byte Count 等于 Length 字段的四倍，则这是该请求的**第二个或唯一一个 CplD**。
+
+---
+
+Note: There are multiple reasons that the TA may truncate the results of the completion. For example, the request might ask for a range of addresses, not all of which are defined. This could occur if the first translation is valid but located at the end of a page of translations. The TA, in looking up the next page of translations, may find that the page is not valid so the addresses are not valid. The range of addresses that are valid would be returned and no error indicated. When truncating a Translation Completion the TA is not allowed to pad the response with invalid entries (R = 0b, W = 0b).
+
+> 注意：TA 可能截断完成结果的原因有多种。例如，请求可能要求一个地址范围但并非所有地址都已定义。如果第一个转换有效但位于转换页面的末尾，就可能发生这种情况。TA 在查找下一页转换时，可能发现该页面无效，因此地址无效。有效的地址范围将被返回，并且不指示错误。当截断翻译完成时，TA 不允许用无效条目（R = 0b, W = 0b）填充响应。
+
+---
+
+Note: There are multiple reasons that the TA may break a Translation Completion into multiple TLPs. As an example, if the virtual address of the Translation Completion resolves to a table access that crosses an implementation specific address boundary, the completion to the TA may be broken into two completions. Rather than require that the TA accumulate the results, the TA is permitted to send each portion of the Translation Completion to a Function when it is received from memory.
+
+> 注意：TA 可能将翻译完成拆分为多个 TLP 的原因有多种。例如，如果翻译完成的虚拟地址解析为跨越了实现特定地址边界的页表访问，那么到 TA 的完成可能被拆分为两个完成。TA 不需要累积结果，而是允许在从内存接收到翻译完成的每个部分时直接将其发送给功能。
 
 > 当 TA 支持大于最小值的页面大小时，单个翻译请求可产生多达两个不同大小的翻译完成 TLP。这使 TA 能够报告最大的可用转换。
 
