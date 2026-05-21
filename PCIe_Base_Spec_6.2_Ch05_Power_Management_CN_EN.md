@@ -113,6 +113,12 @@ This pseudo-state is associated with the LTSSM states Detect, Polling, and Confi
 > 该伪状态关联LTSSM的Detect、Polling、Configuration状态，以及适当时的Disabled、Loopback和Hot Reset状态。
 
 ---
+
+<p align="center">
+<img src="images/ch05/fig5_1_p654.png" alt="Figure 5-1: Link Power Management State Flow Diagram" width="95%">
+<br><em>Figure 5-1: Link Power Management State Flow Diagram / 图5-1：链路电源管理状态流程图</em>
+</p>
+
 ### L-State Summary Table — L状态汇总
 | L-State | Description | Used by S/W PM | Used by ASPM | Ref Clocks | Main Power | Internal PLL | Vaux |
 |---------|-------------|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -218,6 +224,12 @@ The power management state of a Link is determined by the D-state of its Downstr
 > PDF页码：662–663
 The L1 entry negotiation process (Figure 5-2):
 
+<p align="center">
+<img src="images/ch05/fig5_2_p662.png" alt="Figure 5-2: Entry into the L1 Link State" width="95%">
+<br><em>Figure 5-2: Entry into the L1 Link State / 图5-2：进入L1链路状态</em>
+</p>
+
+
 1. **PM Software:** Sends Configuration Write Request to change Downstream Function's D-state.
 2. **Downstream Component:** Schedules completion, waits for minimum credits required to send the largest possible packet for any FC type for all enabled VCs, then suspends all TLP scheduling.
 3. **Downstream Component:** Waits for acknowledgment of PMCSR Write Completion and all previously sent TLPs.
@@ -241,6 +253,12 @@ The L1 entry negotiation process (Figure 5-2):
 ---
 #### 5.3.2.2 Exit from L1 State — 退出L1状态
 > PDF页码：664
+
+<p align="center">
+<img src="images/ch05/fig5_3_p664.png" alt="Figure 5-3: Exit from L1 Link State Initiated by Upstream Component" width="95%">
+<br><em>Figure 5-3: Exit from L1 Link State Initiated by Upstream Component / 图5-3：上游组件发起的L1退出</em>
+</p>
+
 L1 exit can be initiated by the component on either end of a Link. Exit scenarios:
 1. PM software initiates a configuration cycle targeting a PM configuration register within a Function in the Downstream component.
 2. The Upstream component detects that a configuration cycle is intended for a Link currently in low power state and initiates L1→L0 transition.
@@ -288,6 +306,12 @@ PME indications that originate from PCI Express Endpoints are propagated to the 
 
 ---
 #### 5.3.3.2 Link Wakeup — 链路唤醒
+
+<p align="center">
+<img src="images/ch05/fig5_4_p667.png" alt="Figure 5-4: WAKE# Routing Conceptual Diagrams" width="95%">
+<br><em>Figure 5-4: Conceptual Diagrams of WAKE# Routing / 图5-4：WAKE#路由概念图</em>
+</p>
+
 Two defined wakeup mechanisms: **Beacon** (in-band signaling) and **WAKE#** (sideband open-drain signal). Specific form factor specifications determine which is required. Before using any wakeup mechanism, a Function must be enabled by software via setting the PME_En bit.
 
 Systems that allow PME generation from D3<sub>Cold</sub> must provide auxiliary power to support Link wakeup. A component may only consume auxiliary power if software has enabled it.
@@ -360,6 +384,12 @@ The Root Complex has limited buffering for PM_PME Messages. Deadlock can occur w
 ---
 #### 5.3.3.5 PM_PME Delivery State Machine — PM_PME传递状态机
 > PDF页码：670–671
+
+<p align="center">
+<img src="images/ch05/fig5_5_p670.png" alt="Figure 5-5: A Conceptual PME Control State Machine" width="95%">
+<br><em>Figure 5-5: A Conceptual PME Control State Machine / 图5-5：PME控制状态机概念图</em>
+</p>
+
 The PM_PME delivery control state machine has four states:
 
 | State | Description |
@@ -490,6 +520,56 @@ Entry into L1.1 or L1.2 always goes through L1.0 first. Exit from all L1 PM Subs
 进入L1.1或L1.2始终通过L1.0。所有L1 PM Substates的退出均由CLKREQ#信号触发。
 
 ---
+
+### L1 PM Substates Key Figures — L1 PM子状态关键图示
+
+<p align="center">
+<img src="images/ch05/ch05_p689_img0.png" alt="Figure 5-9: State Diagram for L1 PM Substates" width="95%">
+<br><em>Figure 5-9: State Diagram for L1 PM Substates / 图5-9：L1 PM子状态状态图</em>
+</p>
+
+<p align="center">
+<img src="images/ch05/ch05_p690_img0.png" alt="CLKREQ# Connection Topologies" width="95%">
+<br><em>CLKREQ# Connection Topologies / CLKREQ#连接拓扑</em>
+</p>
+
+<p align="center">
+<img src="images/ch05/ch05_p691_img0.png" alt="CLKREQ# Configuration Example" width="95%">
+<br><em>CLKREQ# Configuration Example / CLKREQ#配置示例</em>
+</p>
+
+<p align="center">
+<img src="images/ch05/ch05_p693_img0.png" alt="L1 PM Substates Exit Flow Diagram" width="95%">
+<br><em>L1 PM Substates Exit Flow Diagram / L1 PM子状态退出流程图</em>
+</p>
+
+<p align="center">
+<img src="images/ch05/ch05_p694_img0.png" alt="Figure 5-13: Example L1.1 Waveforms" width="95%">
+<br><em>Figure 5-13: Example L1.1 Waveforms Illustrating Downstream Port Initiated Exit / 图5-13：L1.1波形示例（下游Port发起退出）</em>
+</p>
+
+<p align="center">
+<img src="images/ch05/ch05_p695_img0.png" alt="Figure 5-14: L1.2 Substates" width="95%">
+<br><em>Figure 5-14: L1.2 Substates / 图5-14：L1.2子状态</em>
+</p>
+
+<p align="center">
+<img src="images/ch05/ch05_p696_img0.png" alt="Figure 5-15: Boundary Condition due to Different Sampling of CLKREQ#" width="95%">
+<br><em>Figure 5-15: Boundary Condition due to Different Sampling of CLKREQ# / 图5-15：CLKREQ#不同采样导致的边界条件</em>
+</p>
+
+<p align="center">
+<img src="images/ch05/ch05_p697_img0.png" alt="L1.2 Exit Mechanism" width="95%">
+<br><em>L1.2 Exit Mechanism / L1.2退出机制</em>
+</p>
+
+<p align="center">
+<img src="images/ch05/ch05_p698_img0.png" alt="Figure 5-17: Example L1.2 Waveforms" width="95%">
+<br><em>Figure 5-17: Example L1.2 Waveforms Illustrating Downstream Port Initiated Exit / 图5-17：L1.2波形示例（下游Port发起退出）</em>
+</p>
+
+---
+
 ### L1 PM Substates Configuration — 配置
 The L1 PM Substates Extended Capability (see Section 7.8.3) contains:
 - L1 PM Substates Capabilities Register
