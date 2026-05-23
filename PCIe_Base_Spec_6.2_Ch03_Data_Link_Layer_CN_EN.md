@@ -93,6 +93,11 @@ The Data Link Layer appears as an information conduit with varying latency to th
 
 > 数据链路层对事务层呈现为一个延迟可变的信息通道。在任何给定的单条链路上，所有送入发送数据链路层的TLP将在稍后的时间以相同的顺序出现在接收数据链路层的输出端。延迟取决于多种因素，包括流水线延迟、链路宽度和工作频率、跨链路的电信号传输以及数据链路层重试导致的延迟。由于这些延迟，发送数据链路层可以对发送事务层施加反压，接收数据链路层则向接收事务层传达有效信息的存在或缺失。
 
+<p align="center">
+<img src="images/ch03/fig03_p309.png" alt="Figure 3-1" width="95%">
+<br><em>Figure 3-1: Layering Diagram Highlighting the Data Link Layer / 图3-1：突出显示数据链路层的分层图</em>
+</p>
+
 ---
 
 ## 3.2 Data Link Control and Management State Machine
@@ -111,6 +116,11 @@ The Data Link Layer tracks the state of the Link. It communicates Link status wi
 **Status Outputs / 状态输出：**
 - **DL_Down** — The Data Link Layer is not communicating with the component on the other side of the Link / 数据链路层未与链路对端组件通信
 - **DL_Up** — The Data Link Layer is communicating with the component on the other side of the Link / 数据链路层正在与链路对端组件通信
+
+<p align="center">
+<img src="images/ch03/fig03_p311.png" alt="Figure 3-2" width="75%">
+<br><em>Figure 3-2: Data Link Control and Management State Machine / 图3-2：数据链路控制与管理状态机</em>
+</p>
 
 ### 3.2.1 Data Link Control and Management State Machine Rules
 ### 3.2.1 数据链路控制与管理状态机规则
@@ -187,6 +197,11 @@ The protocol transmits a Port's Local Feature Supported information to the Remot
 | 4:2 | Parameter | Extended VC Count — Number of VC Resources supported | 扩展VC数量 — 发送端口支持的VC资源数量（Flit模式下有意义） |
 | 7:5 | Parameter | L0p Exit Latency — Time required to complete link widening using L0p | L0p退出延迟 — 使用L0p完成链路拓宽所需的时间（Flit模式下有意义） |
 
+<p align="center">
+<img src="images/ch03/fig03_p315.png" alt="Table 3-1" width="95%">
+<br><em>Table 3-1: Data Link Feature Supported Bit Definition (from Spec) / 表3-1：规范中的数据链路功能支持位定义</em>
+</p>
+
 ---
 
 ## 3.4 Flow Control Initialization Protocol
@@ -237,6 +252,21 @@ There are two states in the VC initialization process: **FC_INIT1** and **FC_INI
 > - 收到该VC的任何InitFC2 DLLP、TLP、UpdateFC DLLP或Optimized_Update_FC时设置标志FI2
 > - FI2置位后，通知完成并退出。若缩放流控已激活，UpdateFC中HdrScale/DataScale必须为非零值（01b/10b/11b）
 
+<p align="center">
+<img src="images/ch03/fig03_p318.png" alt="Table 3-2" width="95%">
+<br><em>Table 3-2: InitFC1/InitFC2 Options — Non-Flit Mode / 表3-2：InitFC1/InitFC2选项 — 非Flit模式</em>
+</p>
+
+<p align="center">
+<img src="images/ch03/fig03_p319.png" alt="Table 3-3" width="95%">
+<br><em>Table 3-3: InitFC1/InitFC2 Options — Flit Mode / 表3-3：InitFC1/InitFC2选项 — Flit模式</em>
+</p>
+
+<p align="center">
+<img src="images/ch03/fig03_p323.png" alt="Figure 3-3" width="95%">
+<br><em>Figure 3-3: VC0 Flow Control Initialization Example with 8b/10b Encoding / 图3-3：8b/10b编码下VC0流控初始化示例</em>
+</p>
+
 ### 3.4.2 Scaled Flow Control
 ### 3.4.2 缩放流控
 
@@ -283,6 +313,16 @@ In Non-Flit Mode, all DLLPs include: DLLP Type (8 bits), 24 bits of DLLP Type sp
 
 > 在非Flit模式下，所有DLLP包含：DLLP Type（8位）、24位DLLP类型特定信息和16位CRC。在Flit模式下，DLLP在Flit的DLP字节中传输，包含：DLLP Type（8位）和24位DLLP类型特定信息。CRC在Flit级别处理，而非逐DLLP处理。
 
+<p align="center">
+<img src="images/ch03/fig03_p325.png" alt="Figure 3-4/3-5" width="90%">
+<br><em>Figure 3-4: DLLP Type and CRC Fields (Non-Flit Mode) / 图3-4：DLLP Type和CRC字段（非Flit模式）</em>
+</p>
+
+<p align="center">
+<img src="images/ch03/fig03_p326.png" alt="Figure 3-5" width="70%">
+<br><em>Figure 3-5: DLLP Type Field (Flit Mode) / 图3-5：DLLP Type字段（Flit模式）</em>
+</p>
+
 **Table 3-5: DLLP Type Encodings (Selected) | 表3-5：DLLP类型编码（精选）**
 
 | Encoding (b) | DLLP Type (NFM) | DLLP Type (Flit Mode) | Function |
@@ -312,6 +352,37 @@ In Non-Flit Mode, all DLLPs include: DLLP Type (8 bits), 24 bits of DLLP Type sp
 - For FC DLLPs: HdrFC contains header credit value, DataFC contains data payload credit value, with optional HdrScale/DataScale / FC DLLP包含头信用值和数据载荷信用值，以及可选的缩放因子
 - In Flit Mode, Optimized_Update_FC provides a compact alternative to UpdateFC DLLPs / Flit模式中，Optimized_Update_FC提供比UpdateFC DLLP更紧凑的替代方案
 
+**DLLP Format Figures / DLLP格式图：**
+
+<p align="center">
+<img src="images/ch03/fig03_p329.png" alt="Figure 3-6/3-7/3-8" width="95%">
+<br><em>Figure 3-6: Ack and Nak DLLP Format / 图3-6：Ack和Nak DLLP格式（非Flit模式）</em>
+</p>
+
+<p align="center">
+<img src="images/ch03/fig03_p330.png" alt="Figure 3-9" width="95%">
+<br><em>Figure 3-9: InitFC1 DLLP Format / 图3-9：InitFC1 DLLP格式</em>
+</p>
+
+<p align="center">
+<img src="images/ch03/fig03_p331.png" alt="Figure 3-10/3-11/3-12/3-13" width="95%">
+<br><em>Figure 3-10: InitFC2 DLLP Format / 图3-10：InitFC2 DLLP格式</em>
+<br><em>Figure 3-11: UpdateFC DLLP Format / 图3-11：UpdateFC DLLP格式</em>
+</p>
+
+<p align="center">
+<img src="images/ch03/fig03_p332.png" alt="Figure 3-12/3-13/3-14/3-15" width="95%">
+<br><em>Figure 3-12: PM DLLP Format / 图3-12：电源管理DLLP格式</em>
+<br><em>Figure 3-13: Vendor-Specific DLLP Format / 图3-13：厂商自定义DLLP格式</em>
+<br><em>Figure 3-14: Data Link Feature DLLP Format / 图3-14：Data Link Feature DLLP格式</em>
+<br><em>Figure 3-15: Link Management DLLP Format (Flit Mode) / 图3-15：Link Management DLLP格式（Flit模式）</em>
+</p>
+
+<p align="center">
+<img src="images/ch03/fig03_p333.png" alt="Figure 3-16" width="75%">
+<br><em>Figure 3-16: CRC Calculation Diagram for DLLPs / 图3-16：DLLP CRC计算图</em>
+</p>
+
 ---
 
 ## 3.6 Data Integrity Mechanisms
@@ -323,6 +394,11 @@ In Non-Flit Mode, all DLLPs include: DLLP Type (8 bits), 24 bits of DLLP Type sp
 The Transaction Layer provides TLP boundary information to the Data Link Layer. This allows the Data Link Layer to apply a TLP Sequence Number and a Link CRC (LCRC) for error detection to the TLP. The Receive Data Link Layer validates received TLPs by checking the TLP Sequence Number, LCRC code and any error indications from the Receive Physical Layer. In case any of these errors are in a TLP, Data Link Layer Retry is used for recovery.
 
 > 事务层向数据链路层提供TLP边界信息。这使得数据链路层能够为TLP附加TLP序列号和链路CRC（LCRC）以进行错误检测。接收数据链路层通过检查TLP序列号、LCRC码以及来自接收物理层的任何错误指示来验证接收到的TLP。若TLP中存在任何此类错误，则使用数据链路层重试进行恢复。
+
+<p align="center">
+<img src="images/ch03/fig03_p335.png" alt="Figure 3-17" width="95%">
+<br><em>Figure 3-17: TLP with LCRC and TLP Sequence Number Applied — Non-Flit Mode / 图3-17：已附加LCRC和TLP序列号的TLP — 非Flit模式</em>
+</p>
 
 ### 3.6.2 LCRC, Sequence Number, and Retry Management (TLP Transmitter)
 ### 3.6.2 LCRC、序列号和重试管理（TLP发送端）
@@ -351,7 +427,17 @@ Each TLP is assigned a 12-bit sequence number when accepted from the Transaction
 If the equation `(NEXT_TRANSMIT_SEQ - ACKD_SEQ) mod 4096 >= 2048` (Tx SEQ Stall) is true, the Transmitter must cease accepting TLPs from the Transaction Layer.
 
 > 每个TLP从事务层接受时被分配一个12位序列号。TLP数据完整性由32位LCRC保护（多项式04C11DB7h，种子值FFFFFFFFh）。LCRC字段追加到TLP之后。
->
+
+<p align="center">
+<img src="images/ch03/fig03_p337.png" alt="Figure 3-18" width="75%">
+<br><em>Figure 3-18: TLP Following Application of TLP Sequence Number and 4 Reserved Bits / 图3-18：附加TLP序列号和4个保留位后的TLP</em>
+</p>
+
+<p align="center">
+<img src="images/ch03/fig03_p339.png" alt="Figure 3-19" width="95%">
+<br><em>Figure 3-19: Calculation of LCRC / 图3-19：LCRC的计算</em>
+</p>
+
 > 若等式 `(NEXT_TRANSMIT_SEQ - ACKD_SEQ) mod 4096 >= 2048`（Tx SEQ停顿）为真，发送端必须停止从事务层接受TLP。
 
 The REPLAY_TIMER Limits:
@@ -378,6 +464,16 @@ The TLP transmission mechanisms are also responsible for processing Ack/Nak and 
 - Received FC DLLPs are passed to the Transaction Layer
 - Received PM DLLPs are passed to power management control logic
 - For Ack/Nak DLLPs: acknowledge TLPs by purging from retry buffer all TLPs from oldest to the one matching AckNak_Seq_Num; load ACKD_SEQ; reset REPLAY_NUM and REPLAY_TIMER. If Nak, initiate replay.
+
+<p align="center">
+<img src="images/ch03/fig03_p343.png" alt="Figure 3-20" width="80%">
+<br><em>Figure 3-20: Received DLLP Error Check Flowchart / 图3-20：已接收DLLP错误检查流程图</em>
+</p>
+
+<p align="center">
+<img src="images/ch03/fig03_p344.png" alt="Figure 3-21" width="95%">
+<br><em>Figure 3-21: Ack/Nak DLLP Processing Flowchart / 图3-21：Ack/Nak DLLP处理流程图</em>
+</p>
 
 > TLP发送机制还负责处理从另一端组件接收的Ack/Nak和流控DLLP：
 >
@@ -414,6 +510,11 @@ Key elements:
 > - **NEXT_RCV_SEQ**（12位）：下一个TLP的预期序列号，在DL_Inactive中设为000h
 > - **NAK_SCHEDULED**标志：指示有Nak待发送，在DL_Inactive中清零
 > - **AckNak_LATENCY_TIMER**：确定何时调度Ack DLLP发送
+
+<p align="center">
+<img src="images/ch03/fig03_p347.png" alt="Figure 3-22" width="95%">
+<br><em>Figure 3-22: Receive Data Link Layer Handling of TLPs Flowchart / 图3-22：接收数据链路层TLP处理流程图</em>
+</p>
 
 Processing rules for received TLPs:
 1. If Physical Layer indicates a Receiver Error, discard the TLP and schedule Nak if NAK_SCHEDULED is clear
