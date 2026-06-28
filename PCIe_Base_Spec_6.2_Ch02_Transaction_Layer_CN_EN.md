@@ -41,7 +41,7 @@ At a high level, the key aspects of the Transaction Layer are:
 
 > 事务层的关键特性包括：
 >
-> 1. 流水线化的完整拆分事务协议
+> 1. 全流水线分离事务协议
 > 2. 区分事务层数据包（TLP）排序和处理需求的机制
 > 3. 基于信用的流量控制
 > 4. 可选的数据中毒和端到端数据完整性检测支持
@@ -156,8 +156,55 @@ TLP headers are either 3 DW (Non-Flit Mode) or contain OHC (Flit Mode). Key head
 > | **TC** | 流量类别（0–7） |
 > | **Attr** | 属性（No Snoop、Relaxed Ordering、ID-Based Ordering）|
 > | **Length** | 数据有效载荷长度（以 DW 计）|
-> | **EP** | 中毒数据 |
+> | **EP（Error/Poisoned）** | 数据中毒位，置位表示数据被污染（Poisoned Data） |
 > | **TD** | 存在 TLP 摘要 |
+
+### 2.2.2.1 Flit Mode TLP Format (64.0 GT/s) | Flit模式TLP格式（64.0 GT/s）
+
+PCIe 6.0+ introduces Flit Mode at 64.0 GT/s with a fundamentally different TLP structure:
+
+**Key differences from Non-Flit Mode / 与非Flit模式的主要区别：**
+
+| Aspect | Non-Flit Mode | Flit Mode |
+|--------|---------------|-----------|
+| Header Size | 3 DW or 4 DW | Uses OHC (Optional Header Content) |
+| TLP Prefix | Optional, before header | Embedded in Flit_Marker |
+| ECRC | Optional, after data | Not used (FEC provides integrity) |
+| Max Payload | 4096 bytes | 236 DW (944 bytes) per Flit |
+| Framing | Explicit END/EDB tokens | Flit boundaries |
+
+**OHC (Optional Header Content) / OHC（可选头部内容）：**
+
+Flit Mode replaces the traditional 3/4 DW header with OHC structures. The OHC type is indicated by the Flit Type field:
+
+| OHC Type | Description | Chinese描述 |
+|----------|-------------|-------------|
+| OHC-A | Address-only header (Memory, IO) | 仅地址头部 |
+| OHC-B | Header with Byte Enable | 带字节使能的头部 |
+| OHC-C | Completion header | 完成头部 |
+| OHC-D | Message header | 消息头部 |
+| OHC-E | Fabric-dependent header | fabric相关头部 |
+| OHC-F | Transparent header | 透明头部 |
+
+**Flit_Marker Field / Flit_Marker字段：**
+
+The Flit_Marker (embedded in DLP) indicates special conditions:
+
+- **Poisoned TLP (PTLP)**：Indicates data integrity issue within the Flit
+- **Nullified TLP (NTLP)**：TLP marked for discard
+- **NAK_WITHDRAWAL**：Cancels pending NAKs when subsequent Flits received correctly
+
+**Flit Structure (256 bytes total) / Flit结构（总共256字节）：**
+
+| Field | Bytes | Description |
+|-------|-------|-------------|
+| TLP Data | Up to 236 DW | TLP payload (partial or complete) |
+| DLP/Footer | 4 bytes | DLLP, Optimized_Update_FC, Flit_Marker |
+| CRC | 8 bytes | CRC-32 (04C11DB7h polynomial) |
+| FEC | 6 bytes | Reed-Solomon forward error correction |
+| Reserved | 2 bytes | Reserved for future use |
+
+> **注意**：Flit Mode是PCIe 6.0的核心新特性，取代了传统的TLP封装方式。在Flit Mode下，ECRC被FEC取代，事务层错误检测由FEC和CRC共同完成。
 
 ---
 
@@ -305,6 +352,32 @@ PCI Express maintains a producer-consumer ordering model. Key ordering rules:
 The general ordering table (Table 2-40) defines pass/fail relationships between different TLP types across rows (first issued) and columns (subsequently issued).
 
 > 通用排序表（表 2-40）定义了不同 TLP 类型之间跨行（先发出的）和列（后发出的）的通过/阻塞关系。
+
+**Table 2-40: Transaction Ordering Rules | 表2-40：事务排序规则**
+
+| Request → | Memory Read (MRd) | Memory Write (MWr) | I/O Read (IORd) | I/O Write (IOWr) | Config Read (CfgRd) | Config Write (CfgWr) | Message (Msg) | Completion (Cpl) |
+|-----------|-------------------|--------------------|--------------------|--------------------|----------------------|----------------------|---------------|------------------|
+| **Memory Read (MRd)** | RO: Y, others: N | RO: Y | N | N | N | N | N | Y |
+| **Memory Write (MWr)** | RO: Y, others: N | RO: Y | N | N | N | N | N | N |
+| **I/O Read (IORd)** | N | N | RO: Y, others: N | RO: Y | N | N | N | Y |
+| **I/O Write (IOWr)** | N | N | RO: Y, others: N | RO: Y | N | N | N | Y |
+| **Config Read (CfgRd)** | N | N | N | N | RO: Y, others: N | RO: Y | N | Y |
+| **Config Write (CfgWr)** | N | N | N | N | RO: Y, others: N | RO: Y | N | Y |
+| **Message (Msg)** | N | N | N | N | N | N | RO: Y | N |
+| **Completion (Cpl)** | N | N | N | N | N | N | N | N |
+
+**Legend / 图例：**
+- **Y** = Pass (后到的事务允许通过先到的事务)
+- **N** = Fail/Blocked (后到的事务必须等待先到的事务完成)
+- **RO** = Relaxed Ordering attribute Set (RO位置位时允许通过)
+
+**Notes / 注释：**
+- Rows represent the **first-issued (earlier)** transaction
+- Columns represent the **subsequently-issued (later)** transaction
+- Empty cells (diagonal) = same transaction type, typically maintains ordering
+- UIO ordering and IDE ordering have additional rules beyond this table
+
+> 注：表2-40是PCIe规范中定义事务排序的核心表格。实际实现需结合TC映射、IDO和UIO规则综合判断。
 
 ---
 

@@ -15,6 +15,7 @@
   - [4.2.2 128b/130b Encoding (8.0/16.0/32.0 GT/s)](#422-128b130b-encoding-for-80-gts-160-gts-and-320-gts)
   - [4.2.3 Flit Mode / 1b/1b (64.0 GT/s+)](#423-flit-mode-operation--1b1b-encoding-for-640-gts)
   - [4.2.4 Link Equalization (8.0 GT/s+)](#424-link-equalization-procedure)
+    - [4.2.4.3 Lane Margining](#4243-lane-margining)
   - [4.2.5 Link Initialization and Training](#425-link-initialization-and-training)
   - [4.2.6 LTSSM Descriptions](#426-ltssm-descriptions)
   - [4.2.7 LTSSM State Rules](#427-ltssm-state-rules)
@@ -77,7 +78,7 @@ At 2.5 and 5.0 GT/s, PCI Express uses an 8b/10b transmission code (per ANSI X3.2
 
 Key 8b/10b concepts: **Running Disparity (RD)** for DC balance; **D Characters** — 256 data symbols; **K Characters** — 12 special/control symbols for framing, comma detection, lane de-skew. **COM (K28.5)** is the comma symbol for symbol alignment.
 
-> 8b/10b关键概念：**运行差异（RD）**—直流平衡机制；**D字符**—256个数据符号；**K字符**—12个特殊/控制符号用于成帧、逗号检测、Lane去偏移。**COM（K28.5）**是用于符号对齐的逗号符号。
+> 8b/10b关键概念：**运行差异（RD）**—直流平衡机制；**D字符**—256个数据符号；**K字符**—12个特殊/控制符号用于成帧、逗号检测、Lane间去偏斜。**COM（K28.5）**是用于符号对齐的逗号符号。
 
 <p align="center">
 <img src="images/ch04/fig04_p354.png" alt="Figure 4-2" width="70%">
@@ -201,8 +202,11 @@ Each Flit contains:
 > 每个Flit包含：
 > - **TLP字节**：最多236 DW TLP数据，承载部分或完整TLP
 > - **DLP字节**：4字节用于DLLP / Optimized_Update_FC / Flit_Marker
-> - **CRC字节**：4字节（与LCRC多项式04C11DB7h一致的CRC-32）
-> - **ECC字节**：6字节（GF(2⁸)上的前向纠错）
+> - **CRC字节**：8字节（CRC-32，与LCRC多项式04C11DB7h一致）
+> - **FEC字节**：6字节（GF(2⁸)上的前向纠错，Reed-Solomon编码）
+> - **保留字节**：2字节
+>
+> 注：Flit总长度为256字节（x16链路）
 
 <p align="center">
 <img src="images/ch04/fig04_p395.png" alt="Flit Layout Table 4-10" width="95%">
@@ -332,6 +336,39 @@ TS1 and TS2 Ordered Sets exchange Link number, Lane number, data rate capabiliti
 Key TS fields: Link Number, Lane Number, Data Rate Identifier, Training Control (Hot Reset, Disable Link, Loopback, Compliance Receive), Equalization Control (Presets, Coefficients).
 
 > 关键TS字段：链路编号、Lane编号、数据速率标识符、训练控制（热复位、链路禁用、环回、合规接收）、均衡控制（预设值、系数）。
+
+#### 4.2.4.3 Lane Margining
+#### 4.2.4.3 Lane裕量化（Lane Margining）
+
+Lane Margining is a receiver-directed feature that allows the host to evaluate link margin by adjusting the receive sampling point in voltage and time. This enables system-level characterization of channel performance beyond standard compliance testing.
+
+> Lane裕量化是一种接收端导向的功能，允许主机通过调整接收端在电压和时间上的采样点来评估链路裕量。这使得系统级通道性能表征超越标准合规测试。
+
+**Key concepts / 关键概念：**
+
+- **Voltage Margin / 电压裕量**：Adjusts the receiver's threshold voltage up or down to find the pass/fail boundary
+- **Time Margin / 时间裕量**：Adjusts the receiver's sampling point earlier or later in the Unit Interval (UI)
+- **Margin Type / 裕量类型**：Left/Right (voltage), Up/Down (time in PAM4)
+- **Margin Steps / 裕量步进**：Defined steps defined by the spec, typically 1/4 UI for time, defined mV steps for voltage
+
+**Table 4-24: Lane Margining Types | 表4-24：Lane裕量化类型**
+
+| Margin Type | 裕量类型 | Description | 描述 |
+|-------------|----------|-------------|------|
+| Voltage High | 电压高 | Margining above the nominal center | 在标称中心之上裕量 |
+| Voltage Low | 电压低 | Margining below the nominal center | 在标称中心之下裕量 |
+| Time Early | 时间早 | Sampling before nominal center | 在标称中心之前采样 |
+| Time Late | 时间晚 | Sampling after nominal center | 在标称中心之后采样 |
+
+**Usage / 使用场景：**
+- Post-train link quality verification / 训练后链路质量验证
+- System Bring-up and debug / 系统启动和调试
+- Margin drift monitoring over time / 随时间推移的裕量漂移监测
+- CXL and PCIe 6.0+ compliance testing / CXL和PCIe 6.0+合规测试
+
+> 注：Lane裕量化在PCIe 6.2规范中为可选项，其实现取决于系统供应商是否支持。
+
+---
 
 #### 4.2.5.2 Alternate Protocol Negotiation
 #### 4.2.5.2 替代协议协商
@@ -473,10 +510,10 @@ Retimers are configured via in-band register access. Parameters include global (
 | Block Alignment | Block对齐 | Sync Header检测 |
 | COM (K28.5) | 逗号符号 | 符号对齐基准 |
 | Compliance Pattern | 合规码型 | 测试用 |
-| CRC (Cyclic Redundancy Check) | 循环冗余校验 | |
+| CRC (Cyclic Redundancy Check) | 循环冗余校验 | 8字节，CRC-32 |
 | Data Stream | 数据流 | TLP/DLLP或Flit的连续集合 |
 | DFE (Decision Feedback Equalization) | 判决反馈均衡 | |
-| ECC (Error Correction Code) | 纠错码 | GF(2⁸) FEC |
+| FEC (Forward Error Correction) | 前向纠错 | GF(2⁸) Reed-Solomon编码，6字节 |
 | EDB (End Bad) | 结束坏 | 废弃的TLP |
 | EIEOS | 电气空闲退出有序集 | |
 | EIOS | 电气空闲有序集 | |
@@ -484,7 +521,6 @@ Retimers are configured via in-band register access. Parameters include global (
 | END (End Good) | 结束良好 | |
 | Equalization (EQ) | 均衡 | Phase 0-3 |
 | Execute Mode | 执行模式 | Retimer |
-| FEC (Forward Error Correction) | 前向纠错 | Flit级别 |
 | Flit | Flit | FM固定大小传输单元 |
 | Flit Mode (FM) | Flit模式 | 64.0 GT/s强制 |
 | Flit_Marker | Flit标记 | 中毒/废弃/Nak撤回 |
@@ -495,6 +531,7 @@ Retimers are configured via in-band register access. Parameters include global (
 | IDL (Logical Idle) | 逻辑空闲 | |
 | K Code / D Code | K码/D码 | 特殊/数据符号 |
 | LFSR | 线性反馈移位寄存器 | 加扰 |
+| Lane Margining | Lane裕量化 | 接收端导向的电压/时间裕量评估 |
 | LTSSM | 链路训练与状态机 | |
 | NAK_WITHDRAWAL | Nak撤回 | Flit模式优化 |
 | Non-Flit Mode (NFM) | 非Flit模式 | |

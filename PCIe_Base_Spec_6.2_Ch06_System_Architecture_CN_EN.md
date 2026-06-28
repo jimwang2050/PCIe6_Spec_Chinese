@@ -767,7 +767,7 @@ For SR-IOV devices, error handling must account for the separation of Physical F
 Internal errors are device-specific errors that are not caused by TLPs received from the Link. These are typically reported through the AER Capability structure.
 
 >
-> 内部错误是由于设备特定原因而非从链路接收的 TLP 引起的错误。这些通常通过 AER 能力结构报告。
+> 内部错误是设备特定的错误，不是由从链路接收的 TLP 引起的，而是由设备特定原因导致的。这些通常通过 AER 能力结构报告。
 >
 
 #### 6.2.11 Downstream Port Containment (DPC) / 下行端口遏制（DPC）
@@ -1889,7 +1889,7 @@ Additional rules governing IDE operation include:
 > 管理IDE操作的附加规则包括：
 > - IDE仅允许在处于L0或以上链路状态的操作链路上使用。
 > - IDE流在链路的每个方向上独立建立。
-> - 当检测到IDE TLP上的错误时（MAC验证失败、nonce错误），丢弃该TLP并将错误报告为咨询非致命错误。
+> - 当检测到IDE TLP上的错误时（MAC验证失败、nonce错误），丢弃该TLP并将错误报告为咨询性非致命错误。
 > - IDE对现有PCIe事务排序、流控和TLP处理规则透明运行。
 > - IDE不改变任何现有的PCIe排序规则或流控机制。
 >

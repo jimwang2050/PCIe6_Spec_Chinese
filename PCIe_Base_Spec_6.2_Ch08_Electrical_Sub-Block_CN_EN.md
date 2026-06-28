@@ -34,7 +34,7 @@
   - [8.6.3 Data Rate Independent Refclk Parameters — 数据速率无关参考时钟参数](#863-data-rate-independent-refclk-parameters)
   - [8.6.4 Refclk Architectures Supported — 支持的参考时钟架构](#864-refclk-architectures-supported)
   - [8.6.5 Filtering Functions — 滤波函数](#865-filtering-functions)
-  - [8.6.6 Common Refclk Rx Architecture — 公共参考时钟接收架构](#866-common-refclk-rx-architecture)
+  - [8.6.6 Common Refclk Rx Architecture — 公共时钟接收架构](#866-common-refclk-rx-architecture)
   - [8.6.7 Jitter Limits for Refclk Architectures — 参考时钟架构的抖动限制](#867-jitter-limits-for-refclk-architectures)
   - [8.6.8 Form Factor Requirements — 形态规格要求](#868-form-factor-requirements)
 - [术语附录 | Terminology Appendix](#术语附录-terminology-appendix)
@@ -62,7 +62,7 @@ Key attributes of the Electrical Specification include:
 > - 用于低功耗链路操作的降摆幅模式
 > - 带内接收器检测和电气空闲检测
 > - 通道合规方法论
-> - 自适应发送端均衡和参考接收端均衡，支持8.0、16.0、32.0 GT/s和64.0 GT/s的闭眼通道
+> - 自适应发送端均衡和参考接收端均衡，支持8.0、16.0、32.0 GT/s和64.0 GT/s的闭合眼图通道
 > - Lane裕量化（Lane Margining）
 > - AC耦合通道
 
@@ -517,7 +517,7 @@ Figures 8-15 through 8-17 show behavioral CDR transfer functions for SRIS (Separ
 
 Equations 8-10 through 8-13 define the behavioral CDR transfer functions and parameters.
 
-> 图8-15至图8-17展示了SRIS（分离参考独立扩频）和CC（公共时钟）架构在更高数据速率下的行为CDR传递函数。
+> 图8-15至图8-17展示了SRIS（独立参考独立扩频）和CC（公共时钟）架构在更高数据速率下的行为CDR传递函数。
 >
 > 方程式8-10至方程式8-13定义了行为CDR传递函数和参数。
 
@@ -932,8 +932,8 @@ This specification supports three Refclk architectures:
 
 > 本规范支持三种参考时钟架构：
 > 1. **公共参考时钟（CC）** — 同一参考时钟分发到发送端和接收端
-> 2. **分离参考独立扩频（SRIS）** — 具有独立SSC的分离参考时钟
-> 3. **分离参考无扩频（SRNS）** — 无SSC的分离参考时钟
+> 2. **独立参考独立扩频（SRIS）** — 具有独立SSC的独立参考时钟
+> 3. **独立参考无扩频（SRNS）** — 无SSC的独立参考时钟
 
 ### 8.6.5 Filtering Functions Applied to Raw Data
 ### 8.6.5 应用于原始数据的滤波函数
@@ -958,11 +958,11 @@ Various CDR transfer function examples are provided for different data rates and
 > 针对不同数据速率和参考时钟架构，提供了各种CDR传递函数示例。
 
 ### 8.6.6 Common Refclk Rx Architecture (CC)
-### 8.6.6 公共参考时钟接收架构（CC）
+### 8.6.6 公共时钟接收架构（CC）
 
 The Common Refclk architecture is illustrated in Figure 8-89. In this architecture, the same Refclk source drives both the Transmitter and Receiver PLLs, allowing tracking of common low-frequency jitter.
 
-> 公共参考时钟架构如图8-89所示。在此架构中，同一参考时钟源驱动发送端和接收端PLL，允许跟踪公共的低频抖动。
+> 公共时钟架构如图8-89所示。在此架构中，同一参考时钟源驱动发送端和接收端PLL，允许跟踪公共的低频抖动。
 
 <p align="center">
 <img src="images/ch08/fig08_p1522.png" alt="Figure 8-89" width="75%">
@@ -977,7 +977,7 @@ The number of PLL bandwidth and peaking combinations that must be tested depends
 > 必须测试的PLL带宽和峰值组合数量取决于数据速率和参考时钟架构。
 
 #### 8.6.6.2 CDR and PLL BW and Peaking Limits for Common Refclk
-#### 8.6.6.2 公共参考时钟的CDR和PLL带宽与峰值限制
+#### 8.6.6.2 公共时钟的CDR和PLL带宽与峰值限制
 
 Figures 8-90 through 8-94 illustrate the CDR and PLL BW and peaking characteristics for Common Refclk at data rates from 2.5 GT/s to 64.0 GT/s.
 
@@ -1013,7 +1013,7 @@ The specification supports CC, SRIS, and SRNS architectures differently dependin
 > 本规范根据不同形态规格差别支持CC、SRIS和SRNS架构。例如：
 > - 系统主板必须支持CC
 > - 插卡可支持CC、SRIS或SRNS
-> - Retimer具有特定的时钟要求
+> - 重定时器（Retimer）具有特定的时钟要求
 
 **Table 8-22: Form Factor Common Clock Architecture Details | 表8-22：形态规格公共时钟架构详情**
 
@@ -1082,14 +1082,15 @@ If a form factor has clocking requirements that cannot be provided in this simpl
 | Preset | 预设值 | |
 | PWJ (Pulse Width Jitter) | 脉宽抖动 | |
 | Refclk (Reference Clock) | 参考时钟 | |
+| Retimer | 重定时器 | |
 | Replica Channel | 复制通道 | |
 | Return Loss | 回波损耗 | |
 | RJ (Random Jitter) | 随机抖动 | |
 | RLM (Ratio of Level Mismatch) | 电平失配比 | |
 | Rx (Receiver) | 接收端 | |
 | SNDR (Signal-to-Noise and Distortion Ratio) | 信噪失真比 | |
-| SRIS (Separate Refclk Independent Spread) | 分离参考独立扩频 | |
-| SRNS (Separate Refclk No Spread) | 分离参考无扩频 | |
+| SRIS (Separate Refclk Independent Spread) | 独立参考独立扩频 | |
+| SRNS (Separate Refclk No Spread) | 独立参考无扩频 | |
 | SSC (Spread Spectrum Clocking) | 扩频时钟 | |
 | Stressed Eye | 压力眼图 | |
 | TJ (Total Jitter) | 总抖动 | |
