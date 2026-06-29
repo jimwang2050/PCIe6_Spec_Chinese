@@ -328,8 +328,6 @@ Note: There are multiple reasons that the TA may break a Translation Completion 
 
 > 注意：TA 可能将翻译完成拆分为多个 TLP 的原因有多种。例如，如果翻译完成的虚拟地址解析为跨越了实现特定地址边界的页表访问，那么到 TA 的完成可能被拆分为两个完成。TA 不需要累积结果，而是允许在从内存接收到翻译完成的每个部分时直接将其发送给功能。
 
-> 当 TA 支持大于最小值的页面大小时，单个翻译请求可产生多达两个不同大小的翻译完成 TLP。这使 TA 能够报告最大的可用转换。
-
 ---
 
 ## 10.3 ATS Invalidation

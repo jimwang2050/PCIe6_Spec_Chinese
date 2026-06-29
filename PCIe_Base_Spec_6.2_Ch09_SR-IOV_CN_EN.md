@@ -408,6 +408,8 @@ When Set, VF Routing IDs are assigned using ARI. This bit may only be changed wh
 
 VF BAR0 through VF BAR5. The behavior for determining memory aperture and assigning starting address follows the same rules as normal PCI BARs (Section 7.5.1.2.1), with the extension that memory space for VFv is calculated as:
 
+> VF BAR0 到 VF BAR5。确定内存窗口和分配起始地址的行为遵循与普通 PCI BAR 相同的规则（第 7.5.1.2.1 节），但扩展了 VFv 的内存空间计算方式：
+
 ```
 BARb VFv starting address = VF BARb + (v - 1) × (VF BARb aperture size)
 ```
