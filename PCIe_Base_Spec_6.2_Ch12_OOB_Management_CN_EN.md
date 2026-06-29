@@ -1,15 +1,9 @@
-# PCI Express Base Specification 6.2 — Chapter 12
-# Architectural Out-of-Band Management
-# 架构带外管理
+# PCI Express Base Specification 6.2 — 第12章：架构带外管理
 
 > 中英文对照翻译 | Chinese-English Parallel Translation
->
 > Source: NCB-PCI_Express_Base_6.2-2024-01-25.pdf, Pages 1659–1702
 
 ---
-
-## Chapter 12. Architectural Out-of-Band Management
-## 第 12 章 架构带外管理
 
 ---
 

@@ -1,10 +1,6 @@
-# PCI Express Base Specification Revision 6.2
-
-# PCI Express 基础规范 修订版 6.2
+# PCI Express Base Specification Revision 6.2 — 第1章：引言
 
 **Chinese-English Parallel Translation / 中英对照翻译**
-
-**Chapter 1: Introduction / 第1章：引言**
 
 ---
 

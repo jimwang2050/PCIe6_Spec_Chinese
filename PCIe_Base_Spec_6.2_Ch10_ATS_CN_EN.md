@@ -1,15 +1,9 @@
-# PCI Express Base Specification 6.2 — Chapter 10
-# Address Translation Services (ATS)
-# 地址转换服务
+# PCI Express Base Specification 6.2 — 第10章：地址转换服务
 
 > 中英文对照翻译 | Chinese-English Parallel Translation
->
 > Source: NCB-PCI_Express_Base_6.2-2024-01-25.pdf, Pages 1559–1608
 
 ---
-
-## Chapter 10. Address Translation Services (ATS)
-## 第 10 章 地址转换服务
 
 ---
 

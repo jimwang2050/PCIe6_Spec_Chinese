@@ -1,9 +1,7 @@
-# Chapter 4: Physical Layer Logical Block
-# 第4章：物理层逻辑子层
+# Chapter 4: Physical Layer Logical Block — 第4章：物理层逻辑子层
 
 > 中英文对照翻译 | Chinese-English Parallel Translation
 > Source: NCB-PCI Express Base Specification Revision 6.2 (2024-01-25), PDF Pages 351–651 (301 pages)
-> 来源：PCI Express Base规范修订版6.2 (2024-01-25)，PDF页码：351–651（共301页）
 
 ---
 

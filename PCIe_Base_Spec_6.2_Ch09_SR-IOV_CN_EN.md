@@ -1,15 +1,9 @@
-# PCI Express Base Specification 6.2 — Chapter 9
-# Single Root I/O Virtualization and Sharing (SR-IOV)
-# 单根 I/O 虚拟化与共享
+# PCI Express Base Specification 6.2 — 第9章：单根 I/O 虚拟化与共享
 
 > 中英文对照翻译 | Chinese-English Parallel Translation
->
 > Source: NCB-PCI_Express_Base_6.2-2024-01-25.pdf, Pages 1523–1558
 
 ---
-
-## Chapter 9. Single Root I/O Virtualization and Sharing
-## 第 9 章 单根 I/O 虚拟化与共享
 
 ---
 

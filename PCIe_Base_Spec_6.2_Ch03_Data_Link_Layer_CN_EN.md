@@ -1,9 +1,7 @@
-# Chapter 3: Data Link Layer Specification
-# 第3章：数据链路层规范
+# Chapter 3: Data Link Layer — 第3章：数据链路层规范
 
 > 中英文对照翻译 | Chinese-English Parallel Translation
 > Source: NCB-PCI Express Base Specification Revision 6.2 (2024-01-25), PDF Pages 309–351 (43 pages)
-> 来源：PCI Express Base规范修订版6.2 (2024-01-25)，PDF页码：309–351（共43页）
 
 ---
 

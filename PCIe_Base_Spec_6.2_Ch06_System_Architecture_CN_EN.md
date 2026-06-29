@@ -1,15 +1,9 @@
-# PCI Express Base Specification Revision 6.2 — Chapter 6
+# PCI Express Base Specification Revision 6.2 — 第6章：系统架构
 
-# PCI Express 基础规范 修订版 6.2 — 第6章
-
-**Chinese-English Parallel Translation / 中英对照翻译**
-
-**Chapter 6: System Architecture / 第6章：系统架构**
+> **中英文对照翻译 | Chinese-English Parallel Translation**
+> **译者说明 / Translator's Note**: 段落级中英对照翻译，英文原文在上，中文翻译紧随其后。
 
 ---
-
-> **Translator's Note / 译者说明**:
-> - Paragraph-level Chinese-English parallel translation. 段落级中英对照翻译。
 > - Page images are embedded inline for visual reference. 页面截图内嵌在文中以供参考。
 > - Key technical terms are preserved in English on first occurrence with Chinese translations. 关键术语首次出现时保留英文及中文翻译。
 

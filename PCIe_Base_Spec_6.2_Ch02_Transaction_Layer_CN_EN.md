@@ -1,9 +1,6 @@
-# PCI Express Base Specification 6.2 — Chapter 2
-# Transaction Layer Specification
-# 事务层规范
+# PCI Express Base Specification 6.2 — 第2章：事务层规范
 
 > 中英文对照翻译 | Chinese-English Parallel Translation
->
 > Source: NCB-PCI_Express_Base_6.2-2024-01-25.pdf, Pages 141–308
 
 ---

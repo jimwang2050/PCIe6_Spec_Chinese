@@ -1,12 +1,8 @@
-# PCI Express Base Specification 6.2 — Chapter 11
-# TEE Device Interface Security Protocol (TDISP)
-# TEE 设备接口安全协议
+# PCI Express Base Specification 6.2 — 第11章：TEE 设备接口安全协议
 
 > **中英文对照翻译 | Chinese-English Parallel Translation**
-
 > **Source**: NCB-PCI_Express_Base_6.2-2024-01-25.pdf, Pages 1609–1658
-
-> **Translator's Note**: 本文档提供 PCIe 6.2 规范第 11 章 TDISP 的完整中英文对照翻译，图片已保留嵌入。翻译采用专业术语标准化处理，首次出现的术语会标注中英文对照。
+> **译者说明**: 本文档提供 PCIe 6.2 规范第 11 章 TDISP 的完整中英文对照翻译，图片已保留嵌入。翻译采用专业术语标准化处理，首次出现的术语会标注中英文对照。
 
 ---
 
