@@ -285,6 +285,8 @@ Key constraints:
 
 #### Register Summary | 寄存器摘要
 
+**Table 9-2: SR-IOV Extended Capability Registers | 表9-2：SR-IOV扩展能力寄存器**
+
 | Offset | Register | Description |
 |--------|----------|-------------|
 | 00h | Extended Capability Header | PCIe Extended Capability ID = 0010h |
@@ -320,6 +322,8 @@ Key constraints:
 <br><em>Figure 9-12 SR-IOV Capabilities Register | 图 9-12 SR-IOV 能力寄存器</em>
 </p>
 
+**Table 9-3: SR-IOV Capabilities Register | 表9-3：SR-IOV能力寄存器**
+
 | Bit | Field | Description |
 |-----|-------|-------------|
 | 0 | VF Migration Capable | PF supports VF Migration (optional) |
@@ -335,6 +339,8 @@ Key constraints:
 <img src="images/ch09/ch09_pg1545.png" alt="Figure 9-13 SR-IOV Control Register" width="85%">
 <br><em>Figure 9-13 SR-IOV Control Register | 图 9-13 SR-IOV 控制寄存器</em>
 </p>
+
+**Table 9-4: SR-IOV Control Register | 表9-4：SR-IOV控制寄存器**
 
 | Bit | Field | Description |
 |-----|-------|-------------|

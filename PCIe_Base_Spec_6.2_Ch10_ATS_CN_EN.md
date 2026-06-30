@@ -168,6 +168,8 @@ AMAs provide hints for performing memory operations such as cache management. If
 
 A Function with an ATC can send Memory Requests that contain either translated or untranslated addresses. The Address Type (AT) field indicates the type:
 
+**Table 10-1: Address Type Encoding | 表10-1：地址类型编码**
+
 | AT Value | Address Type | Description |
 |----------|-------------|-------------|
 | 00b | Untranslated (default) | Address is untranslated; TA must translate |
@@ -216,6 +218,8 @@ ATS Translation Requests are Memory Read Requests with AT=01b. Key fields in the
 ---
 
 Key Translation Completion fields:
+
+**Table 10-2: Translation Completion Fields | 表10-2：翻译完成字段**
 
 | Field | Description |
 |-------|-------------|
@@ -422,6 +426,8 @@ The PRG Response Message reports the outcome of processing a PRG:
 
 ---
 
+**Table 10-3: ATS Extended Capability Registers | 表10-3：ATS扩展能力寄存器**
+
 | Offset | Register | Key Fields |
 |--------|----------|------------|
 | 00h | Header | PCIe Ext Cap ID = 000Fh, Capability Version |
@@ -439,6 +445,8 @@ The PRG Response Message reports the outcome of processing a PRG:
 ---
 
 ### 10.5.2 Page Request Extended Capability | Page Request 扩展能力
+
+**Table 10-4: Page Request Extended Capability Registers | 表10-4：Page Request扩展能力寄存器**
 
 | Offset | Register | Key Fields |
 |--------|----------|------------|

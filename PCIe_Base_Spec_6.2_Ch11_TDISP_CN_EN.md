@@ -13,7 +13,7 @@
 
 <p align="center">
 <img src="images/ch11/ch11_p1636_img0.png" alt="Figure 11-7 Example Flow Where DSM is Unable to Return Full Length Report" width="90%">
-<br><em>Figure 11-7 Example Flow Where DSM is Unable to Return Full Length Report</em>
+<br><em>Figure 11-7 Example Flow Where DSM is Unable to Return Full Length Report | 图11-7 DSM无法返回完整长度报告的示例流程</em>
 </p>
 
 ---
@@ -140,7 +140,7 @@ The hardware assisted I/O virtualization schemes for direct I/O from TVMs to dev
 
 <p align="center">
 <img src="images/ch11/fig11_1_p1610.png" alt="Figure 11-1 Conceptual View with Example Host and Device and Logical Communication Paths" width="95%">
-<br><em>Figure 11-1 Conceptual View with Example Host and Device and Logical Communication Paths</em>
+<br><em>Figure 11-1 Conceptual View with Example Host and Device and Logical Communication Paths | 图11-1 带示例主机和设备以及逻辑通信路径的概念视图</em>
 </p>
 
 Figure 11-2 illustrates key elements of the TDISP reference architecture. Typically, a PF is the resource management entity for a TDI and is managed by the PF driver in the VMM. The VMM and the PF driver are not required to be in the TCB of the TVMs. The VMM uses the PF to configure TDIs for assignment to TVMs. TEE-I/O requires the device to organize its hardware/software interfaces such that the PF cannot be used to affect the security of a TDI when it is in use by a TVM.
@@ -151,7 +151,7 @@ Figure 11-2 illustrates key elements of the TDISP reference architecture. Typica
 
 <p align="center">
 <img src="images/ch11/fig11_2_p1613.png" alt="Figure 11-2 TDISP Host/Device Reference Architecture" width="95%">
-<br><em>Figure 11-2 TDISP Host/Device Reference Architecture</em>
+<br><em>Figure 11-2 TDISP Host/Device Reference Architecture | 图11-2 TDISP主机/设备参考架构</em>
 </p>
 
 The device must support mechanisms to lockdown the configurations of the TDI, when requested by the TSM, such that any modifications to the TDI configurations, once the TVM has accepted and started using the TDI, are detected as malicious actions. The device is required to implement a security architecture that protects the confidentiality and integrity of TVM data from being tampered with by the PF or other TDIs assigned to other TVMs or VMs. To ensure that error conditions can be appropriately managed, the device should implement Advanced Error Reporting (AER).
@@ -226,7 +226,7 @@ As illustrated in Figure 11-3, a TDI is managed by a specific DSM, and within th
 
 <p align="center">
 <img src="images/ch11/fig11_3_p1616.png" alt="Figure 11-3 Identification of Requests" width="90%">
-<br><em>Figure 11-3 Identification of Requests</em>
+<br><em>Figure 11-3 Identification of Requests | 图11-3 请求的识别</em>
 </p>
 
 > 如图 11-3 所示，TDI 由特定的 DSM 管理，在该 DSM 的域内，每个 TDI 必须有一个唯一的标识符，称为 **INTERFACE_ID**，在所有 TSM/DSM 消息中使用以指示适用的 TDI。从 TVM 发出的 MMIO 请求由主机转换并根据 HPA 定向到适当的 TDI。TDI 生成的请求包含承载 TDI 的功能的请求者 ID（RID），也可能含有 PASID。
@@ -235,7 +235,7 @@ As illustrated in Figure 11-3, a TDI is managed by a specific DSM, and within th
 
 <p align="center">
 <img src="images/ch11/fig11_4_p1617.png" alt="Figure 11-4 TDI Identifier - INTERFACE_ID" width="80%">
-<br><em>Figure 11-4 TDI Identifier - INTERFACE_ID</em>
+<br><em>Figure 11-4 TDI Identifier - INTERFACE_ID | 图11-4 TDI标识符 - INTERFACE_ID</em>
 </p>
 
 The INTERFACE_ID is composed of a **FUNCTION_ID** field that identifies the function of the device hosting the TDI and a Reserved field provided for future expansion (see Figure 11-4 and Table 11-1). Within the FUNCTION_ID, the Function Number and Device Number are assigned by the device/DSM. The Bus Number and Segment Number are assigned during system enumeration and must not be changed for a TDI in CONFIG_LOCKED and RUN.
@@ -260,7 +260,7 @@ The INTERFACE_ID is composed of a **FUNCTION_ID** field that identifies the func
 
 <p align="center">
 <img src="images/ch11/fig11_5_p1617.png" alt="Figure 11-5 TDISP State Machine" width="85%">
-<br><em>Figure 11-5 TDISP State Machine</em>
+<br><em>Figure 11-5 TDISP State Machine | 图11-5 TDISP状态机</em>
 </p>
 
 Each TDI in the device is associated with a TDISP state machine (see Figure 11-5). The TSM steps the TDI through these security states as part of the TDI security lifecycle management process.
@@ -422,7 +422,7 @@ TDISP messages are transported as follows:
 
 <p align="center">
 <img src="images/ch11/fig11_6_p1622.png" alt="Figure 11-6 TDISP Request/Response Encapsulation" width="90%">
-<br><em>Figure 11-6 TDISP Request/Response Encapsulation</em>
+<br><em>Figure 11-6 TDISP Request/Response Encapsulation | 图11-6 TDISP请求/响应封装</em>
 </p>
 
 > TDISP 消息按如下方式传输：
