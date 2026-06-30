@@ -1274,7 +1274,8 @@ The Hierarchy ID Message provides a mechanism for components to discover and com
 
 ### 6.26 Flattening Portal Bridge (FPB) / 扁平化门户桥 (FPB)
 
-![Figure 6-28 FPB High Level Diagram and Example Topology](images/ch06_new/fig6_X_p862.png)
+![Figure 6-28 FPB High Level Diagram and Example Topology](images/ch06_new/ch06_p862_img0.png)
+<br><em>Figure 6-28 FPB High Level Diagram and Example Topology | 图6-28 FPB高层框图与拓扑示例</em>
 
 The Flattening Portal Bridge (FPB) is an optional mechanism which can be used to improve the scalability and runtime reallocation of Routing IDs and Memory Space resources. For non-ARI Functions associated with an Upstream Port, the Routing ID consists of a 3-bit Function Number portion, which is determined by the construction of the Upstream Port hardware, and a 13-bit Bus Number and Device number portion, determined by the Downstream Port above the Upstream port. For ARI Functions associated with an Upstream Port, the Routing ID consists of an 8-bit Function Number portion, and only the 8-bit Bus Number portion is determined by the Downstream Port above the Upstream port.
 
@@ -1288,7 +1289,8 @@ A bridge that implements the FPB Capability can itself also be referred to as an
 > 实现了FPB能力的桥本身也可称为FPB。FPB能力可应用于任何逻辑桥，如图6-28所示。FPB通过"扁平化"交换机内部和下游端口使用总线号的方式，改变了交换机消耗总线号的方式以减少浪费（见图6-29）。
 >
 
-![Figure 6-29 Example Illustrating "Flattening" of a Switch](images/ch06_new/fig6_X_p863.png)
+![Figure 6-29 Example Illustrating "Flattening" of a Switch](images/ch06_new/ch06_p863_img0.png)
+<br><em>Figure 6-29 Example Illustrating "Flattening" of a Switch | 图6-29 交换机"扁平化"示意图</em>
 
 FPB defines mechanisms for system software to allocate Routing IDs and Memory Space resources in non-contiguous ranges, enabling system software to assign pools of these resources from which it can allocate "bins" to Functions below the FPB. This is done using a bit vector where each bit when Set assigns a corresponding range of resources to the Secondary Side of the bridge (see Figure 6-30).
 
@@ -1296,7 +1298,8 @@ FPB defines mechanisms for system software to allocate Routing IDs and Memory Sp
 > FPB为系统软件定义了以非连续范围分配路由ID和内存空间资源的机制，使系统软件能够分配这些资源的池，从中可以为FPB下方的功能分配"仓位"。这是通过位向量实现的，每个位置1时将相应的资源范围分配给桥的次级侧（见图6-30）。
 >
 
-![Figure 6-30 Vector Mechanism for Address Range Decoding](images/ch06_new/fig6_X_p864.png)
+![Figure 6-30 Vector Mechanism for Address Range Decoding](images/ch06_new/ch06_p864_img0.png)
+<br><em>Figure 6-30 Vector Mechanism for Address Range Decoding | 图6-30 地址范围解码的向量机制</em>
 
 This allows system software to assign Routing IDs and/or Memory Space resources required by a device hot-add without having to rebalance other, already assigned resource ranges, and to return to the pool resources freed, for example by a hot remove event.
 
@@ -1310,7 +1313,8 @@ FPB is defined to allow both the non-FPB and FPB mechanisms to operate simultane
 > FPB被定义为允许非FPB和FPB机制同时运行，例如系统固件/软件可以实现一种策略，在不需要FPB机制的系统部分继续使用非FPB机制（见图6-31）。
 >
 
-![Figure 6-31 Relationship between FPB and non-FPB Decode Mechanisms](images/ch06_new/fig6_X_p865.png)
+![Figure 6-31 Relationship between FPB and non-FPB Decode Mechanisms](images/ch06_new/ch06_p865_img0.png)
+<br><em>Figure 6-31 Relationship between FPB and non-FPB Decode Mechanisms | 图6-31 FPB与非FPB解码机制的关系</em>
 
 FPB uses the same architectural concepts to provide management mechanisms for three different resource types:
 1. Routing IDs
@@ -1382,7 +1386,8 @@ The following rules apply to the FPB Routing ID (RID) mechanism:
 > - 系统软件必须在桥功能中对配置请求类型1到类型0转换的传统机制和FPB机制进行编程，使它们给出相同的结果，或者使两种机制之一被禁用。
 >
 
-![Figure 6-32 Routing IDs (RIDs) and Supported Granularities](images/ch06_new/fig6_X_p867.png)
+![Figure 6-32 Routing IDs (RIDs) and Supported Granularities](images/ch06_new/ch06_p867_img0.png)
+<br><em>Figure 6-32 Routing IDs (RIDs) and Supported Granularities | 图6-32 路由ID与支持的粒度</em>
 
 When ARI is not enabled, the FPB RID mechanism can be applied with different granularities, programmable by system software through the FPB RID Vector Granularity field in the FPB RID Vector Control 1 Register.
 
@@ -1402,7 +1407,8 @@ When ARI is not enabled, the FPB RID mechanism can be applied with different gra
 > - 仅对于交换机上游端口关联的FPB，当FPB RID解码机制使能位置1时，FPB硬件必须使用FPB能力寄存器的FPB Num Sec Dev字段来指示与上游端口桥次级侧关联的设备号数量。
 >
 
-![Figure 6-33 Addresses in Memory Below 4 GB and Effect of Granularity](images/ch06_new/fig6_X_p869.png)
+![Figure 6-33 Addresses in Memory Below 4 GB and Effect of Granularity](images/ch06_new/ch06_p869_img0.png)
+<br><em>Figure 6-33 Addresses in Memory Below 4 GB and Effect of Granularity | 图6-33 4GB以下内存地址与粒度影响</em>
 
 **FPB MEM Low Mechanism:**
 - FPB hardware must consider a specific Memory address to be associated with the Secondary side of the FPB if that Memory address falls within any of the ranges indicated by the values programmed in other bridge Memory decode registers logically OR'd with the value programmed into the corresponding entry in the FPB MEM Low Vector.
@@ -1434,7 +1440,8 @@ When ARI is not enabled, the FPB RID mechanism can be applied with different gra
 
 ### 6.27 Vital Product Data (VPD) / 关键产品数据 (VPD)
 
-![Figure 6-34 VPD Format](images/ch06_new/fig6_X_p874.png)
+![Figure 6-34 VPD Format](images/ch06_new/ch06_p874_img0.png)
+<br><em>Figure 6-34 VPD Format | 图6-34 VPD格式</em>
 
 Vital Product Data (VPD) is the information that uniquely defines items such as the hardware, software, and microcode elements of a system. The VPD provides the system with information on various FRUs (Field Replaceable Unit) including Part Number, Serial Number, and other detailed information. VPD also provides a mechanism for storing information such as performance and failure data on the device being monitored. The objective, from a system point of view, is to collect this information by reading it from the hardware, software, and microcode components.
 
