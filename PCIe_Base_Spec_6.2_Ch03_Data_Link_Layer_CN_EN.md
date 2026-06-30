@@ -48,17 +48,17 @@ The Data Link Layer is responsible for reliably conveying TLPs supplied by the T
 **Initialization and power management:**
 - Track Link state and convey active/reset/disconnected state to Transaction Layer
 
-> 数据链路层负责将事务层提供的TLP可靠地通过PCIe链路传送到另一个组件的事务层。数据链路层提供的服务包括：
+> 数据链路层负责将事务层提供的 TLP 可靠地通过 PCIe 链路传送到另一个组件的事务层。数据链路层提供的服务包括：
 >
 > **数据交换：**
-> - 接受来自发送事务层的TLP并将其传送至发送物理层
-> - 接受物理层通过链路接收的TLP并将其传送至接收事务层
+> - 接受来自发送事务层的 TLP 并将其传送至发送物理层
+> - 接受物理层通过链路接收的 TLP 并将其传送至接收事务层
 >
-> **错误检测与重试（非Flit模式）：**
-> - TLP序列号和LCRC生成
-> - 发送的TLP存储以支持数据链路层重试
-> - TLP和数据链路层包（DLLP）的数据完整性检查
-> - 正确认和负确认DLLP
+> **错误检测与重试（非 Flit 模式）：**
+> - TLP 序列号和 LCRC 生成
+> - 发送的 TLP 存储以支持数据链路层重试
+> - TLP 和数据链路层包（DLLP）的数据完整性检查
+> - 正确认和负确认 DLLP
 > - 用于错误报告和日志记录的错误指示
 > - 链路确认超时重放机制
 >
@@ -71,25 +71,25 @@ DLLPs are:
 
 DLLPs are sent point-to-point, between the two components on one Link. TLPs are routed from one component to another, potentially through one or more intermediate components.
 
-> DLLP用于链路管理功能，包括TLP确认、电源管理和流控信息交换，并在一条链路上两个直连组件的数据链路层之间传输。DLLP以点对点方式在一条链路的两个组件间发送，而TLP则从一个组件路由到另一个组件，可能经过一个或多个中间组件。
+> DLLP 用于链路管理功能，包括 TLP 确认、电源管理和流控信息交换，并在一条链路上两个直连组件的数据链路层之间传输。DLLP 以点对点方式在一条链路的两个组件间发送，而 TLP 则从一个组件路由到另一个组件，可能经过一个或多个中间组件。
 
 In Non-Flit Mode, Data integrity checking for DLLPs and TLPs is done using a CRC included with each packet sent across the Link. DLLPs use a 16-bit CRC and TLPs (which can be much longer than DLLPs) use a 32-bit LCRC. TLPs additionally include a sequence number, which is used to detect cases where one or more entire TLPs have been lost.
 
-> 在非Flit模式下，DLLP和TLP的数据完整性检查使用每个通过链路发送的包中包含的CRC。DLLP使用16位CRC，TLP（可能比DLLP长得多）使用32位LCRC。TLP还包含一个序列号，用于检测一个或多个完整TLP丢失的情况。
+> 在非 Flit 模式下，DLLP 和 TLP 的数据完整性检查使用每个通过链路发送的包中包含的 CRC。DLLP 使用 16 位 CRC，TLP（可能比 DLLP 长得多）使用 32 位 LCRC。TLP 还包含一个序列号，用于检测一个或多个完整 TLP 丢失的情况。
 
 - Received DLLPs that fail the CRC check are discarded. The mechanisms that use DLLPs may suffer a performance penalty from this loss of information, but are self-repairing such that a successive DLLP will supersede any information lost.
 - TLPs that fail the data integrity checks (LCRC and sequence number), or that are lost in transmission from one component to another, are re-sent by the Transmitter. The Transmitter stores a copy of all TLPs sent, re-sending these copies when required, and purges the copies only when it receives a positive acknowledgement of error-free receipt from the other component.
 
-> - 未通过CRC检查的已接收DLLP将被丢弃。使用DLLP的机制可能因这种信息丢失而遭受性能损失，但这些机制具有自修复能力，后续的DLLP将取代任何丢失的信息。
-> - 未通过数据完整性检查（LCRC和序列号）或在组件间传输过程中丢失的TLP，由发送端重新发送。发送端存储所有已发送TLP的副本，在需要时重新发送这些副本，并仅在收到来自另一端组件的无错误接收正确认后才清除这些副本。
+> - 未通过 CRC 检查的已接收 DLLP 将被丢弃。使用 DLLP 的机制可能因这种信息丢失而遭受性能损失，但这些机制具有自修复能力，后续的 DLLP 将取代任何丢失的信息。
+> - 未通过数据完整性检查（LCRC 和序列号）或在组件间传输过程中丢失的 TLP，由发送端重新发送。发送端存储所有已发送 TLP 的副本，在需要时重新发送这些副本，并仅在收到来自另一端组件的无错误接收正确认后才清除这些副本。
 
 In Flit Mode, both DLLPs and TLPs are sent using Flits. Flits contain the data integrity checks (LCRC, FEC, and sequence number). Replay occurs at the Flit level (see § Section 4.2.3.4 and § Section 4.2.3.4.2.1).
 
-> 在Flit模式下，DLLP和TLP均使用Flit发送。Flit包含数据完整性检查（LCRC、FEC和序列号）。重放在Flit级别进行（参见第4.2.3.4节和第4.2.3.4.2.1节）。
+> 在 Flit 模式下，DLLP 和 TLP 均使用 Flit 发送。Flit 包含数据完整性检查（LCRC、FEC 和序列号）。重放在 Flit 级别进行（参见第 4.2.3.4 节和第 4.2.3.4.2.1 节）。
 
 The Data Link Layer appears as an information conduit with varying latency to the Transaction Layer. On any given individual Link all TLPs fed into the Transmit Data Link Layer will appear at the output of the Receive Data Link Layer in the same order at a later time. The latency will depend on a number of factors, including pipeline latencies, width and operational frequency of the Link, transmission of electrical signals across the Link, and delays caused by Data Link Layer Retry. As a result of these delays, the Transmit Data Link Layer can apply backpressure to the Transmit Transaction Layer, and the Receive Data Link Layer communicates the presence or absence of valid information to the Receive Transaction Layer.
 
-> 数据链路层对事务层呈现为一个延迟可变的信息通道。在任何给定的单条链路上，所有送入发送数据链路层的TLP将在稍后的时间以相同的顺序出现在接收数据链路层的输出端。延迟取决于多种因素，包括流水线延迟、链路宽度和工作频率、跨链路的电信号传输以及数据链路层重试导致的延迟。由于这些延迟，发送数据链路层可以对发送事务层施加反压，接收数据链路层则向接收事务层传达有效信息的存在或缺失。
+> 数据链路层对事务层呈现为一个延迟可变的信息通道。在任何给定的单条链路上，所有送入发送数据链路层的 TLP 将在稍后的时间以相同的顺序出现在接收数据链路层的输出端。延迟取决于多种因素，包括流水线延迟、链路宽度和工作频率、跨链路的电信号传输以及数据链路层重试导致的延迟。由于这些延迟，发送数据链路层可以对发送事务层施加反压，接收数据链路层则向接收事务层传达有效信息的存在或缺失。
 
 <p align="center">
 <img src="images/ch03/fig03_p309.png" alt="Figure 3-1" width="95%">
@@ -131,11 +131,11 @@ The Data Link Layer tracks the state of the Link. It communicates Link status wi
 - Exit to DL_Init if: the Port does not support DL_Feature (or it is disabled) and the Physical Layer reports Physical LinkUp = 1b
 
 > **DL_Inactive（非活跃）：**
-> - PCIe热复位、温复位或冷复位后的初始状态。注意DL状态不受FLR影响（参见第6.6节）。
-> - 进入DL_Inactive时：将所有数据链路层状态信息复位为默认值；丢弃数据链路层重试缓冲区的内容
-> - 在DL_Inactive期间：向事务层报告DL_Down状态；丢弃来自事务层和物理层的TLP信息；不生成也不接受DLLP
-> - 退出到DL_Feature的条件：端口支持数据链路功能交换、该功能已启用，且物理层报告Physical LinkUp = 1b
-> - 退出到DL_Init的条件：端口不支持DL_Feature（或已禁用），且物理层报告Physical LinkUp = 1b
+> - PCIe 热复位、温复位或冷复位后的初始状态。注意 DL 状态不受 FLR 影响（参见第 6.6 节）。
+> - 进入 DL_Inactive 时：将所有数据链路层状态信息复位为默认值；丢弃数据链路层重试缓冲区的内容
+> - 在 DL_Inactive 期间：向事务层报告 DL_Down 状态；丢弃来自事务层和物理层的 TLP 信息；不生成也不接受 DLLP
+> - 退出到 DL_Feature 的条件：端口支持数据链路功能交换、该功能已启用，且物理层报告 Physical LinkUp = 1b
+> - 退出到 DL_Init 的条件：端口不支持 DL_Feature（或已禁用），且物理层报告 Physical LinkUp = 1b
 
 **DL_Feature (optional):**
 - While in DL_Feature: Perform the Data Link Feature Exchange protocol; Report DL_Down status
@@ -143,9 +143,9 @@ The Data Link Layer tracks the state of the Link. It communicates Link status wi
 - Exit to DL_Inactive if: Physical Layer reports Physical LinkUp = 0b
 
 > **DL_Feature（功能交换，可选）：**
-> - 在DL_Feature期间：执行数据链路功能交换协议；报告DL_Down状态
-> - 退出到DL_Init的条件：数据链路功能交换成功完成（或远端不支持），且Physical LinkUp = 1b
-> - 退出到DL_Inactive的条件：物理层报告Physical LinkUp = 0b
+> - 在 DL_Feature 期间：执行数据链路功能交换协议；报告 DL_Down 状态
+> - 退出到 DL_Init 的条件：数据链路功能交换成功完成（或远端不支持），且 Physical LinkUp = 1b
+> - 退出到 DL_Inactive 的条件：物理层报告 Physical LinkUp = 0b
 
 **DL_Init:**
 - While in DL_Init: Initialize Flow Control for VC0 following the FC initialization protocol; Report DL_Down (FC_INIT1) / DL_Up (FC_INIT2)
@@ -153,17 +153,17 @@ The Data Link Layer tracks the state of the Link. It communicates Link status wi
 - Exit to DL_Inactive if: Physical Layer reports Physical LinkUp = 0b
 
 > **DL_Init（初始化）：**
-> - 在DL_Init期间：按照流控初始化协议初始化VC0的流控；在FC_INIT1状态报告DL_Down，在FC_INIT2状态报告DL_Up
-> - 退出到DL_Active的条件：流控初始化成功完成且Physical LinkUp = 1b
-> - 退出到DL_Inactive的条件：物理层报告Physical LinkUp = 0b
+> - 在 DL_Init 期间：按照流控初始化协议初始化 VC0 的流控；在 FC_INIT1 状态报告 DL_Down，在 FC_INIT2 状态报告 DL_Up
+> - 退出到 DL_Active 的条件：流控初始化成功完成且 Physical LinkUp = 1b
+> - 退出到 DL_Inactive 的条件：物理层报告 Physical LinkUp = 0b
 
 **DL_Active:**
 - Normal operating state. Accept and transfer TLP information; Generate and accept DLLPs; Report DL_Up status
 - Exit to DL_Inactive if Physical Layer reports Physical LinkUp = 0b. Downstream Ports that are Surprise Down Error Reporting Capable must treat this transition as a Surprise Down error, except in cases where the error detection is explicitly blocked (e.g., Secondary Bus Reset, Link Disable, DPC, Switch Upstream events, PME_Turn_Off, hot-pluggable slots).
 
 > **DL_Active（活跃）：**
-> - 正常运行状态。接受并传输TLP信息；生成并接受DLLP；报告DL_Up状态
-> - 退出到DL_Inactive的条件：物理层报告Physical LinkUp = 0b。具备Surprise Down错误报告能力的下游端口必须将此转换视为Surprise Down错误，但在明确阻断错误检测的情况下除外（例如：Secondary Bus Reset、Link Disable、DPC触发、Switch上行端口事件、PME_Turn_Off、热插拔插槽）。
+> - 正常运行状态。接受并传输 TLP 信息；生成并接受 DLLP；报告 DL_Up 状态
+> - 退出到 DL_Inactive 的条件：物理层报告 Physical LinkUp = 0b。具备 Surprise Down 错误报告能力的下游端口必须将此转换视为 Surprise Down 错误，但在明确阻断错误检测的情况下除外（例如：Secondary Bus Reset、Link Disable、DPC 触发、Switch 上行端口事件、PME_Turn_Off、热插拔插槽）。
 
 ---
 
@@ -172,7 +172,7 @@ The Data Link Layer tracks the state of the Link. It communicates Link status wi
 
 The Data Link Feature Exchange protocol is required for Ports that support Flit Mode and for Ports that support 16.0 GT/s and higher data rates. It is optional for other Ports.
 
-> 数据链路功能交换协议对于支持Flit模式的端口和支持16.0 GT/s及以上数据速率的端口是必需的。对于其他端口是可选的。
+> 数据链路功能交换协议对于支持 Flit 模式的端口和支持 16.0 GT/s 及以上数据速率的端口是必需的。对于其他端口是可选的。
 
 The protocol transmits a Port's Local Feature Supported information to the Remote Port and captures that Remote Port's Feature Supported information. Key rules:
 - On entry to DL_Feature: Clear the Remote Data Link Feature Supported and Remote Data Link Feature Supported Valid fields
@@ -181,10 +181,10 @@ The protocol transmits a Port's Local Feature Supported information to the Remot
 - Exit DL_Feature if: An InitFC1 DLLP has been received, or a Data Link Feature DLLP with Feature Ack bit Set has been received
 
 > 该协议将端口的本地功能支持信息发送到远端端口，并捕获远端端口的功能支持信息。关键规则：
-> - 进入DL_Feature时：清除Remote Data Link Feature Supported和Remote Data Link Feature Supported Valid字段
-> - 在DL_Feature期间：事务层必须阻断TLP的传输；至少每34μs发送一次Data Link Feature DLLP
-> - 处理接收到的Data Link Feature DLLP：记录Feature Supported字段并设置Remote Data Link Feature Supported Valid位
-> - 退出DL_Feature的条件：收到InitFC1 DLLP，或收到Feature Ack位被置位的Data Link Feature DLLP
+> - 进入 DL_Feature 时：清除 Remote Data Link Feature Supported 和 Remote Data Link Feature Supported Valid 字段
+> - 在 DL_Feature 期间：事务层必须阻断 TLP 的传输；至少每 34μs 发送一次 Data Link Feature DLLP
+> - 处理接收到的 Data Link Feature DLLP：记录 Feature Supported 字段并设置 Remote Data Link Feature Supported Valid 位
+> - 退出 DL_Feature 的条件：收到 InitFC1 DLLP，或收到 Feature Ack 位被置位的 Data Link Feature DLLP
 
 **Table 3-1: Data Link Feature Supported Bit Definition | 表3-1：数据链路功能支持位定义**
 
@@ -207,15 +207,15 @@ The protocol transmits a Port's Local Feature Supported information to the Remot
 
 Before starting normal operation following power-up or interconnect reset, it is necessary to initialize Flow Control for the default Virtual Channel, VC0. When additional Virtual Channels (VCs) are enabled, the Flow Control initialization process must be completed for each newly enabled VC before it can be used.
 
-> 在上电或互连复位后开始正常运行之前，必须初始化默认虚拟通道VC0的流控。当启用额外的虚拟通道（VC）时，必须先完成每个新启用VC的流控初始化过程才能使用它。
+> 在上电或互连复位后开始正常运行之前，必须初始化默认虚拟通道 VC0 的流控。当启用额外的虚拟通道（VC）时，必须先完成每个新启用 VC 的流控初始化过程才能使用它。
 
 Shared Flow Control is enabled in Flit Mode. Shared Flow Control is disabled in Non-Flit Mode.
 
-> 共享流控在Flit模式下启用，在非Flit模式下禁用。
+> 共享流控在 Flit 模式下启用，在非 Flit 模式下禁用。
 
 There are two states in the VC initialization process: **FC_INIT1** and **FC_INIT2**.
 
-> VC初始化过程中有两个状态：**FC_INIT1**和**FC_INIT2**。
+> VC 初始化过程中有两个状态：**FC_INIT1**和**FC_INIT2**。
 
 ### 3.4.1 Flow Control Initialization State Machine Rules
 ### 3.4.1 流控初始化状态机规则
@@ -230,13 +230,13 @@ There are two states in the VC initialization process: **FC_INIT1** and **FC_INI
 - Exit to FC_INIT2 when FI1 is set for all of P, NP, and Cpl credit types
 
 > **FC_INIT1：**
-> - 当需要初始化VC时进入（DL_Init进入时对应VC0；软件启用VC1-7时对应相应VC）
-> - 事务层必须阻断使用该VC的TLP传输
-> - 按特定相对顺序发送InitFC1 DLLP（非Flit模式3个，Flit模式含共享共6个）
-> - InitFC1 DLLP必须至少每34μs发送一次
-> - 按表3-2和表3-3设置DataFC、DataScale、HdrFC和HdrScale
-> - 处理接收到的InitFC1和InitFC2 DLLP；记录FC单元值并设置标志FI1
-> - 当P、NP和Cpl所有信用类型的FI1均已设置时退出到FC_INIT2
+> - 当需要初始化 VC 时进入（DL_Init 进入时对应 VC0；软件启用 VC1-7 时对应相应 VC）
+> - 事务层必须阻断使用该 VC 的 TLP 传输
+> - 按特定相对顺序发送 InitFC1 DLLP（非 Flit 模式 3 个，Flit 模式含共享共 6 个）
+> - InitFC1 DLLP 必须至少每 34μs 发送一次
+> - 按表 3-2 和表 3-3 设置 DataFC、DataScale、HdrFC 和 HdrScale
+> - 处理接收到的 InitFC1 和 InitFC2 DLLP；记录 FC 单元值并设置标志 FI1
+> - 当 P、NP 和 Cpl 所有信用类型的 FI1 均已设置时退出到 FC_INIT2
 
 **FC_INIT2:**
 - Transaction Layer must block transmission of TLPs using that VC
@@ -245,10 +245,10 @@ There are two states in the VC initialization process: **FC_INIT1** and **FC_INI
 - Signal completion and exit when FI2 is set. If Scaled Flow Control is activated, HdrScale/DataScale must be non-zero (01b/10b/11b) in UpdateFCs.
 
 > **FC_INIT2：**
-> - 事务层必须阻断使用该VC的TLP传输
-> - 按特定相对顺序发送InitFC2 DLLP
-> - 收到该VC的任何InitFC2 DLLP、TLP、UpdateFC DLLP或Optimized_Update_FC时设置标志FI2
-> - FI2置位后，通知完成并退出。若缩放流控已激活，UpdateFC中HdrScale/DataScale必须为非零值（01b/10b/11b）
+> - 事务层必须阻断使用该 VC 的 TLP 传输
+> - 按特定相对顺序发送 InitFC2 DLLP
+> - 收到该 VC 的任何 InitFC2 DLLP、TLP、UpdateFC DLLP 或 Optimized_Update_FC 时设置标志 FI2
+> - FI2 置位后，通知完成并退出。若缩放流控已激活，UpdateFC 中 HdrScale/DataScale 必须为非零值（01b/10b/11b）
 
 <p align="center">
 <img src="images/ch03/fig03_p318.png" alt="Table 3-2" width="95%">
@@ -270,11 +270,11 @@ There are two states in the VC initialization process: **FC_INIT1** and **FC_INI
 
 Link performance can be affected when there are insufficient flow control credits available to account for the Link round trip time. This effect becomes more noticeable at higher Link speeds and the limitation of 127 header credits and 2047 data credits can limit performance. The Scaled Flow Control mechanism is designed to address this limitation.
 
-> 当可用流控信用不足以覆盖链路往返时间时，链路性能会受到影响。这种影响在更高链路速率下更为显著，127个头信用和2047个数据信用的限制可能制约性能。缩放流控（Scaled Flow Control）机制旨在解决这一限制。
+> 当可用流控信用不足以覆盖链路往返时间时，链路性能会受到影响。这种影响在更高链路速率下更为显著，127 个头信用和 2047 个数据信用的限制可能制约性能。缩放流控（Scaled Flow Control）机制旨在解决这一限制。
 
 All Ports are permitted to support Scaled Flow Control. Ports that support 16.0 GT/s and higher data rates must support Scaled Flow Control. When Scaled Flow Control is activated, the HdrScale and DataScale fields in UpdateFC DLLPs use scaling factors (1x, 4x, 16x) as defined in Table 3-4, allowing up to 2032 header credits and 32,752 data credits.
 
-> 所有端口均允许支持缩放流控。支持16.0 GT/s及以上数据速率的端口必须支持缩放流控。当缩放流控激活后，UpdateFC DLLP中的HdrScale和DataScale字段使用缩放因子（1x、4x、16x，如表3-4定义），允许最多2032个头信用和32752个数据信用。
+> 所有端口均允许支持缩放流控。支持 16.0 GT/s 及以上数据速率的端口必须支持缩放流控。当缩放流控激活后，UpdateFC DLLP 中的 HdrScale 和 DataScale 字段使用缩放因子（1x、4x、16x，如表 3-4 定义），允许最多 2032 个头信用和 32752 个数据信用。
 
 **Table 3-4: Scaled Flow Control Scaling Factors | 表3-4：缩放流控缩放因子**
 
@@ -298,18 +298,18 @@ The following DLLPs are used to support Link operations:
 - **PM DLLPs**: Used for Power Management / 用于电源管理
 - **Link Management DLLPs**: Used for L0p / 用于L0p
 
-> 以下DLLP用于支持链路操作：Data Link Feature DLLP（功能协商）、Ack/Nak DLLP（NFM中的正/负确认）、InitFC1/InitFC2/UpdateFC DLLP（流控）、PM DLLP（电源管理）、Link Management DLLP（L0p链路管理）。
+> 以下 DLLP 用于支持链路操作：Data Link Feature DLLP（功能协商）、Ack/Nak DLLP（NFM 中的正/负确认）、InitFC1/InitFC2/UpdateFC DLLP（流控）、PM DLLP（电源管理）、Link Management DLLP（L0p 链路管理）。
 
 ### 3.5.1 Data Link Layer Packet Rules
 ### 3.5.1 数据链路层包规则
 
 All DLLP fields marked Reserved must be filled with all 0's when a DLLP is formed. Values in such fields must be ignored by Receivers.
 
-> 标记为保留（Reserved）的所有DLLP字段在构成DLLP时必须全部填充0。接收端必须忽略这些字段中的值。
+> 标记为保留（Reserved）的所有 DLLP 字段在构成 DLLP 时必须全部填充 0。接收端必须忽略这些字段中的值。
 
 In Non-Flit Mode, all DLLPs include: DLLP Type (8 bits), 24 bits of DLLP Type specific information, and 16-bit CRC. In Flit Mode, DLLPs are transmitted in the DLP bytes of a Flit and consist of: DLLP Type (8 bits) and 24 bits of DLLP Type specific information. The CRC is handled at the Flit level, not per DLLP.
 
-> 在非Flit模式下，所有DLLP包含：DLLP Type（8位）、24位DLLP类型特定信息和16位CRC。在Flit模式下，DLLP在Flit的DLP字节中传输，包含：DLLP Type（8位）和24位DLLP类型特定信息。CRC在Flit级别处理，而非逐DLLP处理。
+> 在非 Flit 模式下，所有 DLLP 包含：DLLP Type（8 位）、24 位 DLLP 类型特定信息和 16 位 CRC。在 Flit 模式下，DLLP 在 Flit 的 DLP 字节中传输，包含：DLLP Type（8 位）和 24 位 DLLP 类型特定信息。CRC 在 Flit 级别处理，而非逐 DLLP 处理。
 
 <p align="center">
 <img src="images/ch03/fig03_p325.png" alt="Figure 3-4/3-5" width="90%">
@@ -391,7 +391,7 @@ In Non-Flit Mode, all DLLPs include: DLLP Type (8 bits), 24 bits of DLLP Type sp
 
 The Transaction Layer provides TLP boundary information to the Data Link Layer. This allows the Data Link Layer to apply a TLP Sequence Number and a Link CRC (LCRC) for error detection to the TLP. The Receive Data Link Layer validates received TLPs by checking the TLP Sequence Number, LCRC code and any error indications from the Receive Physical Layer. In case any of these errors are in a TLP, Data Link Layer Retry is used for recovery.
 
-> 事务层向数据链路层提供TLP边界信息。这使得数据链路层能够为TLP附加TLP序列号和链路CRC（LCRC）以进行错误检测。接收数据链路层通过检查TLP序列号、LCRC码以及来自接收物理层的任何错误指示来验证接收到的TLP。若TLP中存在任何此类错误，则使用数据链路层重试进行恢复。
+> 事务层向数据链路层提供 TLP 边界信息。这使得数据链路层能够为 TLP 附加 TLP 序列号和链路 CRC（LCRC）以进行错误检测。接收数据链路层通过检查 TLP 序列号、LCRC 码以及来自接收物理层的任何错误指示来验证接收到的 TLP。若 TLP 中存在任何此类错误，则使用数据链路层重试进行恢复。
 
 <p align="center">
 <img src="images/ch03/fig03_p335.png" alt="Figure 3-17" width="95%">
@@ -403,7 +403,7 @@ The Transaction Layer provides TLP boundary information to the Data Link Layer. 
 
 The TLP transmission path prepares each TLP by applying a sequence number, then calculating and appending an LCRC. TLPs are stored in a retry buffer, and are re-sent unless a positive acknowledgement of receipt is received from the other component. If repeated attempts to transmit a TLP are unsuccessful, the Transmitter will determine that the Link is not operating correctly, and will instruct the Physical Layer to retrain the Link.
 
-> TLP发送路径通过附加序列号，然后计算并追加LCRC来准备每个TLP。TLP存储在重试缓冲区中，除非从另一端组件收到正确认，否则将重新发送。如果多次尝试发送TLP均不成功，发送端将判定链路未正确运行，并指示物理层重新训练链路。
+> TLP 发送路径通过附加序列号，然后计算并追加 LCRC 来准备每个 TLP。TLP 存储在重试缓冲区中，除非从另一端组件收到正确认，否则将重新发送。如果多次尝试发送 TLP 均不成功，发送端将判定链路未正确运行，并指示物理层重新训练链路。
 
 #### 3.6.2.1 LCRC and Sequence Number Rules (TLP Transmitter)
 #### 3.6.2.1 LCRC和序列号规则（TLP发送端）
@@ -415,16 +415,16 @@ Key counters and timers:
 - **REPLAY_TIMER**: Determines when a replay is required
 
 > 关键计数器与定时器：
-> - **NEXT_TRANSMIT_SEQ**（12位）：存储应用于TLP的包序列号，在DL_Inactive中设为000h
-> - **ACKD_SEQ**（12位）：存储最近收到的Ack/Nak中确认的序列号，在DL_Inactive中设为FFFh
-> - **REPLAY_NUM**（3位）：计算重传次数，在DL_Inactive中设为000b
+> - **NEXT_TRANSMIT_SEQ**（12 位）：存储应用于 TLP 的包序列号，在 DL_Inactive 中设为 000h
+> - **ACKD_SEQ**（12 位）：存储最近收到的 Ack/Nak 中确认的序列号，在 DL_Inactive 中设为 FFFh
+> - **REPLAY_NUM**（3 位）：计算重传次数，在 DL_Inactive 中设为 000b
 > - **REPLAY_TIMER**：确定何时需要重放
 
 Each TLP is assigned a 12-bit sequence number when accepted from the Transaction Layer. TLP data integrity is protected using a 32-bit LCRC calculated with polynomial 04C11DB7h, seed value FFFFFFFFh. The LCRC field is appended to the TLP.
 
 If the equation `(NEXT_TRANSMIT_SEQ - ACKD_SEQ) mod 4096 >= 2048` (Tx SEQ Stall) is true, the Transmitter must cease accepting TLPs from the Transaction Layer.
 
-> 每个TLP从事务层接受时被分配一个12位序列号。TLP数据完整性由32位LCRC保护（多项式04C11DB7h，种子值FFFFFFFFh）。LCRC字段追加到TLP之后。
+> 每个 TLP 从事务层接受时被分配一个 12 位序列号。TLP 数据完整性由 32 位 LCRC 保护（多项式 04C11DB7h，种子值 FFFFFFFFh）。LCRC 字段追加到 TLP 之后。
 
 <p align="center">
 <img src="images/ch03/fig03_p337.png" alt="Figure 3-18" width="75%">
@@ -436,20 +436,20 @@ If the equation `(NEXT_TRANSMIT_SEQ - ACKD_SEQ) mod 4096 >= 2048` (Tx SEQ Stall)
 <br><em>Figure 3-19: Calculation of LCRC / 图3-19：LCRC的计算</em>
 </p>
 
-> 若等式 `(NEXT_TRANSMIT_SEQ - ACKD_SEQ) mod 4096 >= 2048`（Tx SEQ停顿）为真，发送端必须停止从事务层接受TLP。
+> 若等式 `(NEXT_TRANSMIT_SEQ - ACKD_SEQ) mod 4096 >= 2048`（Tx SEQ 停顿）为真，发送端必须停止从事务层接受 TLP。
 
 The REPLAY_TIMER Limits:
 - **Simplified REPLAY_TIMER Limits** (required for 16.0 GT/s+, strongly recommended for all):
   - 24,000 to 31,000 Symbol Times when Extended Synch bit is Clear
   - 80,000 to 100,000 Symbol Times when Extended Synch bit is Set
 
-> REPLAY_TIMER限值（简化限值，16.0 GT/s及以上必需，强烈建议所有速率采用）：
-> - Extended Synch位清零时：24,000至31,000个符号时间
-> - Extended Synch位置位时：80,000至100,000个符号时间
+> REPLAY_TIMER 限值（简化限值，16.0 GT/s 及以上必需，强烈建议所有速率采用）：
+> - Extended Synch 位清零时：24,000 至 31,000 个符号时间
+> - Extended Synch 位置位时：80,000 至 100,000 个符号时间
 
 When a replay is initiated (by Nak or REPLAY_TIMER expiration): Block new TLPs from Transaction Layer; complete current transmission; retransmit unacknowledged TLPs starting with the oldest; increment REPLAY_NUM by 2 (Non-Flit Mode). If REPLAY_NUM rolls over from 110b/111b to 000b/001b, signal the Physical Layer to retrain the Link.
 
-> 当启动重放时（由Nak或REPLAY_TIMER超时触发）：阻断来自事务层的新TLP；完成当前传输；从最旧的未确认TLP开始重新发送。在非Flit模式下REPLAY_NUM增加2。若REPLAY_NUM从110b/111b翻转到000b/001b，通知物理层重训练链路。
+> 当启动重放时（由 Nak 或 REPLAY_TIMER 超时触发）：阻断来自事务层的新 TLP；完成当前传输；从最旧的未确认 TLP 开始重新发送。在非 Flit 模式下 REPLAY_NUM 增加 2。若 REPLAY_NUM 从 110b/111b 翻转到 000b/001b，通知物理层重训练链路。
 
 #### 3.6.2.2 Handling of Received DLLPs (Non-Flit Mode)
 #### 3.6.2.2 已接收DLLP的处理（非Flit模式）
@@ -473,28 +473,28 @@ The TLP transmission mechanisms are also responsible for processing Ack/Nak and 
 <br><em>Figure 3-21: Ack/Nak DLLP Processing Flowchart / 图3-21：Ack/Nak DLLP处理流程图</em>
 </p>
 
-> TLP发送机制还负责处理从另一端组件接收的Ack/Nak和流控DLLP：
+> TLP 发送机制还负责处理从另一端组件接收的 Ack/Nak 和流控 DLLP：
 >
-> - 若物理层指示发生接收错误，丢弃该DLLP
-> - 对所有已接收DLLP检查CRC：将计算得到的CRC与接收的CRC值比较；若不相等，DLLP损坏——丢弃（Bad DLLP错误）
-> - 使用不支持的DLLP类型编码的DLLP被丢弃，不视为错误
-> - 已接收的FC DLLP传递至事务层
-> - 已接收的PM DLLP传递至电源管理控制逻辑
-> - 对于Ack/Nak DLLP：通过从重试缓冲区清除所有从最旧到匹配AckNak_Seq_Num的TLP来确认TLP；加载ACKD_SEQ；复位REPLAY_NUM和REPLAY_TIMER。若是Nak，启动重放。
+> - 若物理层指示发生接收错误，丢弃该 DLLP
+> - 对所有已接收 DLLP 检查 CRC：将计算得到的 CRC 与接收的 CRC 值比较；若不相等，DLLP 损坏——丢弃（Bad DLLP 错误）
+> - 使用不支持的 DLLP 类型编码的 DLLP 被丢弃，不视为错误
+> - 已接收的 FC DLLP 传递至事务层
+> - 已接收的 PM DLLP 传递至电源管理控制逻辑
+> - 对于 Ack/Nak DLLP：通过从重试缓冲区清除所有从最旧到匹配 AckNak_Seq_Num 的 TLP 来确认 TLP；加载 ACKD_SEQ；复位 REPLAY_NUM 和 REPLAY_TIMER。若是 Nak，启动重放。
 
 #### 3.6.2.3 Handling of Received DLLPs (Flit Mode)
 #### 3.6.2.3 已接收DLLP的处理（Flit模式）
 
 In Flit Mode, corruption detection occurs at the Flit level and there is no corruption check for DLLPs in the Data Link Layer. Replay occurs at the Flit level and Ack/Nak DLLPs are not used. DLLPs and Optimized_Update_FCs are not stored in the Replay Buffer. Received Link Management DLLPs are passed to the L0p control logic.
 
-> 在Flit模式下，损坏检测在Flit级别进行，数据链路层中不对DLLP进行损坏检查。重放在Flit级别发生，不使用Ack/Nak DLLP。DLLP和Optimized_Update_FC不存储在重放缓冲区中。已接收的Link Management DLLP传递至L0p控制逻辑。
+> 在 Flit 模式下，损坏检测在 Flit 级别进行，数据链路层中不对 DLLP 进行损坏检查。重放在 Flit 级别发生，不使用 Ack/Nak DLLP。DLLP 和 Optimized_Update_FC 不存储在重放缓冲区中。已接收的 Link Management DLLP 传递至 L0p 控制逻辑。
 
 ### 3.6.3 LCRC and Sequence Number (TLP Receiver) (Non-Flit Mode)
 ### 3.6.3 LCRC和序列号（TLP接收端，非Flit模式）
 
 The TLP Receive path processes TLPs received by the Physical Layer by checking the LCRC and sequence number, passing the TLP to the Receive Transaction Layer if OK and requesting a replay if corrupted.
 
-> TLP接收路径处理物理层接收的TLP，检查LCRC和序列号，若无错误则将TLP传递至接收事务层，若发现损坏则请求重放。
+> TLP 接收路径处理物理层接收的 TLP，检查 LCRC 和序列号，若无错误则将 TLP 传递至接收事务层，若发现损坏则请求重放。
 
 #### 3.6.3.1 LCRC and Sequence Number Rules (TLP Receiver)
 #### 3.6.3.1 LCRC和序列号规则（TLP接收端）
@@ -505,9 +505,9 @@ Key elements:
 - **AckNak_LATENCY_TIMER**: Determines when an Ack DLLP becomes scheduled
 
 > 关键元素：
-> - **NEXT_RCV_SEQ**（12位）：下一个TLP的预期序列号，在DL_Inactive中设为000h
-> - **NAK_SCHEDULED**标志：指示有Nak待发送，在DL_Inactive中清零
-> - **AckNak_LATENCY_TIMER**：确定何时调度Ack DLLP发送
+> - **NEXT_RCV_SEQ**（12 位）：下一个 TLP 的预期序列号，在 DL_Inactive 中设为 000h
+> - **NAK_SCHEDULED**标志：指示有 Nak 待发送，在 DL_Inactive 中清零
+> - **AckNak_LATENCY_TIMER**：确定何时调度 Ack DLLP 发送
 
 <p align="center">
 <img src="images/ch03/fig03_p347.png" alt="Figure 3-22" width="95%">
@@ -523,18 +523,18 @@ Processing rules for received TLPs:
    - Otherwise: Out of sequence (lost TLPs), schedule Nak (Bad TLP error)
 5. If Sequence Number = NEXT_RCV_SEQ: TLP is good — strip header, forward to Transaction Layer, increment NEXT_RCV_SEQ, clear NAK_SCHEDULED
 
-> 已接收TLP的处理规则：
-> 1. 若物理层指示接收错误，丢弃TLP并在NAK_SCHEDULED清零时调度Nak
-> 2. 若TLP已被废弃（nullified）且LCRC与计算值的逻辑反匹配，丢弃，不视为错误
-> 3. 检查LCRC：若不匹配，TLP损坏——丢弃并调度Nak（Bad TLP错误）
+> 已接收 TLP 的处理规则：
+> 1. 若物理层指示接收错误，丢弃 TLP 并在 NAK_SCHEDULED 清零时调度 Nak
+> 2. 若 TLP 已被废弃（nullified）且 LCRC 与计算值的逻辑反匹配，丢弃，不视为错误
+> 3. 检查 LCRC：若不匹配，TLP 损坏——丢弃并调度 Nak（Bad TLP 错误）
 > 4. 若序列号≠NEXT_RCV_SEQ：
->    - 若 `(NEXT_RCV_SEQ - SeqNum) mod 4096 <= 2048`：重复TLP，调度Ack
->    - 否则：序列号错序（丢失TLP），调度Nak（Bad TLP错误）
-> 5. 若序列号=NEXT_RCV_SEQ：TLP正确——剥离头部，转发至事务层，递增NEXT_RCV_SEQ，清零NAK_SCHEDULED
+>    - 若 `(NEXT_RCV_SEQ - SeqNum) mod 4096 <= 2048`：重复 TLP，调度 Ack
+>    - 否则：序列号错序（丢失 TLP），调度 Nak（Bad TLP 错误）
+> 5. 若序列号=NEXT_RCV_SEQ：TLP 正确——剥离头部，转发至事务层，递增 NEXT_RCV_SEQ，清零 NAK_SCHEDULED
 
 Ack Latency Limits are defined in Tables 3-10, 3-11, and 3-12 for 2.5, 5.0, and 8.0+ GT/s data rates respectively. Ack DLLPs must be scheduled such that the AckNak_LATENCY_TIMER does not exceed these limits, which vary by operating width and Rx_MPS_Limit.
 
-> Ack延迟限值分别定义于表3-10（2.5 GT/s）、表3-11（5.0 GT/s）和表3-12（8.0 GT/s及以上数据速率）。Ack DLLP必须被调度，使得AckNak_LATENCY_TIMER不超过这些限值，限值随运行位宽和Rx_MPS_Limit变化。
+> Ack 延迟限值分别定义于表 3-10（2.5 GT/s）、表 3-11（5.0 GT/s）和表 3-12（8.0 GT/s 及以上数据速率）。Ack DLLP 必须被调度，使得 AckNak_LATENCY_TIMER 不超过这些限值，限值随运行位宽和 Rx_MPS_Limit 变化。
 
 **Table 3-10: Maximum Ack Latency Limits for 2.5 GT/s (Symbol Times) | 表3-10：2.5 GT/s最大Ack延迟限值（符号时间）**
 

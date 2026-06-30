@@ -27,7 +27,7 @@
 
 The Physical Layer isolates the Transaction and Data Link Layers from the signaling technology used for Link data interchange. The Physical Layer is divided into the logical and electrical sub-blocks (see Figure 4-1). Chapter 4 describes the logical sub-block and Chapter 8 describes the electrical sub-block.
 
-> 物理层将事务层和数据链路层与用于链路数据交换的信令技术隔离开来。物理层分为逻辑子层和电气子层（参见图4-1）。第4章描述逻辑子层，第8章描述电气子层。
+> 物理层将事务层和数据链路层与用于链路数据交换的信令技术隔离开来。物理层分为逻辑子层和电气子层（参见图 4-1）。第 4 章描述逻辑子层，第 8 章描述电气子层。
 
 <p align="center">
 <img src="images/ch04/fig04_p352.png" alt="Figure 4-1" width="75%">
@@ -45,7 +45,7 @@ The logical sub-block has two main sections: a Transmit section that prepares ou
 
 PCI Express uses three types of encoding (8b/10b, 128b/130b, and 1b/1b) and two Data Stream modes (Flit Mode and Non-Flit Mode). The encoding is determined by the Data Rate of the Link. The Data Stream mode is determined during initial Link training.
 
-> PCIe使用三种编码类型（8b/10b、128b/130b和1b/1b）和两种数据流模式（Flit模式和非Flit模式）。编码由链路数据速率决定。数据流模式在初始链路训练期间确定。
+> PCIe 使用三种编码类型（8b/10b、128b/130b 和 1b/1b）和两种数据流模式（Flit 模式和非 Flit 模式）。编码由链路数据速率决定。数据流模式在初始链路训练期间确定。
 
 **Table 4-1: Valid Encoding and Data Stream Mode Combinations | 表4-1：有效编码与数据流模式组合**
 
@@ -72,11 +72,11 @@ PCI Express uses three types of encoding (8b/10b, 128b/130b, and 1b/1b) and two 
 
 At 2.5 and 5.0 GT/s, PCI Express uses an 8b/10b transmission code (per ANSI X3.230-1994 clause 11 / IEEE 802.3z 36.2.4). 8-bit data characters are treated as 3 bits and 5 bits, mapped onto 4-bit and 6-bit code groups respectively. These are concatenated to form a 10-bit Symbol. The control bit identifies when to encode one of the 12 Special Symbols (K Codes).
 
-> 在2.5和5.0 GT/s下，PCIe使用8b/10b传输编码（遵循ANSI X3.230-1994第11条/IEEE 802.3z第36.2.4节）。8位数据字符被分为3位和5位，分别映射到4位和6位码组。这些码组级联形成10位符号。控制位标识何时编码12个特殊符号（K码）之一。
+> 在 2.5 和 5.0 GT/s 下，PCIe 使用 8b/10b 传输编码（遵循 ANSI X3.230-1994 第 11 条/IEEE 802.3z 第 36.2.4 节）。8 位数据字符被分为 3 位和 5 位，分别映射到 4 位和 6 位码组。这些码组级联形成 10 位符号。控制位标识何时编码 12 个特殊符号（K 码）之一。
 
 Key 8b/10b concepts: **Running Disparity (RD)** for DC balance; **D Characters** — 256 data symbols; **K Characters** — 12 special/control symbols for framing, comma detection, lane de-skew. **COM (K28.5)** is the comma symbol for symbol alignment.
 
-> 8b/10b关键概念：**运行差异（RD）**—直流平衡机制；**D字符**—256个数据符号；**K字符**—12个特殊/控制符号用于成帧、逗号检测、Lane间去偏斜。**COM（K28.5）**是用于符号对齐的逗号符号。
+> 8b/10b 关键概念：**运行差异（RD）**—直流平衡机制；**D 字符**—256 个数据符号；**K 字符**—12 个特殊/控制符号用于成帧、逗号检测、Lane 间去偏斜。**COM（K28.5）**是用于符号对齐的逗号符号。
 
 <p align="center">
 <img src="images/ch04/fig04_p354.png" alt="Figure 4-2" width="70%">
@@ -90,9 +90,9 @@ TLPs: **STP** (Start) → TLP Data → **END** (End good) or **EDB** (End bad / 
 <br>DLLPs: **SDP** (Start) → DLLP Data → **END**
 <br>Logical Idle: 00h data fills gaps between packets
 
-> TLP：**STP**（开始）→ TLP数据 → **END**（结束良好）或**EDB**（结束坏/废弃）
-> <br>DLLP：**SDP**（开始）→ DLLP数据 → **END**
-> <br>逻辑空闲：00h数据填充包之间的间隙
+> TLP：**STP**（开始）→ TLP 数据 → **END**（结束良好）或**EDB**（结束坏/废弃）
+> <br>DLLP：**SDP**（开始）→ DLLP 数据 → **END**
+> <br>逻辑空闲：00h 数据填充包之间的间隙
 
 <p align="center">
 <img src="images/ch04/fig04_p357.png" alt="Figure 4-5" width="95%">
@@ -104,7 +104,7 @@ TLPs: **STP** (Start) → TLP Data → **END** (End good) or **EDB** (End bad / 
 
 A 16-bit LFSR with polynomial G(x) = X¹⁶ + X⁵ + X⁴ + X³ + 1 scrambles data before encoding to reduce EMI. The LFSR initializes to FFFFh and advances 8 bits per character. The COM symbol resets the scrambler.
 
-> 16位LFSR（多项式G(x) = X¹⁶ + X⁵ + X⁴ + X³ + 1）在编码前对数据加扰以降低EMI。LFSR初始化为FFFFh，每个字符推进8位。COM符号复位加扰器。
+> 16 位 LFSR（多项式 G(x) = X¹⁶ + X⁵ + X⁴ + X³ + 1）在编码前对数据加扰以降低 EMI。LFSR 初始化为 FFFFh，每个字符推进 8 位。COM 符号复位加扰器。
 
 <p align="center">
 <img src="images/ch04/fig04_p365.png" alt="Figure 4-10" width="70%">
@@ -121,14 +121,14 @@ A 16-bit LFSR with polynomial G(x) = X¹⁶ + X⁵ + X⁴ + X³ + 1 scrambles da
 
 Each Block is 130 bits: a 2-bit Sync Header followed by a 128-bit Payload. The Sync Header is either 01b (Data Block) or 10b (Ordered Set Block). Patterns 00b and 11b are invalid and indicate errors.
 
-> 每个Block为130位：2位同步头后跟128位载荷。同步头为01b（数据Block）或10b（有序集Block）。00b和11b模式无效，指示错误。
+> 每个 Block 为 130 位：2 位同步头后跟 128 位载荷。同步头为 01b（数据 Block）或 10b（有序集 Block）。00b 和 11b 模式无效，指示错误。
 
 #### 4.2.2.2 Ordered Set Blocks
 #### 4.2.2.2 有序集Block
 
 Ordered Set Blocks carry Training Sequences (TS1/TS2), SKP Ordered Sets (clock compensation), EIOS/EIEOS (electrical idle entry/exit), and SDS (Start of Data Stream).
 
-> 有序集Block承载训练序列（TS1/TS2）、SKP有序集（时钟补偿）、EIOS/EIEOS（电气空闲进入/退出）和SDS（数据流开始）。
+> 有序集 Block 承载训练序列（TS1/TS2）、SKP 有序集（时钟补偿）、EIOS/EIEOS（电气空闲进入/退出）和 SDS（数据流开始）。
 
 #### 4.2.2.3 Data Blocks — Framing Tokens (Non-Flit Mode)
 #### 4.2.2.3 数据Block — 成帧令牌（非Flit模式）
@@ -153,14 +153,14 @@ In Non-Flit Mode, Data Blocks use Framing Tokens to convey TLP/DLLP boundaries. 
 
 128b/130b uses a 23-bit LFSR with polynomial G(x) = X²³ + X²¹ + X¹⁶ + X⁸ + X⁵ + X² + 1. The scrambler advances 128 bits per Data Block; it is skipped for Ordered Set Blocks.
 
-> 128b/130b使用23位LFSR，多项式G(x) = X²³ + X²¹ + X¹⁶ + X⁸ + X⁵ + X² + 1。每个数据Block推进128位；有序集Block跳过。
+> 128b/130b 使用 23 位 LFSR，多项式 G(x) = X²³ + X²¹ + X¹⁶ + X⁸ + X⁵ + X² + 1。每个数据 Block 推进 128 位；有序集 Block 跳过。
 
 #### 4.2.2.5 Precoding (32.0 GT/s)
 #### 4.2.2.5 预编码（32.0 GT/s）
 
 At 32.0 GT/s, precoding reduces DFE error propagation. The precoder uses a simple XOR-based feedback loop applied to the scrambled data before transmission.
 
-> 在32.0 GT/s下，预编码减少DFE错误传播。预编码器使用简单的XOR反馈环路，在传输前应用于加扰后的数据。
+> 在 32.0 GT/s 下，预编码减少 DFE 错误传播。预编码器使用简单的 XOR 反馈环路，在传输前应用于加扰后的数据。
 
 <p align="center">
 <img src="images/ch04/fig04_p372.png" alt="Figure 4-20" width="80%">
@@ -174,14 +174,14 @@ At 32.0 GT/s, precoding reduces DFE error propagation. The precoder uses a simpl
 
 Flit Mode is mandatory at 64.0 GT/s and optional at lower data rates. In Flit Mode, TLPs and DLLPs are carried inside **Flits** — fixed-size transfer units that integrate CRC, FEC, and sequence numbering at the physical layer level.
 
-> Flit模式在64.0 GT/s下为强制要求，在较低数据速率下为可选。在Flit模式下，TLP和DLLP承载在**Flit**内部——Flit是固定大小的传输单元，在物理层级别集成了CRC、FEC和序列编号。
+> Flit 模式在 64.0 GT/s 下为强制要求，在较低数据速率下为可选。在 Flit 模式下，TLP 和 DLLP 承载在**Flit**内部——Flit 是固定大小的传输单元，在物理层级别集成了 CRC、FEC 和序列编号。
 
 #### 4.2.3.1 PAM4 Signaling (64.0 GT/s)
 #### 4.2.3.1 PAM4信令（64.0 GT/s）
 
 At 64.0 GT/s, PAM4 encodes 2 bits per UI using four voltage levels (0, 1, 2, 3). Gray coding ensures adjacent voltage levels differ by only 1 bit, minimizing bit errors. Precoding mitigates DFE error propagation in PAM4.
 
-> 在64.0 GT/s下，PAM4使用四个电压电平（0、1、2、3）每UI编码2位。格雷码确保相邻电压电平仅相差1位，最小化位错误。预编码减轻PAM4中的DFE错误传播。
+> 在 64.0 GT/s 下，PAM4 使用四个电压电平（0、1、2、3）每 UI 编码 2 位。格雷码确保相邻电压电平仅相差 1 位，最小化位错误。预编码减轻 PAM4 中的 DFE 错误传播。
 
 <p align="center">
 <img src="images/ch04/fig04_p385.png" alt="Figure 4-24" width="85%">
@@ -197,14 +197,14 @@ Each Flit contains:
 - **CRC Bytes**: 4 bytes (CRC-32 matching LCRC polynomial 04C11DB7h)
 - **ECC Bytes**: 6 bytes (forward error correction over GF(2⁸))
 
-> 每个Flit包含：
-> - **TLP字节**：最多236 DW TLP数据，承载部分或完整TLP
-> - **DLP字节**：4字节用于DLLP / Optimized_Update_FC / Flit_Marker
-> - **CRC字节**：8字节（CRC-32，与LCRC多项式04C11DB7h一致）
-> - **FEC字节**：6字节（GF(2⁸)上的前向纠错，Reed-Solomon编码）
-> - **保留字节**：2字节
+> 每个 Flit 包含：
+> - **TLP 字节**：最多 236 DW TLP 数据，承载部分或完整 TLP
+> - **DLP 字节**：4 字节用于 DLLP / Optimized_Update_FC / Flit_Marker
+> - **CRC 字节**：8 字节（CRC-32，与 LCRC 多项式 04C11DB7h 一致）
+> - **FEC 字节**：6 字节（GF(2⁸)上的前向纠错，Reed-Solomon 编码）
+> - **保留字节**：2 字节
 >
-> 注：Flit总长度为256字节（x16链路）
+> 注：Flit 总长度为 256 字节（x16 链路）
 
 <p align="center">
 <img src="images/ch04/fig04_p395.png" alt="Flit Layout Table 4-10" width="95%">
@@ -234,9 +234,9 @@ Each Flit contains:
 
 **Flit_Marker** (Table 4-19): Marks special conditions — Poisoned TLP, Nullified TLP, NAK_WITHDRAWAL.
 
-> **Optimized_Update_FC**（表4-18）：紧凑的流控更新——2字节承载VC、信用类型和8位HdrFC/DataFC字段。不含HdrScale/DataScale——使用FC初始化期间公布的缩放因子。
+> **Optimized_Update_FC**（表 4-18）：紧凑的流控更新——2 字节承载 VC、信用类型和 8 位 HdrFC/DataFC 字段。不含 HdrScale/DataScale——使用 FC 初始化期间公布的缩放因子。
 >
-> **Flit_Marker**（表4-19）：标记特殊情况——中毒TLP（Poisoned TLP）、废弃TLP（Nullified TLP）、Nak撤回（NAK_WITHDRAWAL）。
+> **Flit_Marker**（表 4-19）：标记特殊情况——中毒 TLP（Poisoned TLP）、废弃 TLP（Nullified TLP）、Nak 撤回（NAK_WITHDRAWAL）。
 
 <p align="center">
 <img src="images/ch04/fig04_p401.png" alt="Figure 4-31/4-32" width="95%">
@@ -254,13 +254,13 @@ Flit Mode uses a 12-bit sequence number and a replay mechanism operating at the 
 3. **Normal Flit Exchange**: Ongoing data transfer with Ack/Nak/Discard processing
 4. **Flit Replay**: Retransmission of unacknowledged Flits when Nak received or timer expires
 
-> Flit模式使用12位序列号和运行在Flit级别的重放机制：
+> Flit 模式使用 12 位序列号和运行在 Flit 级别的重放机制：
 >
 > **握手阶段：**
-> 1. **IDLE Flit握手**：端口间初始序列号同步
+> 1. **IDLE Flit 握手**：端口间初始序列号同步
 > 2. **序列号握手**：确认就绪和初始序列号
-> 3. **正常Flit交换**：持续数据传输与Ack/Nak/丢弃处理
-> 4. **Flit重放**：收到Nak或定时器超时时重新传输未确认的Flit
+> 3. **正常 Flit 交换**：持续数据传输与 Ack/Nak/丢弃处理
+> 4. **Flit 重放**：收到 Nak 或定时器超时时重新传输未确认的 Flit
 
 **Key features / 关键特性：**
 - **NAK_WITHDRAWAL**: When following Flits are received correctly, pending Naks can be canceled — avoids unnecessary replay / 当后续Flit正确接收时，可取消待处理Nak——避免不必要的重放
@@ -282,7 +282,7 @@ Flit Mode uses a 12-bit sequence number and a replay mechanism operating at the 
 
 The Flit CRC uses the same polynomial as TLP LCRC (04C11DB7h). FEC provides forward error correction using a code over GF(2⁸), enabling correction of single-byte errors without retransmission. The H-matrix (Figure 4-38) defines the FEC code structure.
 
-> Flit CRC使用与TLP LCRC相同的多项式（04C11DB7h）。FEC使用GF(2⁸)上的编码提供前向纠错，无需重传即可纠正单字节错误。H矩阵（图4-38）定义FEC编码结构。
+> Flit CRC 使用与 TLP LCRC 相同的多项式（04C11DB7h）。FEC 使用 GF(2⁸)上的编码提供前向纠错，无需重传即可纠正单字节错误。H 矩阵（图 4-38）定义 FEC 编码结构。
 
 <p align="center">
 <img src="images/ch04/fig04_p414.png" alt="Figure 4-35" width="70%">
@@ -303,21 +303,21 @@ The Link Equalization Procedure allows the Receiver to request the Transmitter t
 | **Phase 2** | 阶段2 | Upstream adjusts coefficients, Downstream holds |
 | **Phase 3** | 阶段3 | Fine-tuning and finalization of both directions |
 
-> 链路均衡过程允许接收端请求发送端调整均衡系数以优化接收眼图。该过程在Recovery.Equalization LTSSM状态中使用TS1有序集。四个阶段如上表。
+> 链路均衡过程允许接收端请求发送端调整均衡系数以优化接收眼图。该过程在 Recovery.Equalization LTSSM 状态中使用 TS1 有序集。四个阶段如上表。
 
 #### 4.2.4.1 Transmitter Coefficient Rules
 #### 4.2.4.1 发送端系数规则
 
 Coefficients must support all presets defined in § Chapter 8 (Tables 8-1/8-2). Coefficient constraints: max swing limited to ±unity; c-1, c+1 ≤ 0 (NRZ); c-2 ≥ 0, c-1, c+1 ≤ 0 (PAM4 at 64.0 GT/s).
 
-> 系数必须支持第8章（表8-1/8-2）中定义的所有预设值。系数约束：最大摆幅限制在±unity；c-1、c+1 ≤ 0（NRZ）；c-2 ≥ 0，c-1、c+1 ≤ 0（64.0 GT/s PAM4）。
+> 系数必须支持第 8 章（表 8-1/8-2）中定义的所有预设值。系数约束：最大摆幅限制在±unity；c-1、c+1 ≤ 0（NRZ）；c-2 ≥ 0，c-1、c+1 ≤ 0（64.0 GT/s PAM4）。
 
 #### 4.2.4.2 Encoding of Presets
 #### 4.2.4.2 预设值编码
 
 Presets are encoded in TS1 Ordered Sets during equalization. Table 4-23 maps preset numbers to the coefficient request fields transmitted during Phase 1, 2, and 3.
 
-> 均衡期间预设值在TS1有序集中编码。表4-23将预设值编号映射到阶段1、2、3期间传输的系数请求字段。
+> 均衡期间预设值在 TS1 有序集中编码。表 4-23 将预设值编号映射到阶段 1、2、3 期间传输的系数请求字段。
 
 ---
 
@@ -329,18 +329,18 @@ Presets are encoded in TS1 Ordered Sets during equalization. Table 4-23 maps pre
 
 TS1 and TS2 Ordered Sets exchange Link number, Lane number, data rate capabilities, and training control bits during Link training. TS1: early training states; TS2: after successful TS1 exchange, confirms readiness.
 
-> TS1和TS2有序集在链路训练期间交换链路编号、Lane编号、数据速率能力和训练控制位。TS1用于早期训练状态；TS2在成功TS1交换后使用，确认就绪。
+> TS1 和 TS2 有序集在链路训练期间交换链路编号、Lane 编号、数据速率能力和训练控制位。TS1 用于早期训练状态；TS2 在成功 TS1 交换后使用，确认就绪。
 
 Key TS fields: Link Number, Lane Number, Data Rate Identifier, Training Control (Hot Reset, Disable Link, Loopback, Compliance Receive), Equalization Control (Presets, Coefficients).
 
-> 关键TS字段：链路编号、Lane编号、数据速率标识符、训练控制（热复位、链路禁用、环回、合规接收）、均衡控制（预设值、系数）。
+> 关键 TS 字段：链路编号、Lane 编号、数据速率标识符、训练控制（热复位、链路禁用、环回、合规接收）、均衡控制（预设值、系数）。
 
 #### 4.2.4.3 Lane Margining
 #### 4.2.4.3 Lane裕量化（Lane Margining）
 
 Lane Margining is a receiver-directed feature that allows the host to evaluate link margin by adjusting the receive sampling point in voltage and time. This enables system-level characterization of channel performance beyond standard compliance testing.
 
-> Lane裕量化是一种接收端导向的功能，允许主机通过调整接收端在电压和时间上的采样点来评估链路裕量。这使得系统级通道性能表征超越标准合规测试。
+> Lane 裕量化是一种接收端导向的功能，允许主机通过调整接收端在电压和时间上的采样点来评估链路裕量。这使得系统级通道性能表征超越标准合规测试。
 
 **Key concepts / 关键概念：**
 
@@ -364,7 +364,7 @@ Lane Margining is a receiver-directed feature that allows the host to evaluate l
 - Margin drift monitoring over time / 随时间推移的裕量漂移监测
 - CXL and PCIe 6.0+ compliance testing / CXL和PCIe 6.0+合规测试
 
-> 注：Lane裕量化在PCIe 6.2规范中为可选项，其实现取决于系统供应商是否支持。
+> 注：Lane 裕量化在 PCIe 6.2 规范中为可选项，其实现取决于系统供应商是否支持。
 
 ---
 
@@ -373,14 +373,14 @@ Lane Margining is a receiver-directed feature that allows the host to evaluate l
 
 PCI Express supports Alternate Protocol negotiation via TS1/TS2. This allows protocols such as CXL to negotiate and share the same physical Link.
 
-> PCIe通过TS1/TS2支持替代协议协商。这允许CXL等协议协商并共享同一物理链路。
+> PCIe 通过 TS1/TS2 支持替代协议协商。这允许 CXL 等协议协商并共享同一物理链路。
 
 #### 4.2.5.3 Electrical Idle Sequences
 #### 4.2.5.3 电气空闲序列
 
 **EIOS** — Enter Electrical Idle. **EIEOS** — Exit Electrical Idle (mandatory at 8.0 GT/s+). EIEOS provides a robust mechanism to distinguish true exit from noise during Electrical Idle.
 
-> **EIOS**：进入电气空闲。**EIEOS**：退出电气空闲（8.0 GT/s及以上强制）。EIEOS提供强健的机制将真正的退出与电气空闲期间的噪声区分开来。
+> **EIOS**：进入电气空闲。**EIEOS**：退出电气空闲（8.0 GT/s 及以上强制）。EIEOS 提供强健的机制将真正的退出与电气空闲期间的噪声区分开来。
 
 #### 4.2.5.9 Reset
 #### 4.2.5.9 复位
@@ -394,7 +394,7 @@ PCI Express supports Alternate Protocol negotiation via TS1/TS2. This allows pro
 
 Data rate negotiation selects the highest mutually supported data rate via TS1/TS2 Data Rate Identifier fields. Link width (x1/x2/x4/x8/x16) and Lane ordering/reversal are negotiated. Lane reversal is permitted.
 
-> 数据速率协商通过TS1/TS2数据速率标识符字段选择最高互支持的数据速率。链路宽度（x1/x2/x4/x8/x16）和Lane排序/反转在训练期间协商。允许Lane反转。
+> 数据速率协商通过 TS1/TS2 数据速率标识符字段选择最高互支持的数据速率。链路宽度（x1/x2/x4/x8/x16）和 Lane 排序/反转在训练期间协商。允许 Lane 反转。
 
 ---
 
@@ -427,7 +427,7 @@ The LTSSM is the core state machine governing Link initialization, training, rec
 
 Each LTSSM state has detailed rules covering entry/exit conditions, timer management, and error handling. Key timers include: 2 ms Detect timeout; 24 ms Polling timeout; 12 ms Configuration timeout; various Recovery timeouts optimized per data rate.
 
-> 每个LTSSM状态都有涵盖进入/退出条件、定时器管理和错误处理的详细规则。关键定时器包括：2ms检测超时、24ms轮询超时、12ms配置超时、以及针对各数据速率优化的各种恢复超时。
+> 每个 LTSSM 状态都有涵盖进入/退出条件、定时器管理和错误处理的详细规则。关键定时器包括：2ms 检测超时、24ms 轮询超时、12ms 配置超时、以及针对各数据速率优化的各种恢复超时。
 
 **Detect** — Detect.Quiet (initial, wait 2 ms) → Detect.Active (perform Rx detection by measuring RC time constant). Rx detected → Polling; not detected → back to Detect.Quiet.
 
@@ -443,19 +443,19 @@ Each LTSSM state has detailed rules covering entry/exit conditions, timer manage
 
 **Hot Reset** — Downstream sends TS1 with Hot Reset bit; Upstream propagates upstream. Duration: 2 ms.
 
-> **Detect（检测）** — Detect.Quiet（初始，等待2ms）→ Detect.Active（通过测量RC时间常数执行Rx检测）。检测到Rx → Polling；未检测到 → 回Detect.Quiet。
+> **Detect（检测）** — Detect.Quiet（初始，等待 2ms）→ Detect.Active（通过测量 RC 时间常数执行 Rx 检测）。检测到 Rx → Polling；未检测到 → 回 Detect.Quiet。
 >
-> **Polling（轮询）** — Polling.Active：以最高数据速率发送TS1；实现位/符号/Block锁定；确定Lane极性。收到8个连续匹配的TS1时退出到Configuration。Polling.Compliance：被指示时发送合规码型。
+> **Polling（轮询）** — Polling.Active：以最高数据速率发送 TS1；实现位/符号/Block 锁定；确定 Lane 极性。收到 8 个连续匹配的 TS1 时退出到 Configuration。Polling.Compliance：被指示时发送合规码型。
 >
-> **Configuration（配置）** — Linkwidth.Start（提议宽度）→ Linkwidth.Accept → Lanenum.Wait → Lanenum.Accept → Complete（发送TS2、去偏移、退出到L0）。Configuration.Idle用于Flit模式和更高数据速率。
+> **Configuration（配置）** — Linkwidth.Start（提议宽度）→ Linkwidth.Accept → Lanenum.Wait → Lanenum.Accept → Complete（发送 TS2、去偏移、退出到 L0）。Configuration.Idle 用于 Flit 模式和更高数据速率。
 >
-> **Recovery（恢复）** — RcvrLock（重建位/符号锁定）→ RcvrCfg（重建Lane编号）→ 可选Speed（变更数据速率）或Equalization（≥8.0 GT/s时阶段0-3）。
+> **Recovery（恢复）** — RcvrLock（重建位/符号锁定）→ RcvrCfg（重建 Lane 编号）→ 可选 Speed（变更数据速率）或 Equalization（≥8.0 GT/s 时阶段 0-3）。
 >
-> **L0** — 正常运行。退出到Recovery进行重训练，退出到L0s/L1进行电源管理。**L0s**：仅Tx低功耗，快速退出。**L1**：双向低功耗，CLKREQ#用于Refclk重启。**L2**：深度省电。
+> **L0** — 正常运行。退出到 Recovery 进行重训练，退出到 L0s/L1 进行电源管理。**L0s**：仅 Tx 低功耗，快速退出。**L1**：双向低功耗，CLKREQ#用于 Refclk 重启。**L2**：深度省电。
 >
 > **Loopback（环回）** — Entry → Active（环回数据）→ Exit（超时或电气空闲）。
 >
-> **Hot Reset（热复位）** — 下游发送Hot Reset位置位的TS1；上游向上游传播。持续时间：2ms。
+> **Hot Reset（热复位）** — 下游发送 Hot Reset 位置位的 TS1；上游向上游传播。持续时间：2ms。
 
 ---
 
@@ -464,13 +464,13 @@ Each LTSSM state has detailed rules covering entry/exit conditions, timer manage
 
 A Retimer is a physical layer device between two PCI Express components that extends channel reach by recovering, re-timing, and retransmitting the signal — effectively resetting the channel budget. Retimers are protocol-aware and participate in LTSSM state transitions.
 
-> 重定时器（Retimer）是位于两个PCIe组件之间的物理层设备，通过恢复、重新定时和重新发送信号来扩展通道传输距离——有效地重置通道预算。Retimer具有协议感知能力，参与LTSSM状态转换。
+> 重定时器（Retimer）是位于两个 PCIe 组件之间的物理层设备，通过恢复、重新定时和重新发送信号来扩展通道传输距离——有效地重置通道预算。Retimer 具有协议感知能力，参与 LTSSM 状态转换。
 
 ### Architecture / 架构
 
 A Retimer contains two Pseudo-Ports: an Upstream Pseudo-Port and a Downstream Pseudo-Port. Each Pseudo-Port has its own LTSSM and tracks the state of its associated Link segment.
 
-> Retimer包含两个伪端口（Pseudo-Port）：上行伪端口和下行伪端口。每个伪端口有其自己的LTSSM，并跟踪其关联链路段的状态。
+> Retimer 包含两个伪端口（Pseudo-Port）：上行伪端口和下行伪端口。每个伪端口有其自己的 LTSSM，并跟踪其关联链路段的状态。
 
 ### Operation Modes / 运行模式
 
@@ -482,19 +482,19 @@ A Retimer contains two Pseudo-Ports: an Upstream Pseudo-Port and a Downstream Ps
 
 Retimer forwarding covers: Electrical Idle exit handling, data rate change support, transmitter settings propagation, Ordered Set modification (TS fields updated), Hot Reset forwarding, Link disable, Loopback passthrough, Compliance Receive, and in-band register access.
 
-> Retimer转发涵盖：电气空闲退出处理、数据速率变更支持、发送端设置传播、有序集修改（更新TS字段）、热复位转发、链路禁用、环回透传、合规接收和带内寄存器访问。
+> Retimer 转发涵盖：电气空闲退出处理、数据速率变更支持、发送端设置传播、有序集修改（更新 TS 字段）、热复位转发、链路禁用、环回透传、合规接收和带内寄存器访问。
 
 ### Latency / 延迟
 
 Retimer adds latency to the Link. Maximum limits are defined in Table 4-64 (non-SRIS) and Table 4-67 (SRIS). Total latency across all Retimers must not exceed specified limits.
 
-> Retimer给链路增加延迟。最大限值定义于表4-64（非SRIS）和表4-67（SRIS）。所有Retimer的总延迟不得超过规定限值。
+> Retimer 给链路增加延迟。最大限值定义于表 4-64（非 SRIS）和表 4-67（SRIS）。所有 Retimer 的总延迟不得超过规定限值。
 
 ### Configuration / 配置
 
 Retimers are configured via in-band register access. Parameters include global (entire Retimer) and per-Pseudo-Port settings: receiver impedance, transmitter settings, execution mode, predetermined data rate, L1 PM Substates support.
 
-> Retimer通过带内寄存器访问进行配置。参数包括全局（整个Retimer）和每伪端口设置：接收端阻抗、发送端设置、执行模式、预设定数据速率、L1 PM子状态支持。
+> Retimer 通过带内寄存器访问进行配置。参数包括全局（整个 Retimer）和每伪端口设置：接收端阻抗、发送端设置、执行模式、预设定数据速率、L1 PM 子状态支持。
 
 ---
 

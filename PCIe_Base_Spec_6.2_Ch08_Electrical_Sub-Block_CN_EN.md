@@ -3,7 +3,7 @@
 
 > 中英文对照翻译 | Chinese-English Parallel Translation
 > Source: NCB-PCI Express Base Specification Revision 6.2 (2024-01-25), PDF Pages 1409–1522 (114 pages)
-> 来源：PCI Express Base规范修订版6.2 (2024-01-25)，PDF页码：1409–1522（共114页）
+> 来源：PCI Express Base 规范修订版 6.2 (2024-01-25)，PDF 页码：1409–1522（共 114 页）
 
 ---
 
@@ -56,27 +56,27 @@ Key attributes of the Electrical Specification include:
 - AC coupled channel
 
 > 电气规范的关键属性包括：
-> - 支持2.5、5.0、8.0、16.0、32.0 GT/s的NRZ信令和64.0 GT/s的PAM4信令数据速率
+> - 支持 2.5、5.0、8.0、16.0、32.0 GT/s 的 NRZ 信令和 64.0 GT/s 的 PAM4 信令数据速率
 > - 支持公共和分离独立参考时钟架构
 > - 支持扩频时钟
 > - 用于低功耗链路操作的降摆幅模式
 > - 带内接收器检测和电气空闲检测
 > - 通道合规方法论
-> - 自适应发送端均衡和参考接收端均衡，支持8.0、16.0、32.0 GT/s和64.0 GT/s的闭合眼图通道
-> - Lane裕量化（Lane Margining）
-> - AC耦合通道
+> - 自适应发送端均衡和参考接收端均衡，支持 8.0、16.0、32.0 GT/s 和 64.0 GT/s 的闭合眼图通道
+> - Lane 裕量化（Lane Margining）
+> - AC 耦合通道
 
 Please note that throughout this specification, the term GT/s is used to refer to the number of encoded bits transferred in a second on a direction of a lane. In PAM4 signaling, two bits are encoded in one UI with four voltage levels (§ Section 4.2.3.1.1). Consequently, the Nyquist frequency is 16 GHz for both 32.0 GT/s NRZ and 64.0 GT/s PAM4.
 
-> 请注意，在本规范全文中，术语GT/s用于指代沿一个通道方向每秒传输的编码比特数。在PAM4信令中，一个UI内用四个电压电平编码两个比特（参见第4.2.3.1.1节）。因此，32.0 GT/s NRZ和64.0 GT/s PAM4的奈奎斯特频率均为16 GHz。
+> 请注意，在本规范全文中，术语 GT/s 用于指代沿一个通道方向每秒传输的编码比特数。在 PAM4 信令中，一个 UI 内用四个电压电平编码两个比特（参见第 4.2.3.1.1 节）。因此，32.0 GT/s NRZ 和 64.0 GT/s PAM4 的奈奎斯特频率均为 16 GHz。
 
 Because of four voltage levels and reduced amplitude for each voltage level, 64.0 GT/s PAM4 signaling is sensitive to noise and burst errors. The Bit Error Rate (BER), also referred as First Bit Error Rate (FBER) in § Chapter 4 for 64.0 GT/s is 10⁻⁶. FBER refers to Bit Error Rate without accounting for any burst error. For 2.5, 5.0, 8.0, 16.0, and 32.0 GT/s data rates, BER of 10⁻¹² implicitly assumes FBER of 10⁻¹² and does not account for any types of burst error.
 
-> 由于有四个电压电平且每个电压电平的幅度减小，64.0 GT/s PAM4信令对噪声和突发错误敏感。64.0 GT/s的误比特率（BER），在第4章中也称为首次误比特率（FBER），为10⁻⁶。FBER指不考虑任何突发错误的误比特率。对于2.5、5.0、8.0、16.0和32.0 GT/s的数据速率，10⁻¹²的BER隐含着10⁻¹²的FBER，且未考虑任何类型的突发错误。
+> 由于有四个电压电平且每个电压电平的幅度减小，64.0 GT/s PAM4 信令对噪声和突发错误敏感。64.0 GT/s 的误比特率（BER），在第 4 章中也称为首次误比特率（FBER），为 10⁻⁶。FBER 指不考虑任何突发错误的误比特率。对于 2.5、5.0、8.0、16.0 和 32.0 GT/s 的数据速率，10⁻¹²的 BER 隐含着 10⁻¹²的 FBER，且未考虑任何类型的突发错误。
 
 The 6.0 version of the PCI Express Electrical Specification is organized into separate sections for the Transmitter, Receiver, the Channel, and the Refclk. In this version most parameters have been regularized such that a common set of parameters is used to define compliance at all data rates.
 
-> PCIe 6.0版本的电气规范按发送端（Transmitter）、接收端（Receiver）、通道（Channel）和参考时钟（Refclk）分别组织。在本版本中，大多数参数已规范化，使得所有数据速率均使用一组公共参数来定义合规性。
+> PCIe 6.0 版本的电气规范按发送端（Transmitter）、接收端（Receiver）、通道（Channel）和参考时钟（Refclk）分别组织。在本版本中，大多数参数已规范化，使得所有数据速率均使用一组公共参数来定义合规性。
 
 ---
 
@@ -88,14 +88,14 @@ The 6.0 version of the PCI Express Electrical Specification is organized into se
 
 A device must support 2.5 GT/s and is not permitted to skip support for any data rates between 2.5 GT/s and the highest supported rate.
 
-> 设备必须支持2.5 GT/s，且不允许跳过2.5 GT/s至其最高支持速率之间的任何数据速率。
+> 设备必须支持 2.5 GT/s，且不允许跳过 2.5 GT/s 至其最高支持速率之间的任何数据速率。
 
 ### 8.2.2 Refclk Architectures
 ### 8.2.2 参考时钟架构
 
 PCIe supports two Refclk data architectures: Common Refclk, and Independent Refclk. These are described in detail in § Section 8.6. A PCIe device may support one or more of these architectures.
 
-> PCIe支持两种参考时钟架构：公共参考时钟（Common Refclk）和独立参考时钟（Independent Refclk）。它们的详细描述参见第8.6节。PCIe设备可支持其中一种或多种架构。
+> PCIe 支持两种参考时钟架构：公共参考时钟（Common Refclk）和独立参考时钟（Independent Refclk）。它们的详细描述参见第 8.6 节。PCIe 设备可支持其中一种或多种架构。
 
 ---
 
@@ -111,11 +111,11 @@ A low jitter Refclk source is used when the silicon supports using an external r
 
 When testing a Transmitter it is desirable to have as many other PCI Express Lanes sending or receiving the compliance pattern as is feasible. Similarly, if the device supports other I/O it should also be sending or receiving on these interfaces. The goal is to have the Tx test environment replicate that found in a real system as closely as possible.
 
-> PCIe电气规范将所有测量引用至器件的引脚。然而，被测器件（DUT）的引脚通常不可直接触及，最接近的可触及点通常是一对微波型同轴连接器，它们通过数英寸的PCB走线（被称为硅测试板上的引出通道，breakout channel）与DUT引脚分离。在多Lane的测试板上，最小引出通道长度受限于布设到众多同轴连接器的需求。通常，这一限制对Tx和Rx引脚均适用。图8-1展示了典型的DUT测试连接，图中显示了一条单一的Tx Lane引出。
+> PCIe 电气规范将所有测量引用至器件的引脚。然而，被测器件（DUT）的引脚通常不可直接触及，最接近的可触及点通常是一对微波型同轴连接器，它们通过数英寸的 PCB 走线（被称为硅测试板上的引出通道，breakout channel）与 DUT 引脚分离。在多 Lane 的测试板上，最小引出通道长度受限于布设到众多同轴连接器的需求。通常，这一限制对 Tx 和 Rx 引脚均适用。图 8-1 展示了典型的 DUT 测试连接，图中显示了一条单一的 Tx Lane 引出。
 >
-> 当硅芯片支持使用外部参考时钟时，应使用低抖动参考时钟源，以确保DUT的抖动测量仅包含来自发送端的贡献。
+> 当硅芯片支持使用外部参考时钟时，应使用低抖动参考时钟源，以确保 DUT 的抖动测量仅包含来自发送端的贡献。
 >
-> 测试发送端时，应尽可能让尽可能多的其他PCIe Lane发送或接收合规性码型。同样，如果设备支持其他I/O，也应在其上进行发送或接收。目标是在Tx测试环境中尽可能接近真实系统的实际情况。
+> 测试发送端时，应尽可能让尽可能多的其他 PCIe Lane 发送或接收合规性码型。同样，如果设备支持其他 I/O，也应在其上进行发送或接收。目标是在 Tx 测试环境中尽可能接近真实系统的实际情况。
 
 <p align="center">
 <img src="images/ch08/fig08_p1410.png" alt="Figure 8-1" width="95%">
@@ -124,7 +124,7 @@ When testing a Transmitter it is desirable to have as many other PCI Express Lan
 
 The 6.0 version of the Tx specification also includes explicit support for Transmitters utilizing embedded Refclks. In this case the Tx under test is not driven with a low jitter clock source, and both the Tx data and Tx Refclk out must be sampled simultaneously by means of a 2-port measurement as shown in Figure 8-2. For more details consult § Section 8.3.5.3. When an implementation is tested that is configured for the independent reference clock architecture only the data is sampled for both the Non-Embedded and Embedded reference clock cases.
 
-> Tx规范6.0版本还明确支持使用嵌入式参考时钟的发送端。在这种情况下，被测Tx不使用低抖动时钟源驱动，Tx数据和Tx Refclk输出必须通过双端口测量同时采样，如图8-2所示。更多详细信息请参见第8.3.5.3节。当测试配置为独立参考时钟架构的实现时，对于非嵌入式和嵌入式参考时钟两种情况，均仅对数据进行采样。
+> Tx 规范 6.0 版本还明确支持使用嵌入式参考时钟的发送端。在这种情况下，被测 Tx 不使用低抖动时钟源驱动，Tx 数据和 Tx Refclk 输出必须通过双端口测量同时采样，如图 8-2 所示。更多详细信息请参见第 8.3.5.3 节。当测试配置为独立参考时钟架构的实现时，对于非嵌入式和嵌入式参考时钟两种情况，均仅对数据进行采样。
 
 <p align="center">
 <img src="images/ch08/fig08_p1410.png" alt="Figure 8-2" width="95%">
@@ -136,7 +136,7 @@ The 6.0 version of the Tx specification also includes explicit support for Trans
 
 In order to specify a Transmitter with a uniform set of Tx parameters it is necessary to establish a one-to-one correspondence between what is measurable at TP1 and the corresponding Tx voltage or jitter at the pin. This may be achieved by means of a breakout channel and a replica channel. The replica channel reproduces the electrical characteristics of the breakout channel as closely as possible, matching its length, layer transitions, etc., making it possible to de-embed Tx measurements to the pin of the DUT. All voltage parameters are de-embedded to the pins unless otherwise specified.
 
-> 为用一组统一的Tx参数来规定发送端，有必要在TP1处可测量的值与引脚上相应的Tx电压或抖动之间建立一一对应关系。这可通过引出通道和复制通道来实现。复制通道尽可能精确地复现引出通道的电气特性（匹配其长度、层转换等），使得Tx测量能够去嵌入到DUT引脚。除非另有规定，所有电压参数均去嵌入到引脚。
+> 为用一组统一的 Tx 参数来规定发送端，有必要在 TP1 处可测量的值与引脚上相应的 Tx 电压或抖动之间建立一一对应关系。这可通过引出通道和复制通道来实现。复制通道尽可能精确地复现引出通道的电气特性（匹配其长度、层转换等），使得 Tx 测量能够去嵌入到 DUT 引脚。除非另有规定，所有电压参数均去嵌入到引脚。
 
 While the specification does not define precise electrical characteristics for the replica and breakout channels, it is advisable to adhere to the following guidelines:
 - Breakout channels should be the same length for each Lane and routed on as few layers as possible, thereby reducing the number of replica channels that need to be built and measured.
@@ -145,17 +145,17 @@ While the specification does not define precise electrical characteristics for t
 - The impedance targets for the breakout channel are 100Ω differential and 50Ω single-ended. For best accuracy the actual breakout channel impedance should be within ±5% of these values.
 
 > 虽然本规范未为复制通道和引出通道定义精确的电气特性，但建议遵守以下指导原则：
-> - 每个Lane的引出通道长度应相同，并布设在尽可能少的层上，从而减少需要构建和测量的复制通道数量。
+> - 每个 Lane 的引出通道长度应相同，并布设在尽可能少的层上，从而减少需要构建和测量的复制通道数量。
 > - 测试板上每个布线层应有独立的引出通道，各层上引出通道和复制通道的过孔和焊盘结构应尽可能匹配。
-> - 引出通道和复制通道应设计为在奈奎斯特频率处插入损耗低于2 dB（若最高信号速率为16.0 GT/s、32.0 GT/s和64.0 GT/s，则奈奎斯特频率处为4 dB），且在奈奎斯特频率范围内回波损耗大于15 dB，这可能需要使用低损耗介质、宽信号走线以及引出过孔的反钻或微过孔技术。
-> - 引出通道的阻抗目标值为100Ω差模和50Ω单端。为获得最佳精度，实际引出通道阻抗应在这些值的±5%以内。
+> - 引出通道和复制通道应设计为在奈奎斯特频率处插入损耗低于 2 dB（若最高信号速率为 16.0 GT/s、32.0 GT/s 和 64.0 GT/s，则奈奎斯特频率处为 4 dB），且在奈奎斯特频率范围内回波损耗大于 15 dB，这可能需要使用低损耗介质、宽信号走线以及引出过孔的反钻或微过孔技术。
+> - 引出通道的阻抗目标值为 100Ω差模和 50Ω单端。为获得最佳精度，实际引出通道阻抗应在这些值的±5%以内。
 
 ### 8.3.2 Voltage Level Definitions
 ### 8.3.2 电压电平定义
 
 A differential voltage is defined by taking the voltage difference between two conductors. In this specification, a differential signal or differential pair is comprised of a voltage on a positive conductor, VD+, and a negative conductor, VD-. The differential voltage (VDIFF) is defined as the difference of the positive conductor voltage and the negative conductor voltage (VDIFF = VD+ - VD-). The Common Mode Voltage (VCM) is defined as the average or mean voltage present on the same differential pair (VCM = [VD+ + VD-]/2).
 
-> 差分电压通过取两个导体之间的电压差来定义。在本规范中，差分信号或差分对由正导体上的电压VD+和负导体上的电压VD-组成。差分电压（VDIFF）定义为正导体电压与负导体电压之差（VDIFF = VD+ - VD-）。共模电压（VCM）定义为同一差分对上存在的平均电压（VCM = [VD+ + VD-]/2）。
+> 差分电压通过取两个导体之间的电压差来定义。在本规范中，差分信号或差分对由正导体上的电压 VD+和负导体上的电压 VD-组成。差分电压（VDIFF）定义为正导体电压与负导体电压之差（VDIFF = VD+ - VD-）。共模电压（VCM）定义为同一差分对上存在的平均电压（VCM = [VD+ + VD-]/2）。
 
 This document's electrical specifications often refer to common mode peak-to-peak measurements or peak measurements, which are defined by the following equations.
 
@@ -177,13 +177,13 @@ Note: The maximum value is calculated on a per unit interval evaluation with uni
 
 In this section, DC is defined as all frequency components below FDC = 30 kHz. AC is defined as all frequency components at or above FDC = 30 kHz. These definitions pertain to all voltage and current specifications.
 
-> 注：最大值是在每单位区间（UI）评估的基础上计算的，单位区间边界由行为CDR确定。上述最大值函数隐含适用于本章其余部分的所有峰峰值和峰值共模方程。
+> 注：最大值是在每单位区间（UI）评估的基础上计算的，单位区间边界由行为 CDR 确定。上述最大值函数隐含适用于本章其余部分的所有峰峰值和峰值共模方程。
 >
-> 在本节中，DC定义为所有低于FDC = 30 kHz的频率分量。AC定义为所有等于或高于FDC = 30 kHz的频率分量。这些定义适用于所有电压和电流规范。
+> 在本节中，DC 定义为所有低于 FDC = 30 kHz 的频率分量。AC 定义为所有等于或高于 FDC = 30 kHz 的频率分量。这些定义适用于所有电压和电流规范。
 
 An example waveform is shown in Figure 8-3. In this waveform the differential voltage (defined as D+ - D-) is approximately 800 mVPP, and the single-ended voltage for both D+ and D- is approximately 400 mVPP for each. Note that while the center crossing point for both D+ and D- is nominally at 200 mV, the corresponding crossover point for the differential voltage is at 0.0 V.
 
-> 图8-3展示了一个示例波形。在这个波形中，差分电压（定义为D+ - D-）约为800 mVPP，而D+和D-的单端电压各约为400 mVPP。注意，虽然D+和D-的中心交叉点标称为200 mV，但对应的差分电压交叉点位于0.0 V。
+> 图 8-3 展示了一个示例波形。在这个波形中，差分电压（定义为 D+ - D-）约为 800 mVPP，而 D+和 D-的单端电压各约为 400 mVPP。注意，虽然 D+和 D-的中心交叉点标称为 200 mV，但对应的差分电压交叉点位于 0.0 V。
 
 <p align="center">
 <img src="images/ch08/fig08_p1412.png" alt="Figure 8-3" width="95%">
@@ -195,37 +195,37 @@ An example waveform is shown in Figure 8-3. In this waveform the differential vo
 
 Tx voltage parameters include equalization coefficients, equalization presets, and min/max voltage swings.
 
-> Tx电压参数包括均衡系数、均衡预设值以及最小/最大电压摆幅。
+> Tx 电压参数包括均衡系数、均衡预设值以及最小/最大电压摆幅。
 
 #### 8.3.3.1 2.5 and 5.0 GT/s Transmitter Equalization
 #### 8.3.3.1 2.5和5.0 GT/s发送端均衡
 
 Tx equalization at 2.5 and 5.0 GT/s is only de-emphasis. Tx equalization de-emphasis values at 2.5 and 5.0 GT/s are measured using the average ratio of transition to non-transition average eye amplitude at the 0.5 UI location using 500 repetitions of the compliance pattern.
 
-> 2.5和5.0 GT/s下的Tx均衡仅为去加重。2.5和5.0 GT/s下的Tx均衡去加重值，通过使用500次合规码型重复，在0.5 UI位置处测量跳变与非跳变平均眼图幅度的平均比值得出。
+> 2.5 和 5.0 GT/s 下的 Tx 均衡仅为去加重。2.5 和 5.0 GT/s 下的 Tx 均衡去加重值，通过使用 500 次合规码型重复，在 0.5 UI 位置处测量跳变与非跳变平均眼图幅度的平均比值得出。
 
 #### 8.3.3.2 8.0, 16.0, 32.0, and 64.0 GT/s Transmitter Equalization
 #### 8.3.3.2 8.0、16.0、32.0和64.0 GT/s发送端均衡
 
 Tx voltage swing and equalization presets at 8.0, 16.0, 32.0, and 64.0 GT/s are measured by means of a low frequency pattern within the compliance pattern. The pattern consists of a sequence of 64 zeros followed by 64 ones for 8.0, 16.0, and 32.0 GT/s, and a sequence of 64 voltage level 0's followed by 64 voltage level 3's for 64.0 GT/s. The low frequency pattern permits an accurate measurement of voltage since ISI effects will have decayed and the signal will have approached a steady state.
 
-> 8.0、16.0、32.0和64.0 GT/s下的Tx电压摆幅和均衡预设值，通过合规码型中的低频码型来测量。对于8.0、16.0和32.0 GT/s，该码型由64个连续的0后跟64个连续的1组成；对于64.0 GT/s，则由64个电压电平0后跟64个电压电平3组成。低频码型允许精确测量电压，因为ISI效应将已衰减且信号将趋近于稳态。
+> 8.0、16.0、32.0 和 64.0 GT/s 下的 Tx 电压摆幅和均衡预设值，通过合规码型中的低频码型来测量。对于 8.0、16.0 和 32.0 GT/s，该码型由 64 个连续的 0 后跟 64 个连续的 1 组成；对于 64.0 GT/s，则由 64 个电压电平 0 后跟 64 个电压电平 3 组成。低频码型允许精确测量电压，因为 ISI 效应将已衰减且信号将趋近于稳态。
 
 8.0, 16.0, 32.0, and 64.0 GT/s transmitters must implement a coefficient-based equalization mode in order to support fine grained control over Tx equalization resolution. Additionally, a Transmitter must support a specified number of presets that give a coarser control over Tx equalization resolution. Both coefficient space and preset space are controllable via messaging from the Receiver via an equalization procedure. The equalization procedure operates on the same physical path as normal signaling and is implemented via extensions to the existing protocol Link layer.
 
-> 8.0、16.0、32.0和64.0 GT/s发送端必须实现基于系数的均衡模式，以支持对Tx均衡分辨率的细粒度控制。此外，发送端必须支持指定数量的预设值，以提供对Tx均衡分辨率较粗粒度的控制。系数空间和预设空间均可通过接收端经由均衡过程的消息来控制。均衡过程在与正常信令相同的物理路径上运行，并通过现有协议链路层的扩展来实现。
+> 8.0、16.0、32.0 和 64.0 GT/s 发送端必须实现基于系数的均衡模式，以支持对 Tx 均衡分辨率的细粒度控制。此外，发送端必须支持指定数量的预设值，以提供对 Tx 均衡分辨率较粗粒度的控制。系数空间和预设空间均可通过接收端经由均衡过程的消息来控制。均衡过程在与正常信令相同的物理路径上运行，并通过现有协议链路层的扩展来实现。
 
 All 8.0, 16.0, 32.0, and 64.0 GT/s Transmitters must implement support for the equalization procedure, whereas 8.0, 16.0, 32.0, and 64.0 GT/s Receivers may optionally make use of requests for the Transmitter on the Link partner to update Transmitter equalization. Details of the equalization procedure may be found in the Physical Layer Logical Block chapter.
 
-> 所有8.0、16.0、32.0和64.0 GT/s发送端必须支持均衡过程，而8.0、16.0、32.0和64.0 GT/s接收端可选择性地使用对链路伙伴发送端的请求来更新发送端均衡。均衡过程的详细内容见物理层逻辑子层章节。
+> 所有 8.0、16.0、32.0 和 64.0 GT/s 发送端必须支持均衡过程，而 8.0、16.0、32.0 和 64.0 GT/s 接收端可选择性地使用对链路伙伴发送端的请求来更新发送端均衡。均衡过程的详细内容见物理层逻辑子层章节。
 
 Tx equalization coefficients for 8.0, 16.0, and 32.0 GT/s are based on the following FIR filter relationship as shown in Figure 8-4. Equalization coefficients are subject to constraints limiting their max swing to ±unity with c-1 and c+1 being zero or negative. The inclusion of the unity condition means that only two of the three coefficients need to be specified to fully define v_outn.
 
-> 8.0、16.0和32.0 GT/s的Tx均衡系数基于图8-4所示的FIR滤波器关系。均衡系数受限于将其最大摆幅限制在±unity以内，其中c-1和c+1为零或负值。纳入unity条件意味着仅需指定三个系数中的两个即可完全定义v_outn。
+> 8.0、16.0 和 32.0 GT/s 的 Tx 均衡系数基于图 8-4 所示的 FIR 滤波器关系。均衡系数受限于将其最大摆幅限制在±unity 以内，其中 c-1 和 c+1 为零或负值。纳入 unity 条件意味着仅需指定三个系数中的两个即可完全定义 v_outn。
 
 Tx equalization coefficients for 64.0 GT/s are based on the FIR filter relationship as shown in Figure 8-5. Equalization coefficients are subject to constraints limiting their max swing to ±unity with c-2 being zero or positive, c-1 and c+1 being zero or negative.
 
-> 64.0 GT/s的Tx均衡系数基于图8-5所示的FIR滤波器关系。均衡系数受限于将其最大摆幅限制在±unity以内，其中c-2为零或正值，c-1和c+1为零或负值。
+> 64.0 GT/s 的 Tx 均衡系数基于图 8-5 所示的 FIR 滤波器关系。均衡系数受限于将其最大摆幅限制在±unity 以内，其中 c-2 为零或正值，c-1 和 c+1 为零或负值。
 
 <p align="center">
 <img src="images/ch08/fig08_p1413.png" alt="Figure 8-4" width="75%">
@@ -242,11 +242,11 @@ Tx equalization coefficients for 64.0 GT/s are based on the FIR filter relations
 
 When operating at 8.0 GT/s, 16.0 GT/s and 32.0 GT/s the Tx must support the full range of presets given in Table 8-1. When operating at 64.0 GT/s, the Tx must support the full range of presets given in Table 8-2. The data rate dependent encoding of presets has been defined in § Section 4.2.4.2.
 
-> 在8.0 GT/s、16.0 GT/s和32.0 GT/s速率下运行时，Tx必须支持表8-1中给出的全部预设值。在64.0 GT/s速率下运行时，Tx必须支持表8-2中给出的全部预设值。预设值的数据速率相关编码已在第4.2.4.2节中定义。
+> 在 8.0 GT/s、16.0 GT/s 和 32.0 GT/s 速率下运行时，Tx 必须支持表 8-1 中给出的全部预设值。在 64.0 GT/s 速率下运行时，Tx 必须支持表 8-2 中给出的全部预设值。预设值的数据速率相关编码已在第 4.2.4.2 节中定义。
 
 Presets are defined in terms of ratios, relating the pre-cursor and post-cursor equalization voltages. The pre-cursors (Vc1) and (Vc2) are referred to as pre-shoots, while the post-cursor (Vb) is referred to as de-emphasis. This convention permits the specification to retain the existing 2.5 GT/s and 5.0 GT/s definitions for Tx equalization, where only de-emphasis is defined, and it allows pre-shoots and de-emphasis to be defined such that each is independent of the other.
 
-> 预设值以比率形式定义，关联前标（pre-cursor）和后标（post-cursor）均衡电压。前标（Vc1和Vc2）被称为预加重（pre-shoot），而后标（Vb）被称为去加重（de-emphasis）。这种约定使规范能够保留现有的2.5 GT/s和5.0 GT/s Tx均衡定义（其中仅定义了去加重），并允许预加重和去加重各自独立定义。
+> 预设值以比率形式定义，关联前标（pre-cursor）和后标（post-cursor）均衡电压。前标（Vc1 和 Vc2）被称为预加重（pre-shoot），而后标（Vb）被称为去加重（de-emphasis）。这种约定使规范能够保留现有的 2.5 GT/s 和 5.0 GT/s Tx 均衡定义（其中仅定义了去加重），并允许预加重和去加重各自独立定义。
 
 <p align="center">
 <img src="images/ch08/fig08_p1415.png" alt="Figure 8-6" width="75%">
@@ -276,8 +276,8 @@ Notes:
 2. P10 boost limits are not fixed, since its de-emphasis level is a function of the LF level that the Tx advertises during training (see § Section 4.2.4.1). P10 is used for testing the boost limit of Transmitter at full swing. P1 is used for testing the boost limit of Transmitter at reduced swing.
 
 > 注：
-> 1. 降摆幅信令必须实现预设值P4、P1、P9、P5、P6和P3。全摆幅信令必须实现上述所有预设值。
-> 2. P10的boost限制不是固定的，因为其去加重量水平取决于Tx在训练期间公布的LF水平（参见第4.2.4.1节）。P10用于在全摆幅下测试发送端的boost限制。P1用于在降摆幅下测试发送端的boost限制。
+> 1. 降摆幅信令必须实现预设值 P4、P1、P9、P5、P6 和 P3。全摆幅信令必须实现上述所有预设值。
+> 2. P10 的 boost 限制不是固定的，因为其去加重量水平取决于 Tx 在训练期间公布的 LF 水平（参见第 4.2.4.1 节）。P10 用于在全摆幅下测试发送端的 boost 限制。P1 用于在降摆幅下测试发送端的 boost 限制。
 
 Table 8-2 lists the values for presets at 64.0 GT/s. All preset values must be supported for full swing signaling.
 
@@ -302,22 +302,22 @@ Notes:
 2. Q10 boost limits are not fixed, since its de-emphasis level is a function of the LF level that the Tx advertises during training. Q10 is used for testing the boost limit of Transmitter at full swing. Q4 is used for testing the boost limit of Transmitter at reduced swing.
 
 > 注：
-> 1. 降摆幅信令必须实现预设值Q0、Q1、Q2、Q3和Q4。全摆幅信令必须实现上述所有预设值。
-> 2. Q10的boost限制不是固定的，因为其去加重量水平取决于Tx在训练期间公布的LF水平。Q10用于在全摆幅下测试发送端的boost限制。Q4用于在降摆幅下测试发送端的boost限制。
+> 1. 降摆幅信令必须实现预设值 Q0、Q1、Q2、Q3 和 Q4。全摆幅信令必须实现上述所有预设值。
+> 2. Q10 的 boost 限制不是固定的，因为其去加重量水平取决于 Tx 在训练期间公布的 LF 水平。Q10 用于在全摆幅下测试发送端的 boost 限制。Q4 用于在降摆幅下测试发送端的 boost 限制。
 
 #### 8.3.3.4 Measuring Tx Equalization for 2.5 GT/s and 5.0 GT/s
 #### 8.3.3.4 2.5和5.0 GT/s Tx均衡测量
 
 Tx equalization de-emphasis values at 2.5 and 5.0 GT/s are measured using the average ratio of transition to non-transition eye heights at the 0.5 UI location using 500 repetitions of the compliance pattern.
 
-> 2.5和5.0 GT/s的Tx均衡去加重值，在0.5 UI位置处使用500次合规码型重复，通过跳变眼图高度与非跳变眼图高度的平均比值来测量。
+> 2.5 和 5.0 GT/s 的 Tx 均衡去加重值，在 0.5 UI 位置处使用 500 次合规码型重复，通过跳变眼图高度与非跳变眼图高度的平均比值来测量。
 
 #### 8.3.3.5 Measuring Presets at 8.0, 16.0, 32.0, and 64.0 GT/s
 #### 8.3.3.5 8.0、16.0、32.0和64.0 GT/s预设值测量
 
 Figure 8-7 illustrates the methodology for measuring Tx equalization coefficients and presets. For a Tx preset to be measured, the DUT Tx transmits a Compliance Pattern with the corresponding Tx equalization coefficients. The equalized Compliance Pattern is captured by a real-time oscilloscope and the post-processing software extracts an equalized step response waveform. The DUT Tx also transmits a Compliance Pattern with no Tx equalization. The unequalized Compliance Pattern is captured by the real-time oscilloscope and the post-processing software applies Tx equalization coefficients c-2, c-1, c0, and c+1 to construct an equalized step response waveform. The Tx preset coefficients are the best fit Tx equalization coefficients c-2, c-1, c0, and c+1 that minimize the Mean Square Error (MSE) between the measured equalized step response waveform and the reconstructed equalized step response waveform.
 
-> 图8-7展示了测量Tx均衡系数和预设值的方法。为测量一个Tx预设值，DUT Tx以相应的Tx均衡系数发送合规码型。均衡后的合规码型由实时示波器捕获，后处理软件提取均衡阶跃响应波形。DUT Tx还发送一个无Tx均衡的合规码型。未均衡的合规码型由实时示波器捕获，后处理软件应用Tx均衡系数c-2、c-1、c0和c+1构建均衡阶跃响应波形。Tx预设系数是使实测均衡阶跃响应波形与重构均衡阶跃响应波形之间的均方误差（MSE）最小化的最佳拟合Tx均衡系数c-2、c-1、c0和c+1。
+> 图 8-7 展示了测量 Tx 均衡系数和预设值的方法。为测量一个 Tx 预设值，DUT Tx 以相应的 Tx 均衡系数发送合规码型。均衡后的合规码型由实时示波器捕获，后处理软件提取均衡阶跃响应波形。DUT Tx 还发送一个无 Tx 均衡的合规码型。未均衡的合规码型由实时示波器捕获，后处理软件应用 Tx 均衡系数 c-2、c-1、c0 和 c+1 构建均衡阶跃响应波形。Tx 预设系数是使实测均衡阶跃响应波形与重构均衡阶跃响应波形之间的均方误差（MSE）最小化的最佳拟合 Tx 均衡系数 c-2、c-1、c0 和 c+1。
 
 <p align="center">
 <img src="images/ch08/fig08_p1417.png" alt="Figure 8-7" width="95%">
@@ -329,14 +329,14 @@ Figure 8-7 illustrates the methodology for measuring Tx equalization coefficient
 
 VTX-DIFF-PP (VTX-DIFF-PP-LOW for reduced swing) at 2.5 GT/s and 5.0 GT/s are measured using the average transition eye amplitude at the 0.5 UI location using 500 repetitions of the compliance pattern.
 
-> 2.5 GT/s和5.0 GT/s下的VTX-DIFF-PP（降摆幅时为VTX-DIFF-PP-LOW），在0.5 UI位置处使用500次合规码型重复，通过平均跳变眼图幅度来测量。
+> 2.5 GT/s 和 5.0 GT/s 下的 VTX-DIFF-PP（降摆幅时为 VTX-DIFF-PP-LOW），在 0.5 UI 位置处使用 500 次合规码型重复，通过平均跳变眼图幅度来测量。
 
 #### 8.3.3.7 Method for Measuring VTX-DIFF-PP at 8.0, 16.0, 32.0, and 64.0 GT/s
 #### 8.3.3.7 8.0、16.0、32.0和64.0 GT/s下的VTX-DIFF-PP测量方法
 
 The range for a Transmitter's output voltage swing (specified by Vd) with no equalization is defined by VTX-DIFF-PP (VTX-DIFF-PP-LOW for reduced swing), and is obtained by setting c-2, c-1 and c+1 to zero and measuring the peak-peak voltage on the 64-ones (64 PAM4 voltage level 3's at 64.0 GT/s)/64-zeros (64 PAM4 voltage level 0's at 64.0 GT/s) segment of the compliance pattern. The resulting signal effectively measures at the die pad, minus any low frequency package loss. ISI and switching effects are minimized by restricting the portion of the curve over which voltage is measured to the last few UI of each half cycle, as illustrated in Figure 8-8. High frequency noise is mitigated by averaging over 500 repetitions of the compliance pattern.
 
-> 发送端在无均衡时的输出电压摆幅范围（由Vd指定）由VTX-DIFF-PP（降摆幅时为VTX-DIFF-PP-LOW）定义，通过将c-2、c-1和c+1设为零并在合规码型的64个1（64.0 GT/s时为64个PAM4电平3）/64个0（64.0 GT/s时为64个PAM4电平0）段上测量峰峰值电压来获得。所得信号有效地在die pad处测量，减去任何低频封装损耗。如图8-8所示，通过将电压测量限制在每个半周期的最后几个UI内，ISI和开关效应被最小化。通过对500次合规码型重复进行平均来降低高频噪声。
+> 发送端在无均衡时的输出电压摆幅范围（由 Vd 指定）由 VTX-DIFF-PP（降摆幅时为 VTX-DIFF-PP-LOW）定义，通过将 c-2、c-1 和 c+1 设为零并在合规码型的 64 个 1（64.0 GT/s 时为 64 个 PAM4 电平 3）/64 个 0（64.0 GT/s 时为 64 个 PAM4 电平 0）段上测量峰峰值电压来获得。所得信号有效地在 die pad 处测量，减去任何低频封装损耗。如图 8-8 所示，通过将电压测量限制在每个半周期的最后几个 UI 内，ISI 和开关效应被最小化。通过对 500 次合规码型重复进行平均来降低高频噪声。
 
 <p align="center">
 <img src="images/ch08/fig08_p1418.png" alt="Figure 8-8" width="75%">
@@ -352,19 +352,19 @@ The range for a Transmitter's output voltage swing (specified by Vd) with no equ
 - Transmitters may optionally support reduced swing, and if they do, they must meet the VTX-EIEOS-RS limits
 - The coefficients must meet the boost and resolution (VTX-BOOST-FS, VTX-BOOST-RS and EQTX-COEFF-RES) limits defined in Table 8-6
 
-> 8.0、16.0、32.0和64.0 GT/s发送端需要向接收端告知其系数范围和容差。系数范围和容差受以下要求约束：
-> - 系数必须支持表8-1和表8-2中定义的所有预设值及其各自的容差
-> - 所有发送端必须满足全摆幅信令的VTX-EIEOS-FS限制
-> - 发送端可选支持降摆幅，如支持则必须满足VTX-EIEOS-RS限制
-> - 系数必须满足表8-6中定义的boost和分辨率（VTX-BOOST-FS、VTX-BOOST-RS和EQTX-COEFF-RES）限制
+> 8.0、16.0、32.0 和 64.0 GT/s 发送端需要向接收端告知其系数范围和容差。系数范围和容差受以下要求约束：
+> - 系数必须支持表 8-1 和表 8-2 中定义的所有预设值及其各自的容差
+> - 所有发送端必须满足全摆幅信令的 VTX-EIEOS-FS 限制
+> - 发送端可选支持降摆幅，如支持则必须满足 VTX-EIEOS-RS 限制
+> - 系数必须满足表 8-6 中定义的 boost 和分辨率（VTX-BOOST-FS、VTX-BOOST-RS 和 EQTX-COEFF-RES）限制
 
 When the above constraints are applied the resulting coefficient space for 8.0, 16.0, and 32.0 GT/s with pre-shoot2 coefficient c-2 = 0 may be mapped onto a triangular matrix, an example of which is shown in Figure 8-9. The matrix may be interpreted as follows: pre-shoot1 and de-emphasis coefficients are mapped onto the Y-axis and X-axes, respectively. In both cases the maximum granularity of 1/24 is assumed. Each matrix cell has three entries corresponding to pre-shoot1 (PS1), de-emphasis (DE), and boost. Diagonal elements are defined by the maximum boost ratio. Cells highlighted in blue are presets required for reduced swing, while cells in either blue or orange represent presets required for full swing signaling.
 
-> 在施加上述约束后，8.0、16.0和32.0 GT/s的系数空间（其中预加重2系数c-2 = 0）可映射到一个三角矩阵，其示例如图8-9所示。矩阵可解读如下：预加重1和去加重系数分别映射到Y轴和X轴。两者均假定最大粒度为1/24。每个矩阵单元格有三个条目，分别对应预加重1（PS1）、去加重（DE）和boost。对角线元素由最大boost比率定义。蓝色高亮单元格为降摆幅所需的预设值，而蓝色或橙色单元格为全摆幅信令所需的预设值。
+> 在施加上述约束后，8.0、16.0 和 32.0 GT/s 的系数空间（其中预加重 2 系数 c-2 = 0）可映射到一个三角矩阵，其示例如图 8-9 所示。矩阵可解读如下：预加重 1 和去加重系数分别映射到 Y 轴和 X 轴。两者均假定最大粒度为 1/24。每个矩阵单元格有三个条目，分别对应预加重 1（PS1）、去加重（DE）和 boost。对角线元素由最大 boost 比率定义。蓝色高亮单元格为降摆幅所需的预设值，而蓝色或橙色单元格为全摆幅信令所需的预设值。
 
 Note: This figure is informative only and is not intended to imply any specific Tx implementation or to alter requirements for nominal preset equalization values and allowed ranges.
 
-> 注：本图仅为信息性参考，不旨在隐含任何特定Tx实现或更改标称预设均衡值及其允许范围的要求。
+> 注：本图仅为信息性参考，不旨在隐含任何特定 Tx 实现或更改标称预设均衡值及其允许范围的要求。
 
 <p align="center">
 <img src="images/ch08/fig08_p1419.png" alt="Figure 8-9" width="95%">
@@ -376,25 +376,25 @@ Note: This figure is informative only and is not intended to imply any specific 
 
 EIEOS (Electrical Idle Exit Ordered Set) signaling specifications define voltage limits for full swing (VTX-EIEOS-FS) and reduced swing (VTX-EIEOS-RS) operation. These limits ensure that the EIEOS ordered set is transmitted with sufficient amplitude for reliable detection by the Receiver.
 
-> EIEOS（电气空闲退出有序集）信令规范定义了全摆幅（VTX-EIEOS-FS）和降摆幅（VTX-EIEOS-RS）操作的电压限制。这些限制确保EIEOS有序集以足够幅度发送，以便接收端可靠检测。
+> EIEOS（电气空闲退出有序集）信令规范定义了全摆幅（VTX-EIEOS-FS）和降摆幅（VTX-EIEOS-RS）操作的电压限制。这些限制确保 EIEOS 有序集以足够幅度发送，以便接收端可靠检测。
 
 Figure 8-11 illustrates the measurement for VTX-EIEOS-FS and VTX-EIEOS-RS at 8.0 GT/s, where the signal level for EIEOS is measured over the last few UI of each half cycle similar to the VTX-DIFF-PP measurement.
 
-> 图8-11展示了8.0 GT/s下VTX-EIEOS-FS和VTX-EIEOS-RS的测量方法，其中EIEOS的信号电平在每个半周期的最后几个UI内测量，类似于VTX-DIFF-PP的测量方式。
+> 图 8-11 展示了 8.0 GT/s 下 VTX-EIEOS-FS 和 VTX-EIEOS-RS 的测量方法，其中 EIEOS 的信号电平在每个半周期的最后几个 UI 内测量，类似于 VTX-DIFF-PP 的测量方式。
 
 #### 8.3.3.10 Reduced Swing Signaling
 #### 8.3.3.10 降摆幅信令
 
 Reduced swing mode allows for lower power Link operation. A Transmitter supporting reduced swing signaling must meet the reduced swing voltage parameters VTX-DIFF-PP-LOW and the associated EIEOS limits.
 
-> 降摆幅模式允许更低功耗的链路操作。支持降摆幅信令的发送端必须满足降摆幅电压参数VTX-DIFF-PP-LOW及对应的EIEOS限制。
+> 降摆幅模式允许更低功耗的链路操作。支持降摆幅信令的发送端必须满足降摆幅电压参数 VTX-DIFF-PP-LOW 及对应的 EIEOS 限制。
 
 #### 8.3.3.11 Effective Tx Package Loss at 8.0, 16.0, 32.0, and 64.0 GT/s
 #### 8.3.3.11 8.0、16.0、32.0和64.0 GT/s的有效Tx封装损耗
 
 The effective Tx package loss parameter characterizes the package loss between the silicon die pad and the device pin at the fundamental frequency of the compliance pattern. This loss is used to de-embed measurements from the die pad to the device pin. Figure 8-12 shows the compliance pattern and resulting package loss test waveform.
 
-> 有效Tx封装损耗参数表征了在合规码型基频处硅die pad与器件引脚之间的封装损耗。该损耗用于将测量从die pad去嵌入到器件引脚。图8-12展示了合规码型及由此产生的封装损耗测试波形。
+> 有效 Tx 封装损耗参数表征了在合规码型基频处硅 die pad 与器件引脚之间的封装损耗。该损耗用于将测量从 die pad 去嵌入到器件引脚。图 8-12 展示了合规码型及由此产生的封装损耗测试波形。
 
 Table 8-3 identifies the cases where reference packages and the ps21TX parameter are normative.
 
@@ -411,17 +411,17 @@ SNDR is defined for PAM4 signaling at 64.0 GT/s. SNDR captures both noise and di
 σn: RMS of all noise observed
 SNDR = 20 × log10(Vd / σn)
 
-> SNDR（信噪失真比）定义用于64.0 GT/s的PAM4信令。SNDR捕获发送信号中的噪声和失真。SNDR由测量的信号统计按下式计算：
+> SNDR（信噪失真比）定义用于 64.0 GT/s 的 PAM4 信令。SNDR 捕获发送信号中的噪声和失真。SNDR 由测量的信号统计按下式计算：
 >
-> σL,i：第i个PAM4电平的标准差
-> μL,i：第i个PAM4电平的均值
+> σL,i：第 i 个 PAM4 电平的标准差
+> μL,i：第 i 个 PAM4 电平的均值
 > σL：各标准差的平均值
-> σn：所有观测噪声的RMS
+> σn：所有观测噪声的 RMS
 > SNDR = 20 × log10(Vd / σn)
 
 Equations 8-3 through 8-7 define the SNDR computation in detail.
 
-> 方程式8-3至方程式8-7详细定义了SNDR的计算。
+> 方程式 8-3 至方程式 8-7 详细定义了 SNDR 的计算。
 
 #### 8.3.3.13 Transmitter Ratio of Level Mismatch (RLM-TX) for 64.0 GT/s
 #### 8.3.3.13 64.0 GT/s发送端电平失配比（RLM-TX）
@@ -432,22 +432,22 @@ RLM = 1 - (VL / Vd)
 
 where VL captures the deviation of the average PAM4 levels from their ideal equally-spaced positions.
 
-> 发送端的RLM（电平失配比）定义用于64.0 GT/s的PAM4。RLM定义为：
+> 发送端的 RLM（电平失配比）定义用于 64.0 GT/s 的 PAM4。RLM 定义为：
 >
 > RLM = 1 - (VL / Vd)
 >
-> 其中VL捕获平均PAM4电平偏离其理想等间距位置的偏差。
+> 其中 VL 捕获平均 PAM4 电平偏离其理想等间距位置的偏差。
 
 Equations 8-8 and 8-9 define RLM and VL in detail.
 
-> 方程式8-8和方程式8-9详细定义了RLM和VL。
+> 方程式 8-8 和方程式 8-9 详细定义了 RLM 和 VL。
 
 ### 8.3.4 Transmitter Margining
 ### 8.3.4 发送端裕量
 
 Transmitter margining allows a Receiver to request a Transmitter to change the Transmitter voltage ratio in small increments so that the Receiver can determine the margin in the received signal that it is seeing. Margining at 2.5 and 5.0 GT/s is defined by a set of voltage levels and codes as shown in Figure 8-13.
 
-> 发送端裕量允许接收端请求发送端以小增量更改发送端电压比率，以便接收端确定其接收信号中所见的裕量。2.5和5.0 GT/s的裕量由图8-13所示的一组电压电平和编码定义。
+> 发送端裕量允许接收端请求发送端以小增量更改发送端电压比率，以便接收端确定其接收信号中所见的裕量。2.5 和 5.0 GT/s 的裕量由图 8-13 所示的一组电压电平和编码定义。
 
 <p align="center">
 <img src="images/ch08/fig08_p1424.png" alt="Figure 8-13" width="95%">
@@ -456,28 +456,28 @@ Transmitter margining allows a Receiver to request a Transmitter to change the T
 
 For 8.0, 16.0, 32.0, and 64.0 GT/s, Lane margining is defined as part of the Lane Margining at the Receiver feature described in the Physical Layer Logical Block chapter.
 
-> 对于8.0、16.0、32.0和64.0 GT/s，Lane裕量化定义为接收端Lane裕量功能的一部分，详见物理层逻辑子层章节。
+> 对于 8.0、16.0、32.0 和 64.0 GT/s，Lane 裕量化定义为接收端 Lane 裕量功能的一部分，详见物理层逻辑子层章节。
 
 ### 8.3.5 Tx Jitter Parameters
 ### 8.3.5 Tx抖动参数
 
 This section defines the measurement and characterization of Tx jitter. The jitter parameters have been redefined for 6.0 to conform to a more consistent and rigorous statistical framework.
 
-> 本节定义了Tx抖动的测量和表征。在6.0版本中，抖动参数已重新定义，以符合更一致和更严格的统计框架。
+> 本节定义了 Tx 抖动的测量和表征。在 6.0 版本中，抖动参数已重新定义，以符合更一致和更严格的统计框架。
 
 #### 8.3.5.1 Post Processing Steps to Extract Jitter
 #### 8.3.5.1 提取抖动的后处理步骤
 
 Jitter extraction requires specific post-processing steps: time-base correction, pattern alignment, and application of behavioral CDR transfer functions.
 
-> 抖动提取需要特定的后处理步骤：时基校正、码型对齐以及行为CDR传递函数的应用。
+> 抖动提取需要特定的后处理步骤：时基校正、码型对齐以及行为 CDR 传递函数的应用。
 
 #### 8.3.5.2 Applying CTLE or De-embedding
 #### 8.3.5.2 应用CTLE或去嵌入
 
 Before jitter analysis, the measured signal may require CTLE (Continuous Time Linear Equalization) or de-embedding to reference the measurement to the device pin. Table 8-4 provides recommended de-embedding configurations.
 
-> 在抖动分析之前，测量的信号可能需要CTLE（连续时间线性均衡）或去嵌入，以将测量引用到器件引脚。表8-4提供了推荐的去嵌入配置。
+> 在抖动分析之前，测量的信号可能需要 CTLE（连续时间线性均衡）或去嵌入，以将测量引用到器件引脚。表 8-4 提供了推荐的去嵌入配置。
 
 **Table 8-4: Recommended De-embedding | 表8-4：推荐去嵌入**
 
@@ -488,14 +488,14 @@ For independent Refclk architectures, specific measurement and post-processing p
 
 **Table 8-5: Tx Measurement and Post Processing for Different Refclks | 表8-5：不同参考时钟的Tx测量和后处理**
 
-> 对于独立参考时钟架构，适用特定的测量和后处理程序。表8-5总结了不同参考时钟架构的Tx测量和后处理方式。
+> 对于独立参考时钟架构，适用特定的测量和后处理程序。表 8-5 总结了不同参考时钟架构的 Tx 测量和后处理方式。
 
 #### 8.3.5.4 Embedded and Non-Embedded Refclk Measurement and Post Processing
 #### 8.3.5.4 嵌入式和非嵌入式参考时钟的测量和后处理
 
 For embedded Refclk configurations, a 2-port measurement approach is used where both Tx data and Refclk out are sampled simultaneously. For non-embedded Refclk, only the Tx data is sampled.
 
-> 对于嵌入式参考时钟配置，使用双端口测量方法，Tx数据和Refclk输出同时采样。对于非嵌入式参考时钟，仅采样Tx数据。
+> 对于嵌入式参考时钟配置，使用双端口测量方法，Tx 数据和 Refclk 输出同时采样。对于非嵌入式参考时钟，仅采样 Tx 数据。
 
 #### 8.3.5.5 Behavioral CDR Characteristics
 #### 8.3.5.5 行为CDR特性
@@ -504,9 +504,9 @@ Behavioral CDR (Clock Data Recovery) transfer functions are defined for each dat
 
 Figure 8-14 illustrates the first-order Common Refclk behavioral CDR transfer functions at various data rates.
 
-> 行为CDR（时钟数据恢复）传递函数针对每种数据速率和参考时钟架构定义。这些函数模拟参考CDR的PLL带宽和峰值，并用于抖动分析中以考虑接收端的跟踪行为。
+> 行为 CDR（时钟数据恢复）传递函数针对每种数据速率和参考时钟架构定义。这些函数模拟参考 CDR 的 PLL 带宽和峰值，并用于抖动分析中以考虑接收端的跟踪行为。
 >
-> 图8-14展示了在各种数据速率下一阶公共参考时钟行为CDR传递函数。
+> 图 8-14 展示了在各种数据速率下一阶公共参考时钟行为 CDR 传递函数。
 
 <p align="center">
 <img src="images/ch08/fig08_p1440.png" alt="Figure 8-14" width="75%">
@@ -517,23 +517,23 @@ Figures 8-15 through 8-17 show behavioral CDR transfer functions for SRIS (Separ
 
 Equations 8-10 through 8-13 define the behavioral CDR transfer functions and parameters.
 
-> 图8-15至图8-17展示了SRIS（独立参考独立扩频）和CC（公共时钟）架构在更高数据速率下的行为CDR传递函数。
+> 图 8-15 至图 8-17 展示了 SRIS（独立参考独立扩频）和 CC（公共时钟）架构在更高数据速率下的行为 CDR 传递函数。
 >
-> 方程式8-10至方程式8-13定义了行为CDR传递函数和参数。
+> 方程式 8-10 至方程式 8-13 定义了行为 CDR 传递函数和参数。
 
 #### 8.3.5.6 Data Dependent and Uncorrelated Jitter
 #### 8.3.5.6 数据相关抖动与非相关抖动
 
 Jitter is broken down into data dependent jitter (DDJ) and uncorrelated jitter. Data dependent jitter is deterministic and arises from ISI and other data pattern effects. Uncorrelated jitter includes random and deterministic components that are not correlated with the data pattern.
 
-> 抖动分为数据相关抖动（DDJ）和非相关抖动。数据相关抖动是确定性的，源于ISI和其他数据码型效应。非相关抖动包括与数据码型不相关的随机和确定性分量。
+> 抖动分为数据相关抖动（DDJ）和非相关抖动。数据相关抖动是确定性的，源于 ISI 和其他数据码型效应。非相关抖动包括与数据码型不相关的随机和确定性分量。
 
 #### 8.3.5.7 Data Dependent Jitter
 #### 8.3.5.7 数据相关抖动
 
 DDJ is extracted by analyzing the average edge positions for each data pattern. Figure 8-18 illustrates the relationship between data edge PDFs and the recovered data clock.
 
-> DDJ通过分析每种数据码型的平均边沿位置来提取。图8-18展示了数据边沿PDF与恢复数据时钟之间的关系。
+> DDJ 通过分析每种数据码型的平均边沿位置来提取。图 8-18 展示了数据边沿 PDF 与恢复数据时钟之间的关系。
 
 #### 8.3.5.8 Uncorrelated Total Jitter and Deterministic Jitter (Dual Dirac Model)
 #### 8.3.5.8 非相关总抖动和确定性抖动（双Dirac模型）
@@ -542,23 +542,23 @@ TTX-UTJ (Uncorrelated Total Jitter) and TTX-UDJDD (Uncorrelated Deterministic Ji
 
 Figure 8-19 illustrates the derivation of TTX-UTJ and TTX-UDJDD.
 
-> TTX-UTJ（非相关总抖动）和TTX-UDJDD（非相关确定性抖动，双Dirac模型）表征非相关抖动分量。双Dirac模型用于从非相关抖动分布中分离确定性和随机抖动分量。
+> TTX-UTJ（非相关总抖动）和 TTX-UDJDD（非相关确定性抖动，双 Dirac 模型）表征非相关抖动分量。双 Dirac 模型用于从非相关抖动分布中分离确定性和随机抖动分量。
 >
-> 图8-19展示了TTX-UTJ和TTX-UDJDD的推导。
+> 图 8-19 展示了 TTX-UTJ 和 TTX-UDJDD 的推导。
 
 #### 8.3.5.9 Random Jitter (TTX-RJ) (informative)
 #### 8.3.5.9 随机抖动（TTX-RJ，信息性）
 
 TTX-RJ is an informative parameter that estimates the RMS random jitter from the uncorrelated jitter distribution.
 
-> TTX-RJ是一个信息性参数，从非相关抖动分布中估计RMS随机抖动。
+> TTX-RJ 是一个信息性参数，从非相关抖动分布中估计 RMS 随机抖动。
 
 #### 8.3.5.10 Uncorrelated Total and Deterministic PWJ
 #### 8.3.5.10 非相关总PWJ和确定性PWJ
 
 PWJ (Pulse Width Jitter) relative to consecutive edges 1 UI apart is defined and measured as shown in Figure 8-20 and Figure 8-21. TTX-UPW-TJ and TTX-UPW-DJDD capture uncorrelated total and deterministic PWJ.
 
-> PWJ（脉宽抖动）相对于间隔1 UI的连续边沿定义和测量，如图8-20和图8-21所示。TTX-UPW-TJ和TTX-UPW-DJDD捕获非相关总PWJ和确定性PWJ。
+> PWJ（脉宽抖动）相对于间隔 1 UI 的连续边沿定义和测量，如图 8-20 和图 8-21 所示。TTX-UPW-TJ 和 TTX-UPW-DJDD 捕获非相关总 PWJ 和确定性 PWJ。
 
 ### 8.3.6 Data Rate Dependent Parameters
 ### 8.3.6 数据速率相关参数
@@ -586,9 +586,9 @@ Key parameters include:
 | SNDRTX | Tx Signal-to-Noise and Distortion Ratio | Tx信噪失真比 |
 | RLM-TX | Tx Ratio of Level Mismatch | Tx电平失配比 |
 
-> 表8-6提供了一个全面的数据速率相关发送端参数集，涵盖从2.5 GT/s到64.0 GT/s的所有支持数据速率。
+> 表 8-6 提供了一个全面的数据速率相关发送端参数集，涵盖从 2.5 GT/s 到 64.0 GT/s 的所有支持数据速率。
 >
-> 需要特别注意的是，2.5、5.0、8.0、16.0和32.0 GT/s下的BER = 10⁻¹²隐含着FBER同样为10⁻¹²。对于64.0 GT/s的FBER = 10⁻⁶，这意味着在计入所有突发错误之前，错误率比前几代高出六个数量级——这是PAM4信令的一个基本权衡。
+> 需要特别注意的是，2.5、5.0、8.0、16.0 和 32.0 GT/s 下的 BER = 10⁻¹²隐含着 FBER 同样为 10⁻¹²。对于 64.0 GT/s 的 FBER = 10⁻⁶，这意味着在计入所有突发错误之前，错误率比前几代高出六个数量级——这是 PAM4 信令的一个基本权衡。
 
 Many of these are design parameter requirements - a specific test methodology for them is not defined.
 
@@ -599,7 +599,7 @@ Many of these are design parameter requirements - a specific test methodology fo
 
 Return loss specifications ensure impedance matching and minimize signal reflections. Differential and common mode return loss masks are defined for both Tx and Rx.
 
-> 回波损耗规范确保阻抗匹配并最小化信号反射。差分和共模回波损耗掩模针对Tx和Rx均有定义。
+> 回波损耗规范确保阻抗匹配并最小化信号反射。差分和共模回波损耗掩模针对 Tx 和 Rx 均有定义。
 
 Figure 8-22 shows the Tx and Rx differential return loss mask with a 50Ω reference.
 
@@ -620,7 +620,7 @@ Figure 8-23 shows the Tx and Rx common mode return loss mask.
 
 Return loss specifications for 64.0 GT/s PAM4 signaling have distinct masks due to the wider bandwidth requirements.
 
-> 64.0 GT/s PAM4信令的回波损耗规范具有不同的掩模，这是因为其更宽的带宽要求。
+> 64.0 GT/s PAM4 信令的回波损耗规范具有不同的掩模，这是因为其更宽的带宽要求。
 
 Figure 8-24: 64.0 GT/s Tx, Rx Differential Return Loss Mask | 图8-24：64.0 GT/s Tx、Rx差分回波损耗掩模
 
@@ -631,28 +631,28 @@ Figure 8-25: 64.0 GT/s Tx, Rx Common Mode Return Loss Mask | 图8-25：64.0 GT/s
 
 Tx PLL bandwidth and peaking define the jitter transfer characteristics of the transmitter PLL. Separate specifications apply for 2.5/5.0 GT/s and for 8.0/16.0/32.0/64.0 GT/s.
 
-> Tx PLL带宽和峰值定义了发送端PLL的抖动传递特性。针对2.5/5.0 GT/s和8.0/16.0/32.0/64.0 GT/s分别适用不同的规范。
+> Tx PLL 带宽和峰值定义了发送端 PLL 的抖动传递特性。针对 2.5/5.0 GT/s 和 8.0/16.0/32.0/64.0 GT/s 分别适用不同的规范。
 
 #### 8.3.9.1 2.5 GT/s and 5.0 GT/s Tx PLL Bandwidth and Peaking
 #### 8.3.9.1 2.5 GT/s和5.0 GT/s Tx PLL带宽和峰值
 
 For 2.5 and 5.0 GT/s, the Tx PLL must have a bandwidth between 1.5 MHz and 22 MHz and peaking less than 3 dB.
 
-> 对于2.5和5.0 GT/s，Tx PLL必须具有1.5 MHz至22 MHz之间的带宽，且峰值低于3 dB。
+> 对于 2.5 和 5.0 GT/s，Tx PLL 必须具有 1.5 MHz 至 22 MHz 之间的带宽，且峰值低于 3 dB。
 
 #### 8.3.9.2 8.0 GT/s, 16.0 GT/s, 32.0 GT/s, and 64.0 GT/s Tx PLL Bandwidth and Peaking
 #### 8.3.9.2 8.0、16.0、32.0和64.0 GT/s Tx PLL带宽和峰值
 
 For these data rates, specific PLL bandwidths and peaking limits are defined to ensure compatibility with the Receiver's CDR.
 
-> 对于这些数据速率，定义了特定的PLL带宽和峰值限值，以确保与接收端CDR的兼容性。
+> 对于这些数据速率，定义了特定的 PLL 带宽和峰值限值，以确保与接收端 CDR 的兼容性。
 
 #### 8.3.9.3 Series Capacitors
 #### 8.3.9.3 串联电容
 
 AC coupling capacitors are required on the Transmitter side of the Link. The specification defines the capacitance range between 176 nF and 265 nF for PCI Express.
 
-> AC耦合电容在链路的发送端一侧是必需的。规范定义了PCI Express的电容范围在176 nF至265 nF之间。
+> AC 耦合电容在链路的发送端一侧是必需的。规范定义了 PCI Express 的电容范围在 176 nF 至 265 nF 之间。
 
 ### 8.3.10 Data Rate Independent Tx Parameters
 ### 8.3.10 数据速率无关Tx参数
@@ -671,7 +671,7 @@ AC coupling capacitors are required on the Transmitter side of the Link. The spe
 | ITX-SHORT | Tx Short Circuit Current Limit | Tx短路电流限制 |
 | ZTX-DIFF-DC-PW | Tx Differential Impedance During Power-Down | 关电状态下的Tx差分阻抗 |
 
-> 表8-7提供了适用于所有数据速率的数据速率无关Tx参数。
+> 表 8-7 提供了适用于所有数据速率的数据速率无关 Tx 参数。
 
 ---
 
@@ -683,14 +683,14 @@ AC coupling capacitors are required on the Transmitter side of the Link. The spe
 
 The stressed eye methodology is used to test Receiver performance. A stressed signal with known impairments (jitter, noise, ISI) is applied to the Rx input, and the BER performance is measured.
 
-> 压力眼图方法用于测试接收端性能。将具有已知损伤（抖动、噪声、ISI）的压力信号施加到Rx输入端，然后测量BER性能。
+> 压力眼图方法用于测试接收端性能。将具有已知损伤（抖动、噪声、ISI）的压力信号施加到 Rx 输入端，然后测量 BER 性能。
 
 #### 8.4.1.1 Breakout and Replica Channels
 #### 8.4.1.1 引出通道与复制通道
 
 Similar to the Tx measurement setup, Rx testing uses breakout and replica channels to reference measurements to the device pin.
 
-> 与Tx测量设置类似，Rx测试使用引出通道和复制通道将测量引用到器件引脚。
+> 与 Tx 测量设置类似，Rx 测试使用引出通道和复制通道将测量引用到器件引脚。
 
 Figure 8-26 illustrates the Rx test board topology for 16.0 and 32.0 GT/s.
 
@@ -706,13 +706,13 @@ The calibration channel is used to adjust the stressed signal to have known char
 
 **Table 8-8: Calibration Channel IL Limits | 表8-8：校准通道插入损耗限制**
 
-> 校准通道用于调整压力信号，使其在Rx引脚处具有已知的特性。表8-8规定了校准通道的插入损耗限值。
+> 校准通道用于调整压力信号，使其在 Rx 引脚处具有已知的特性。表 8-8 规定了校准通道的插入损耗限值。
 
 Figure 8-27: Example Calibration Channel IL Mask Excluding Rx Package for 8.0 GT/s | 图8-27：8.0 GT/s下不含Rx封装的校准通道插入损耗掩模示例
 
 Figures 8-28 through 8-33 provide detailed examples of calibration channels and stackups for 16.0 GT/s and 32.0 GT/s.
 
-> 图8-28至图8-33提供了16.0 GT/s和32.0 GT/s校准通道和叠层的详细示例。
+> 图 8-28 至图 8-33 提供了 16.0 GT/s 和 32.0 GT/s 校准通道和叠层的详细示例。
 
 #### 8.4.1.3 Behavioral CTLE Transfer Functions
 #### 8.4.1.3 行为CTLE传递函数
@@ -721,9 +721,9 @@ Behavioral CTLE (Continuous Time Linear Equalization) models are defined for 8.0
 
 Figure 8-34 illustrates the CTLE transfer function for 8.0 GT/s, while Figures 8-35 through 8-37 show the corresponding loss curves.
 
-> 行为CTLE（连续时间线性均衡）模型针对8.0、16.0、32.0和64.0 GT/s定义。这些CTLE函数应用于压力眼图的生成过程中。
+> 行为 CTLE（连续时间线性均衡）模型针对 8.0、16.0、32.0 和 64.0 GT/s 定义。这些 CTLE 函数应用于压力眼图的生成过程中。
 >
-> 图8-34展示了8.0 GT/s的CTLE传递函数，图8-35至图8-37展示了相应的损耗曲线。
+> 图 8-34 展示了 8.0 GT/s 的 CTLE 传递函数，图 8-35 至图 8-37 展示了相应的损耗曲线。
 
 The behavioral CTLE at 32.0 GT/s is defined by Equation 8-14:
 
@@ -731,25 +731,25 @@ H(s) = A × (s + ωz1)(s + ωz2) / [(s + ωp1)(s + ωp2)]
 
 The behavioral CTLE at 64.0 GT/s is defined by Equation 8-15.
 
-> 32.0 GT/s下的行为CTLE由方程式8-14定义：
+> 32.0 GT/s 下的行为 CTLE 由方程式 8-14 定义：
 >
 > H(s) = A × (s + ωz1)(s + ωz2) / [(s + ωp1)(s + ωp2)]
 >
-> 64.0 GT/s下的行为CTLE由方程式8-15定义。
+> 64.0 GT/s 下的行为 CTLE 由方程式 8-15 定义。
 
 #### 8.4.1.4 Stressed Eye Calibration
 #### 8.4.1.4 压力眼图校准
 
 The stressed eye signal is calibrated to meet specific jitter and voltage parameters at the Rx pin. The calibration involves iteratively adjusting the stress parameters until the target eye characteristics are achieved.
 
-> 压力眼图信号被校准以满足Rx引脚处特定的抖动和电压参数。校准过程包括迭代调整压力参数，直到达到目标眼图特性。
+> 压力眼图信号被校准以满足 Rx 引脚处特定的抖动和电压参数。校准过程包括迭代调整压力参数，直到达到目标眼图特性。
 
 #### 8.4.1.5 Jitter Tolerance
 #### 8.4.1.5 抖动容限
 
 Rx jitter tolerance defines the amount of jitter a Receiver must tolerate while maintaining a BER of 10⁻¹² (10⁻⁶ for 64.0 GT/s). Specific jitter tolerance masks are defined for each data rate and Refclk architecture.
 
-> Rx抖动容限定义了接收端在维持10⁻¹² BER（64.0 GT/s为10⁻⁶）的同时必须能容忍的抖动量。针对每种数据速率和参考时钟架构定义了特定的抖动容限掩模。
+> Rx 抖动容限定义了接收端在维持 10⁻¹² BER（64.0 GT/s 为 10⁻⁶）的同时必须能容忍的抖动量。针对每种数据速率和参考时钟架构定义了特定的抖动容限掩模。
 
 ---
 
@@ -761,7 +761,7 @@ Rx jitter tolerance defines the amount of jitter a Receiver must tolerate while 
 
 Channel compliance testing verifies that a channel meets the required electrical performance for a given data rate. The channel includes the PCB traces, connectors, vias, and packages that make up the complete end-to-end path between Transmitter and Receiver.
 
-> 通道合规测试验证通道是否满足给定数据速率所需的电气性能。通道包括PCB走线、连接器、过孔和封装，它们共同构成发送端与接收端之间完整的端到端路径。
+> 通道合规测试验证通道是否满足给定数据速率所需的电气性能。通道包括 PCB 走线、连接器、过孔和封装，它们共同构成发送端与接收端之间完整的端到端路径。
 
 #### 8.5.1.1 Behavioral Transmitter and Receiver Package Models
 #### 8.5.1.1 行为发送端和接收端封装模型
@@ -775,7 +775,7 @@ Behavioral package models are used in channel simulation to account for the pack
 
 For 16.0 GT/s, specific package performance measurement procedures are defined to characterize package insertion loss, return loss, and crosstalk.
 
-> 对于16.0 GT/s，定义了特定的封装性能测量程序，以表征封装插入损耗、回波损耗和串扰。
+> 对于 16.0 GT/s，定义了特定的封装性能测量程序，以表征封装插入损耗、回波损耗和串扰。
 
 #### 8.5.1.3 Simulation Tool Requirements
 #### 8.5.1.3 仿真工具要求
@@ -789,7 +789,7 @@ Channel compliance uses simulation tools to predict eye diagram characteristics.
 
 The simulation inputs include channel S-parameters, behavioral Tx/Rx models, package models, and compliance pattern data.
 
-> 仿真输入包括通道S参数、行为Tx/Rx模型、封装模型和合规码型数据。
+> 仿真输入包括通道 S 参数、行为 Tx/Rx 模型、封装模型和合规码型数据。
 
 ##### 8.5.1.3.2 Processing Steps
 ##### 8.5.1.3.2 处理步骤
@@ -822,14 +822,14 @@ Behavioral Tx parameters including voltage swing, jitter, and equalization are d
 
 **Table 8-15: Jitter/Voltage Parameters for Channel Tolerancing | 表8-15：通道容差的抖动/电压参数**
 
-> 行为Tx参数包括电压摆幅、抖动和均衡，从测量值或规范限值导出。表8-15和图8-78提供了通道容差中使用的抖动/电压参数集。
+> 行为 Tx 参数包括电压摆幅、抖动和均衡，从测量值或规范限值导出。表 8-15 和图 8-78 提供了通道容差中使用的抖动/电压参数集。
 
 ##### 8.5.1.4.2 Optimizing Tx/Rx Equalization (8.0, 16.0, 32.0, and 64.0 GT/s only)
 ##### 8.5.1.4.2 Tx/Rx均衡优化（仅限8.0、16.0、32.0和64.0 GT/s）
 
 For higher data rates, the simulation tool optimizes Tx FFE (Feed-Forward Equalization) and Rx CTLE + DFE (Decision Feedback Equalization) settings to maximize the eye opening.
 
-> 对于更高的数据速率，仿真工具优化Tx FFE（前馈均衡）和Rx CTLE + DFE（判决反馈均衡）设置，以最大化眼图张开度。
+> 对于更高的数据速率，仿真工具优化 Tx FFE（前馈均衡）和 Rx CTLE + DFE（判决反馈均衡）设置，以最大化眼图张开度。
 
 ##### 8.5.1.4.3 Pass/Fail Eye Characteristics
 ##### 8.5.1.4.3 合格/不合格眼图特性
@@ -838,7 +838,7 @@ Table 8-16 and Figure 8-79 define the pass/fail eye mask values for channel comp
 
 **Table 8-16: Channel Tolerancing Eye Mask Values | 表8-16：通道容差眼图掩模值**
 
-> 表8-16和图8-79定义了通道合规的合格/不合格眼图掩模值。眼图掩模规定了在特定BER级别下的最小眼图高度（EH）和眼图宽度（EW）。
+> 表 8-16 和图 8-79 定义了通道合规的合格/不合格眼图掩模值。眼图掩模规定了在特定 BER 级别下的最小眼图高度（EH）和眼图宽度（EW）。
 
 <p align="center">
 <img src="images/ch08/fig08_p1503.png" alt="Figure 8-79" width="75%">
@@ -859,7 +859,7 @@ The channel must support electrical idle detection, verified by ensuring VCH-IDL
 
 **Table 8-17: EIEOS Signaling Parameters | 表8-17：EIEOS信令参数**
 
-> 通道必须支持电气空闲检测，通过确保VCH-IDLE-DET-DIFF-pp低于规定阈值来验证。表8-17提供了EIEOS信令参数。
+> 通道必须支持电气空闲检测，通过确保 VCH-IDLE-DET-DIFF-pp 低于规定阈值来验证。表 8-17 提供了 EIEOS 信令参数。
 
 ---
 
@@ -871,7 +871,7 @@ The channel must support electrical idle detection, verified by ensuring VCH-IDL
 
 Figure 8-80 illustrates the oscilloscope Refclk test setup for all cases except jitter at 32.0 and 64.0 GT/s.
 
-> 图8-80展示了除32.0和64.0 GT/s抖动外的所有情况下的示波器参考时钟测试设置。
+> 图 8-80 展示了除 32.0 和 64.0 GT/s 抖动外的所有情况下的示波器参考时钟测试设置。
 
 <p align="center">
 <img src="images/ch08/fig08_p1513.png" alt="Figure 8-80" width="75%">
@@ -895,7 +895,7 @@ Figure 8-80 illustrates the oscilloscope Refclk test setup for all cases except 
 
 Figures 8-81 through 8-86 define various single-ended and differential measurement points for the Refclk.
 
-> 图8-81至图8-86定义了Refclk的各种单端和差分测量点。
+> 图 8-81 至图 8-86 定义了 Refclk 的各种单端和差分测量点。
 
 ### 8.6.3 Data Rate Independent Refclk Parameters
 ### 8.6.3 数据速率无关参考时钟参数
@@ -915,7 +915,7 @@ Figures 8-81 through 8-86 define various single-ended and differential measureme
 
 Low frequency Refclk jitter limits are specified for different Refclk architectures. Figure 8-87 shows the limits for phase jitter from a reference clock with 5000 ppm SSC (Spread Spectrum Clocking).
 
-> 低频参考时钟抖动限制针对不同的参考时钟架构规定。图8-87展示了具有5000 ppm SSC（扩频时钟）的参考时钟相位抖动限制。
+> 低频参考时钟抖动限制针对不同的参考时钟架构规定。图 8-87 展示了具有 5000 ppm SSC（扩频时钟）的参考时钟相位抖动限制。
 
 <p align="center">
 <img src="images/ch08/fig08_p1519.png" alt="Figure 8-87" width="75%">
@@ -932,8 +932,8 @@ This specification supports three Refclk architectures:
 
 > 本规范支持三种参考时钟架构：
 > 1. **公共参考时钟（CC）** — 同一参考时钟分发到发送端和接收端
-> 2. **独立参考独立扩频（SRIS）** — 具有独立SSC的独立参考时钟
-> 3. **独立参考无扩频（SRNS）** — 无SSC的独立参考时钟
+> 2. **独立参考独立扩频（SRIS）** — 具有独立 SSC 的独立参考时钟
+> 3. **独立参考无扩频（SRNS）** — 无 SSC 的独立参考时钟
 
 ### 8.6.5 Filtering Functions Applied to Raw Data
 ### 8.6.5 应用于原始数据的滤波函数
@@ -943,7 +943,7 @@ This specification supports three Refclk architectures:
 
 Figure 8-88 illustrates a 5 MHz PLL transfer function example used to filter the raw jitter data. Equation 8-16 defines the relationship between PLL bandwidth and the filter response.
 
-> 图8-88展示了一个用于过滤原始抖动数据的5 MHz PLL传递函数示例。方程式8-16定义了PLL带宽与滤波器响应之间的关系。
+> 图 8-88 展示了一个用于过滤原始抖动数据的 5 MHz PLL 传递函数示例。方程式 8-16 定义了 PLL 带宽与滤波器响应之间的关系。
 
 <p align="center">
 <img src="images/ch08/fig08_p1521.png" alt="Figure 8-88" width="75%">
@@ -955,14 +955,14 @@ Figure 8-88 illustrates a 5 MHz PLL transfer function example used to filter the
 
 Various CDR transfer function examples are provided for different data rates and Refclk architectures.
 
-> 针对不同数据速率和参考时钟架构，提供了各种CDR传递函数示例。
+> 针对不同数据速率和参考时钟架构，提供了各种 CDR 传递函数示例。
 
 ### 8.6.6 Common Refclk Rx Architecture (CC)
 ### 8.6.6 公共时钟接收架构（CC）
 
 The Common Refclk architecture is illustrated in Figure 8-89. In this architecture, the same Refclk source drives both the Transmitter and Receiver PLLs, allowing tracking of common low-frequency jitter.
 
-> 公共时钟架构如图8-89所示。在此架构中，同一参考时钟源驱动发送端和接收端PLL，允许跟踪公共的低频抖动。
+> 公共时钟架构如图 8-89 所示。在此架构中，同一参考时钟源驱动发送端和接收端 PLL，允许跟踪公共的低频抖动。
 
 <p align="center">
 <img src="images/ch08/fig08_p1522.png" alt="Figure 8-89" width="75%">
@@ -974,14 +974,14 @@ The Common Refclk architecture is illustrated in Figure 8-89. In this architectu
 
 The number of PLL bandwidth and peaking combinations that must be tested depends on the data rate and Refclk architecture.
 
-> 必须测试的PLL带宽和峰值组合数量取决于数据速率和参考时钟架构。
+> 必须测试的 PLL 带宽和峰值组合数量取决于数据速率和参考时钟架构。
 
 #### 8.6.6.2 CDR and PLL BW and Peaking Limits for Common Refclk
 #### 8.6.6.2 公共时钟的CDR和PLL带宽与峰值限制
 
 Figures 8-90 through 8-94 illustrate the CDR and PLL BW and peaking characteristics for Common Refclk at data rates from 2.5 GT/s to 64.0 GT/s.
 
-> 图8-90至图8-94展示了公共参考时钟在从2.5 GT/s到64.0 GT/s的各种数据速率下的CDR和PLL带宽与峰值特性。
+> 图 8-90 至图 8-94 展示了公共参考时钟在从 2.5 GT/s 到 64.0 GT/s 的各种数据速率下的 CDR 和 PLL 带宽与峰值特性。
 
 ### 8.6.7 Jitter Limits for Refclk Architectures
 ### 8.6.7 参考时钟架构的抖动限制
@@ -994,11 +994,11 @@ Figures 8-90 through 8-94 illustrate the CDR and PLL BW and peaking characterist
 | CC | TREFCLK-CC-DJ | Deterministic Jitter | 确定性抖动 |
 | CC | TREFCLK-CC-TJ | Total Jitter | 总抖动 |
 
-> 表8-20提供了公共时钟（CC）架构的抖动限值。
+> 表 8-20 提供了公共时钟（CC）架构的抖动限值。
 
 In cases where real-time oscilloscope and PNA measurements both produce different results, the specification defines which takes precedence.
 
-> 在实时示波器和PNA测量两者产生不同结果的情况下，规范定义了以何者为优先。
+> 在实时示波器和 PNA 测量两者产生不同结果的情况下，规范定义了以何者为优先。
 
 ### 8.6.8 Form Factor Requirements for RefClock Architectures
 ### 8.6.8 参考时钟架构的形态规格要求
@@ -1010,9 +1010,9 @@ The specification supports CC, SRIS, and SRNS architectures differently dependin
 - Add-in cards may support CC, SRIS, or SRNS
 - Retimers have specific clocking requirements
 
-> 本规范根据不同形态规格差别支持CC、SRIS和SRNS架构。例如：
-> - 系统主板必须支持CC
-> - 插卡可支持CC、SRIS或SRNS
+> 本规范根据不同形态规格差别支持 CC、SRIS 和 SRNS 架构。例如：
+> - 系统主板必须支持 CC
+> - 插卡可支持 CC、SRIS 或 SRNS
 > - 重定时器（Retimer）具有特定的时钟要求
 
 **Table 8-22: Form Factor Common Clock Architecture Details | 表8-22：形态规格公共时钟架构详情**
@@ -1021,13 +1021,13 @@ The specification supports CC, SRIS, and SRNS architectures differently dependin
 
 **Table 8-24: Form Factor Common Clock Architecture Details Example | 表8-24：形态规格公共时钟架构详情示例**
 
-> 表8-22至表8-24提供了各种形态规格配置的详细时钟架构详情和示例。
+> 表 8-22 至表 8-24 提供了各种形态规格配置的详细时钟架构详情和示例。
 
 It is important for form factor specifications to recognize that the CLKREQ# signal is required if L1 PM Substates are to be supported, and that for L1 PM Substates the CLKREQ# signal is used even if there is no common reference clock.
 
 If a form factor has clocking requirements that cannot be provided in this simple one or two table form then careful consideration must be given to ensure that the form factor requirements are supported by this specification.
 
-> 形态规格规范需要认识到，如果要支持L1 PM子状态，CLKREQ#信号是必需的，并且对于L1 PM子状态，即使没有公共参考时钟，也会使用CLKREQ#信号。
+> 形态规格规范需要认识到，如果要支持 L1 PM 子状态，CLKREQ#信号是必需的，并且对于 L1 PM 子状态，即使没有公共参考时钟，也会使用 CLKREQ#信号。
 >
 > 如果某个形态规格的时钟要求无法用这种简单的一两张表形式来表达，则必须仔细考虑以确保该形态规格的要求得到本规范的支持。
 

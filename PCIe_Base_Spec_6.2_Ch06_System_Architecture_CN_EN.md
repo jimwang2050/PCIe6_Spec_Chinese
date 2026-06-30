@@ -211,31 +211,31 @@ System software reads the Message Control register to determine the Function's M
 System software reads the Multiple Message Capable field (bits 3-1 of the Message Control register) to determine the number of requested vectors. MSI supports a maximum of 32 vectors per Function. System software writes to the Multiple Message Enable field (bits 6-4 of the Message Control register) to allocate either all or a subset of the requested vectors. For example, a Function can request four vectors and be allocated either four, two, or one vector. The number of vectors requested and allocated is aligned to a power of two (that is, a Function that requires three vectors must request four).
 
 >
-> 系统软件读取多消息能力字段（消息控制寄存器的第3-1位）以确定请求的向量数。MSI 支持每个功能最多 32 个向量。系统软件写入多消息启用字段（消息控制寄存器的第6-4位）以分配全部或部分请求的向量。例如，一个功能可以请求四个向量，并被分配四个、两个或一个向量。请求和分配的向量数对齐到2的幂（即，需要三个向量的功能必须请求四个）。
+> 系统软件读取多消息能力字段（消息控制寄存器的第 3-1 位）以确定请求的向量数。MSI 支持每个功能最多 32 个向量。系统软件写入多消息启用字段（消息控制寄存器的第 6-4 位）以分配全部或部分请求的向量。例如，一个功能可以请求四个向量，并被分配四个、两个或一个向量。请求和分配的向量数对齐到 2 的幂（即，需要三个向量的功能必须请求四个）。
 >
 
 If the Per-Vector Masking Capable bit (bit 8 of the Message Control register) is Set and system software supports Per-Vector Masking, system software may mask one or more vectors by writing to the Mask Bits register.
 
 >
-> 如果每向量屏蔽能力位（消息控制寄存器的第8位）置位且系统软件支持每向量屏蔽，系统软件可以通过写入屏蔽位寄存器来屏蔽一个或多个向量。
+> 如果每向量屏蔽能力位（消息控制寄存器的第 8 位）置位且系统软件支持每向量屏蔽，系统软件可以通过写入屏蔽位寄存器来屏蔽一个或多个向量。
 >
 
 If the 64-bit Address Capable bit (bit 7 of the Message Control register) is Set, system software initializes the MSI Capability structure's Message Address register (specifying the lower 32 bits of the message address) and the Message Upper Address register (specifying the upper 32 bits of the message address) with a system-specified message address. System software may program the Message Upper Address register to zero so that the Function uses a 32-bit address for the MSI transaction. If this bit is Clear, system software initializes the MSI Capability structure's Message Address register (specifying a 32-bit message address) with a system specified message address.
 
 >
-> 如果64位地址能力位（消息控制寄存器的第7位）置位，系统软件使用系统指定的消息地址初始化 MSI 能力结构的消息地址寄存器（指定消息地址的低32位）和消息高地址寄存器（指定消息地址的高32位）。系统软件可以将消息高地址寄存器编程为零，以便功能使用32位地址进行 MSI 事务。如果该位清零，系统软件使用系统指定的消息地址初始化 MSI 能力结构的消息地址寄存器（指定32位消息地址）。
+> 如果 64 位地址能力位（消息控制寄存器的第 7 位）置位，系统软件使用系统指定的消息地址初始化 MSI 能力结构的消息地址寄存器（指定消息地址的低 32 位）和消息高地址寄存器（指定消息地址的高 32 位）。系统软件可以将消息高地址寄存器编程为零，以便功能使用 32 位地址进行 MSI 事务。如果该位清零，系统软件使用系统指定的消息地址初始化 MSI 能力结构的消息地址寄存器（指定 32 位消息地址）。
 >
 
 System software initializes the MSI Capability structure's Message Data register with the lower 16 bits of a system specified data value. When the Extended Message Data Capable bit is Clear, care must be taken to initialize only the Message Data register (i.e., a 2-byte value) and not modify the upper two bytes of that DWORD location.
 
 >
-> 系统软件使用系统指定数据值的低16位初始化 MSI 能力结构的消息数据寄存器。当扩展消息数据能力位清零时，必须注意只初始化消息数据寄存器（即2字节值），而不修改该 DWORD 位置的高两字节。
+> 系统软件使用系统指定数据值的低 16 位初始化 MSI 能力结构的消息数据寄存器。当扩展消息数据能力位清零时，必须注意只初始化消息数据寄存器（即 2 字节值），而不修改该 DWORD 位置的高两字节。
 >
 
 If the Extended Message Data Capable bit is Set and system software supports 32-bit vector values, system software may initialize the MSI capability structure's Extended Message Data register with the upper 16 bits of a system specified data value, and then Set the Extended Message Data Enable bit.
 
 >
-> 如果扩展消息数据能力位置位且系统软件支持32位向量值，系统软件可以使用系统指定数据值的高16位初始化 MSI 能力结构的扩展消息数据寄存器，然后置位扩展消息数据启用位。
+> 如果扩展消息数据能力位置位且系统软件支持 32 位向量值，系统软件可以使用系统指定数据值的高 16 位初始化 MSI 能力结构的扩展消息数据寄存器，然后置位扩展消息数据启用位。
 >
 
 ##### 6.1.4.2 MSI-X Configuration / MSI-X 配置
@@ -264,13 +264,13 @@ Depending upon system software policy, system software, device driver software, 
 Software reads the Table Size field from the Message Control register to determine the MSI-X Table size. The field encodes the number of table entries as N-1, so software must add 1 to the value read from the field to calculate the number of table entries N. MSI-X supports a maximum table size of 2048 entries.
 
 >
-> 软件从消息控制寄存器读取表大小字段以确定 MSI-X 表大小。该字段将表条目数编码为 N-1，因此软件必须将从该字段读取的值加1以计算表条目数 N。MSI-X 支持最大表大小为 2048 个条目。
+> 软件从消息控制寄存器读取表大小字段以确定 MSI-X 表大小。该字段将表条目数编码为 N-1，因此软件必须将从该字段读取的值加 1 以计算表条目数 N。MSI-X 支持最大表大小为 2048 个条目。
 >
 
 Software calculates the base address of the MSI-X Table by reading the 32-bit value from the Table Offset/Table BIR register, masking off the lower 3 Table BIR bits, and adding the remaining QWORD-aligned 32-bit Table offset to the address taken from the Base Address register indicated by the Table BIR. Software calculates the base address of the MSI-X PBA using the same process with the PBA Offset/PBA BIR register.
 
 >
-> 软件通过从表偏移/表 BIR 寄存器读取32位值，屏蔽低3位表 BIR 位，并将剩余的 QWORD 对齐的32位表偏移加到由表 BIR 指示的基地址寄存器中获取的地址来计算 MSI-X 表的基地址。软件使用相同的过程通过 PBA Offset/PBA BIR 寄存器计算 MSI-X PBA 的基地址。
+> 软件通过从表偏移/表 BIR 寄存器读取 32 位值，屏蔽低 3 位表 BIR 位，并将剩余的 QWORD 对齐的 32 位表偏移加到由表 BIR 指示的基地址寄存器中获取的地址来计算 MSI-X 表的基地址。软件使用相同的过程通过 PBA Offset/PBA BIR 寄存器计算 MSI-X PBA 的基地址。
 >
 
 For each MSI-X Table entry that will be used, software fills in the Message Address field, Message Upper Address field, Message Data field, and Vector Control field. The Vector Control field may contain optional Steering Tag fields. Software must not modify the Address, Data, or Steering Tag fields of an entry while it is unmasked. Refer to Section 6.1.4.5 for details.
@@ -1326,13 +1326,13 @@ The Hierarchy ID Message provides a mechanism for components to discover and com
 The Flattening Portal Bridge (FPB) is an optional mechanism which can be used to improve the scalability and runtime reallocation of Routing IDs and Memory Space resources. For non-ARI Functions associated with an Upstream Port, the Routing ID consists of a 3-bit Function Number portion, which is determined by the construction of the Upstream Port hardware, and a 13-bit Bus Number and Device number portion, determined by the Downstream Port above the Upstream port. For ARI Functions associated with an Upstream Port, the Routing ID consists of an 8-bit Function Number portion, and only the 8-bit Bus Number portion is determined by the Downstream Port above the Upstream port.
 
 >
-> 扁平化门户桥（FPB）是一种可选机制，可用于改善路由ID和内存空间资源的可扩展性和运行时重新分配。对于与上游端口关联的非ARI功能，路由ID由一个3位的功能号部分（由上游端口硬件结构决定）和一个13位的总线号和设备号部分（由上游端口上方的下游端口决定）组成。对于与上游端口关联的ARI功能，路由ID由一个8位的功能号部分组成，仅8位总线号部分由上游端口上方的下游端口决定。
+> 扁平化门户桥（FPB）是一种可选机制，可用于改善路由 ID 和内存空间资源的可扩展性和运行时重新分配。对于与上游端口关联的非 ARI 功能，路由 ID 由一个 3 位的功能号部分（由上游端口硬件结构决定）和一个 13 位的总线号和设备号部分（由上游端口上方的下游端口决定）组成。对于与上游端口关联的 ARI 功能，路由 ID 由一个 8 位的功能号部分组成，仅 8 位总线号部分由上游端口上方的下游端口决定。
 >
 
 A bridge that implements the FPB Capability can itself also be referred to as an FPB. The FPB Capability can be applied to any logical bridge, as illustrated in Figure 6-28. FPB changes the way Bus Numbers are consumed by Switches to reduce waste, by "flattening" the way Bus Numbers are used inside of Switches and by Downstream Ports (see Figure 6-29).
 
 >
-> 实现了FPB能力的桥本身也可称为FPB。FPB能力可应用于任何逻辑桥，如图6-28所示。FPB通过"扁平化"交换机内部和下游端口使用总线号的方式，改变了交换机消耗总线号的方式以减少浪费（见图6-29）。
+> 实现了 FPB 能力的桥本身也可称为 FPB。FPB 能力可应用于任何逻辑桥，如图 6-28 所示。FPB 通过"扁平化"交换机内部和下游端口使用总线号的方式，改变了交换机消耗总线号的方式以减少浪费（见图 6-29）。
 >
 
 ![Figure 6-29 Example Illustrating "Flattening" of a Switch](images/ch06_new/ch06_p863_img0.png)
@@ -1341,7 +1341,7 @@ A bridge that implements the FPB Capability can itself also be referred to as an
 FPB defines mechanisms for system software to allocate Routing IDs and Memory Space resources in non-contiguous ranges, enabling system software to assign pools of these resources from which it can allocate "bins" to Functions below the FPB. This is done using a bit vector where each bit when Set assigns a corresponding range of resources to the Secondary Side of the bridge (see Figure 6-30).
 
 >
-> FPB为系统软件定义了以非连续范围分配路由ID和内存空间资源的机制，使系统软件能够分配这些资源的池，从中可以为FPB下方的功能分配"仓位"。这是通过位向量实现的，每个位置1时将相应的资源范围分配给桥的次级侧（见图6-30）。
+> FPB 为系统软件定义了以非连续范围分配路由 ID 和内存空间资源的机制，使系统软件能够分配这些资源的池，从中可以为 FPB 下方的功能分配"仓位"。这是通过位向量实现的，每个位置 1 时将相应的资源范围分配给桥的次级侧（见图 6-30）。
 >
 
 ![Figure 6-30 Vector Mechanism for Address Range Decoding](images/ch06_new/ch06_p864_img0.png)
@@ -1350,13 +1350,13 @@ FPB defines mechanisms for system software to allocate Routing IDs and Memory Sp
 This allows system software to assign Routing IDs and/or Memory Space resources required by a device hot-add without having to rebalance other, already assigned resource ranges, and to return to the pool resources freed, for example by a hot remove event.
 
 >
-> 这使系统软件能够分配设备热添加所需的路由ID和/或内存空间资源，而无需重新平衡其他已分配的资源范围，并且可以将热移除事件释放的资源归还到池中。
+> 这使系统软件能够分配设备热添加所需的路由 ID 和/或内存空间资源，而无需重新平衡其他已分配的资源范围，并且可以将热移除事件释放的资源归还到池中。
 >
 
 FPB is defined to allow both the non-FPB and FPB mechanisms to operate simultaneously, such that, for example, it is possible for system firmware/software to implement a policy where the non-FPB mechanisms continue to be used in parts of the system where the FPB mechanisms are not required (see Figure 6-31).
 
 >
-> FPB被定义为允许非FPB和FPB机制同时运行，例如系统固件/软件可以实现一种策略，在不需要FPB机制的系统部分继续使用非FPB机制（见图6-31）。
+> FPB 被定义为允许非 FPB 和 FPB 机制同时运行，例如系统固件/软件可以实现一种策略，在不需要 FPB 机制的系统部分继续使用非 FPB 机制（见图 6-31）。
 >
 
 ![Figure 6-31 Relationship between FPB and non-FPB Decode Mechanisms](images/ch06_new/ch06_p865_img0.png)
@@ -1368,16 +1368,16 @@ FPB uses the same architectural concepts to provide management mechanisms for th
 3. Memory above 4 GB ("MEM High")
 
 >
-> FPB使用相同的架构概念为三种不同的资源类型提供管理机制：
-> 1. 路由ID
-> 2. 4 GB以下内存（"MEM Low"）
-> 3. 4 GB以上内存（"MEM High"）
+> FPB 使用相同的架构概念为三种不同的资源类型提供管理机制：
+> 1. 路由 ID
+> 2. 4 GB 以下内存（"MEM Low"）
+> 3. 4 GB 以上内存（"MEM High"）
 >
 
 A hardware implementation of FPB is permitted to support any combination of these three mechanisms. For each mechanism, FPB uses a bit-vector to indicate, for a specific subset range of the selected resource type, if resources within that range are associated with the Primary or Secondary side of the FPB. Hardware implementations are permitted to implement a small range of sizes for these vectors, and system firmware/software is enabled to make the most effective use of the available vector by selecting an initial offset at which the vector is applied, and a granularity for the individual bits within the vector to indicate the size of the resource range to which the bits in a given vector apply.
 
 >
-> 硬件FPB实现允许支持这三种机制的任意组合。对于每种机制，FPB使用位向量来指示，对于所选资源类型的特定子集范围，该范围内的资源是与FPB的主级侧还是次级侧关联。硬件实现允许为这些向量实现小范围的大小，系统固件/软件通过选择向量应用的初始偏移量和向量中各个位的粒度（指示给定向量的位适用的资源范围大小），能够最有效地使用可用向量。
+> 硬件 FPB 实现允许支持这三种机制的任意组合。对于每种机制，FPB 使用位向量来指示，对于所选资源类型的特定子集范围，该范围内的资源是与 FPB 的主级侧还是次级侧关联。硬件实现允许为这些向量实现小范围的大小，系统固件/软件通过选择向量应用的初始偏移量和向量中各个位的粒度（指示给定向量的位适用的资源范围大小），能够最有效地使用可用向量。
 >
 
 #### 6.26.1 Introduction / 介绍
@@ -1390,12 +1390,12 @@ The following rules apply when any of the FPB mechanisms are used:
 - A Root Complex is permitted to implement FPB on some Root Ports but not on others.
 
 >
-> 使用任何FPB机制时适用以下规则：
-> - 如果系统软件违反任何有关FPB的规则，硬件行为未定义。
-> - 允许在任何PCI桥（类型1）功能中实现FPB，并且每个实现FPB的功能都必须实现FPB能力。
-> - 如果交换机实现FPB，则交换机的上游端口和所有下游端口都必须实现FPB。
-> - 软件允许在某些交换机端口启用FPB，而在其他端口不启用。
-> - 根复合体允许在某些根端口上实现FPB，而在其他端口上不实现。
+> 使用任何 FPB 机制时适用以下规则：
+> - 如果系统软件违反任何有关 FPB 的规则，硬件行为未定义。
+> - 允许在任何 PCI 桥（类型 1）功能中实现 FPB，并且每个实现 FPB 的功能都必须实现 FPB 能力。
+> - 如果交换机实现 FPB，则交换机的上游端口和所有下游端口都必须实现 FPB。
+> - 软件允许在某些交换机端口启用 FPB，而在其他端口不启用。
+> - 根复合体允许在某些根端口上实现 FPB，而在其他端口上不实现。
 >
 
 #### 6.26.2 Hardware and Software Requirements / 硬件和软件要求
@@ -1410,14 +1410,14 @@ The following rules apply when any of the FPB mechanisms are used:
 - Hardware is not required to perform any type of bounds checking on FPB calculations, and system software must ensure that the FPB parameters are correctly programmed.
 
 >
-> - 类型1功能允许实现适用于这些基本机制中任意一种、两种或三种的FPB机制：路由ID（RID）、4 GB以下内存（"MEM Low"）、4 GB以上内存（"MEM High"）。
-> - 系统软件允许启用特定FPB支持的基本机制的任意组合（包括全部或不启用）。
-> - 除本节明确修改的部分外，错误处理和报告机制不受FPB影响。
-> - 在FPB功能任何复位之后，FPB硬件必须清除所有已实现向量中的所有位。
-> - 一旦启用，如果系统软件随后禁用FPB机制，关联向量中条目的值未定义；如果系统软件随后重新启用该FPB机制，FPB硬件必须清除关联向量中的所有位。
-> - 如果FPB以No_Soft_Reset位清零的方式实现，当该FPB经历D0→D3Hot→D0循环时，所有FPB机制必须被禁用，并且FPB必须清除所有已实现向量中的所有位。
-> - 如果FPB以No_Soft_Reset位置1的方式实现，当该FPB经历D0→D3Hot→D0循环时，所有FPB配置状态不得改变，并且FPB向量中的条目必须由硬件保留。
-> - 硬件不需要对FPB计算执行任何类型的边界检查，系统软件必须确保FPB参数被正确编程。
+> - 类型 1 功能允许实现适用于这些基本机制中任意一种、两种或三种的 FPB 机制：路由 ID（RID）、4 GB 以下内存（"MEM Low"）、4 GB 以上内存（"MEM High"）。
+> - 系统软件允许启用特定 FPB 支持的基本机制的任意组合（包括全部或不启用）。
+> - 除本节明确修改的部分外，错误处理和报告机制不受 FPB 影响。
+> - 在 FPB 功能任何复位之后，FPB 硬件必须清除所有已实现向量中的所有位。
+> - 一旦启用，如果系统软件随后禁用 FPB 机制，关联向量中条目的值未定义；如果系统软件随后重新启用该 FPB 机制，FPB 硬件必须清除关联向量中的所有位。
+> - 如果 FPB 以 No_Soft_Reset 位清零的方式实现，当该 FPB 经历 D0→D3Hot→D0 循环时，所有 FPB 机制必须被禁用，并且 FPB 必须清除所有已实现向量中的所有位。
+> - 如果 FPB 以 No_Soft_Reset 位置 1 的方式实现，当该 FPB 经历 D0→D3Hot→D0 循环时，所有 FPB 配置状态不得改变，并且 FPB 向量中的条目必须由硬件保留。
+> - 硬件不需要对 FPB 计算执行任何类型的边界检查，系统软件必须确保 FPB 参数被正确编程。
 >
 
 The following rules apply to the FPB Routing ID (RID) mechanism:
@@ -1426,10 +1426,10 @@ The following rules apply to the FPB Routing ID (RID) mechanism:
 - System software must either program the legacy and FPB mechanisms for Configuration Request Type 1 to Type 0 conversion in a Bridge Function such that they give identical results, or such that one of the two mechanisms is disabled.
 
 >
-> 以下规则适用于FPB路由ID（RID）机制：
-> - 如果总线号部分落在由次级和从属总线号寄存器中编程值所指示的总线号范围内（与FPB RID向量中相应条目编程的值逻辑或），则FPB硬件必须认为特定范围的RID与FPB的次级侧关联。
-> - 在尝试通过桥传递配置请求之前，系统软件必须配置桥功能中的配置请求类型1到类型0转换机制。
-> - 系统软件必须在桥功能中对配置请求类型1到类型0转换的传统机制和FPB机制进行编程，使它们给出相同的结果，或者使两种机制之一被禁用。
+> 以下规则适用于 FPB 路由 ID（RID）机制：
+> - 如果总线号部分落在由次级和从属总线号寄存器中编程值所指示的总线号范围内（与 FPB RID 向量中相应条目编程的值逻辑或），则 FPB 硬件必须认为特定范围的 RID 与 FPB 的次级侧关联。
+> - 在尝试通过桥传递配置请求之前，系统软件必须配置桥功能中的配置请求类型 1 到类型 0 转换机制。
+> - 系统软件必须在桥功能中对配置请求类型 1 到类型 0 转换的传统机制和 FPB 机制进行编程，使它们给出相同的结果，或者使两种机制之一被禁用。
 >
 
 ![Figure 6-32 Routing IDs (RIDs) and Supported Granularities](images/ch06_new/ch06_p867_img0.png)
@@ -1438,7 +1438,7 @@ The following rules apply to the FPB Routing ID (RID) mechanism:
 When ARI is not enabled, the FPB RID mechanism can be applied with different granularities, programmable by system software through the FPB RID Vector Granularity field in the FPB RID Vector Control 1 Register.
 
 >
-> 当ARI未启用时，FPB RID机制可以以不同的粒度应用，由系统软件通过FPB RID向量控制1寄存器中的FPB RID向量粒度字段编程。图6-32说明了RID布局与支持的粒度之间的关系。
+> 当 ARI 未启用时，FPB RID 机制可以以不同的粒度应用，由系统软件通过 FPB RID 向量控制 1 寄存器中的 FPB RID 向量粒度字段编程。图 6-32 说明了 RID 布局与支持的粒度之间的关系。
 >
 
 - For all FPBs other than those associated with Upstream Ports of Switches:
@@ -1447,10 +1447,10 @@ When ARI is not enabled, the FPB RID mechanism can be applied with different gra
 - For FPBs associated with Upstream Ports of Switches only, when the FPB RID Decode Mechanism Enable bit is Set, FPB hardware must use the FPB Num Sec Dev field of the FPB Capabilities register to indicate the quantity of Device Numbers associated with the Secondary Side of the Upstream Port bridge.
 
 >
-> - 对于除交换机上游端口关联的FPB之外的所有FPB：
->   - 当ARI转发不受支持，或ARI转发使能位清零时，当类型1配置请求的路由ID的位15:3与RID Secondary Start字段中的值匹配时，FPB硬件必须将主级侧接收的类型1配置请求转换为次级侧的类型0配置请求。
->   - 当ARI转发使能位置1时，当路由ID的总线号部分与RID Secondary Start字段中总线号地址（仅位15:8）的值匹配时，FPB硬件必须将主级侧接收的类型1配置请求转换为次级侧的类型0配置请求。
-> - 仅对于交换机上游端口关联的FPB，当FPB RID解码机制使能位置1时，FPB硬件必须使用FPB能力寄存器的FPB Num Sec Dev字段来指示与上游端口桥次级侧关联的设备号数量。
+> - 对于除交换机上游端口关联的 FPB 之外的所有 FPB：
+>   - 当 ARI 转发不受支持，或 ARI 转发使能位清零时，当类型 1 配置请求的路由 ID 的位 15:3 与 RID Secondary Start 字段中的值匹配时，FPB 硬件必须将主级侧接收的类型 1 配置请求转换为次级侧的类型 0 配置请求。
+>   - 当 ARI 转发使能位置 1 时，当路由 ID 的总线号部分与 RID Secondary Start 字段中总线号地址（仅位 15:8）的值匹配时，FPB 硬件必须将主级侧接收的类型 1 配置请求转换为次级侧的类型 0 配置请求。
+> - 仅对于交换机上游端口关联的 FPB，当 FPB RID 解码机制使能位置 1 时，FPB 硬件必须使用 FPB 能力寄存器的 FPB Num Sec Dev 字段来指示与上游端口桥次级侧关联的设备号数量。
 >
 
 ![Figure 6-33 Addresses in Memory Below 4 GB and Effect of Granularity](images/ch06_new/ch06_p869_img0.png)
@@ -1461,9 +1461,9 @@ When ARI is not enabled, the FPB RID mechanism can be applied with different gra
 - Hardware and software must apply an algorithm to determine which entry in the FPB MEM Low Vector applies to a given Memory address: If the Memory address is below the value of FPB MEM Low Vector Start, it is out of range (below); calculate the offset by subtracting FPB MEM Low Vector Start, then dividing according to FPB MEM Low Vector Granularity; if the bit index exceeds FPB MEM Low Vector Size Supported, it is out of range (above); if the bit value at the calculated index is 1b, the address is associated with the Secondary side.
 
 >
-> **FPB MEM Low机制：**
-> - 如果内存地址落在其他桥内存解码寄存器编程值所指示的任何范围内（与FPB MEM Low向量相应条目编程的值逻辑或），则FPB硬件必须认为该内存地址与FPB的次级侧关联。
-> - 硬件和软件必须应用算法确定FPB MEM Low向量中哪个条目适用于给定内存地址：如果内存地址低于FPB MEM Low Vector Start的值，则超出范围（下界）；通过减去FPB MEM Low Vector Start、然后按FPB MEM Low Vector Granularity除以计算偏移量；如果位索引超过FPB MEM Low Vector Size Supported，则超出范围（上界）；如果计算索引处的位值为1b，则地址与次级侧关联。
+> **FPB MEM Low 机制：**
+> - 如果内存地址落在其他桥内存解码寄存器编程值所指示的任何范围内（与 FPB MEM Low 向量相应条目编程的值逻辑或），则 FPB 硬件必须认为该内存地址与 FPB 的次级侧关联。
+> - 硬件和软件必须应用算法确定 FPB MEM Low 向量中哪个条目适用于给定内存地址：如果内存地址低于 FPB MEM Low Vector Start 的值，则超出范围（下界）；通过减去 FPB MEM Low Vector Start、然后按 FPB MEM Low Vector Granularity 除以计算偏移量；如果位索引超过 FPB MEM Low Vector Size Supported，则超出范围（上界）；如果计算索引处的位值为 1b，则地址与次级侧关联。
 >
 
 **FPB MEM High Mechanism:**
@@ -1471,40 +1471,40 @@ When ARI is not enabled, the FPB RID mechanism can be applied with different gra
 - The algorithm for determining which entry in the FPB MEM High Vector applies to a given Memory address follows the same pattern as the MEM Low mechanism, using FPB MEM High Vector Start Upper/Lower and FPB MEM High Vector Granularity.
 
 >
-> **FPB MEM High机制：**
-> - 如果内存地址落在其他桥内存解码寄存器编程值所指示的任何范围内（与FPB MEM High向量相应条目编程的值逻辑或），则FPB硬件必须认为该内存地址与FPB的次级侧关联。
-> - 确定FPB MEM High向量中哪个条目适用于给定内存地址的算法遵循与MEM Low机制相同的模式，使用FPB MEM High Vector Start Upper/Lower和FPB MEM High Vector Granularity。
+> **FPB MEM High 机制：**
+> - 如果内存地址落在其他桥内存解码寄存器编程值所指示的任何范围内（与 FPB MEM High 向量相应条目编程的值逻辑或），则 FPB 硬件必须认为该内存地址与 FPB 的次级侧关联。
+> - 确定 FPB MEM High 向量中哪个条目适用于给定内存地址的算法遵循与 MEM Low 机制相同的模式，使用 FPB MEM High Vector Start Upper/Lower 和 FPB MEM High Vector Granularity。
 >
 
 **FPB Address Decoding Implementation Note:** FPB uses a bit vector mechanism to decode ranges of Routing IDs and Memory Addresses above and below 4 GB. A bridge supporting FPB contains for each resource type/range: a Bit vector, a Start Address, and a Granularity. Every bit in the vector represents a range of resources, where the size of that range is determined by the selected granularity. If a bit is Set, TLPs addressed to an address within the corresponding range are associated with the secondary side of the bridge.
 
 >
-> **FPB地址解码实现说明：** FPB使用位向量机制来解码路由ID和4 GB上下内存地址的范围。支持FPB的桥为每种资源类型/范围包含：位向量、起始地址和粒度。向量中的每个位表示一个资源范围，该范围的大小由所选粒度决定。如果某位置1，则寻址到相应范围内地址的TLP与桥的次级侧关联。
+> **FPB 地址解码实现说明：** FPB 使用位向量机制来解码路由 ID 和 4 GB 上下内存地址的范围。支持 FPB 的桥为每种资源类型/范围包含：位向量、起始地址和粒度。向量中的每个位表示一个资源范围，该范围的大小由所选粒度决定。如果某位置 1，则寻址到相应范围内地址的 TLP 与桥的次级侧关联。
 >
 
 ---
 
 ### 6.27 Vital Product Data (VPD) / 关键产品数据 (VPD)
 
-![Figure 6-34 VPD Format](images/ch06_new/ch06_p874_img0.png)
+![Figure 6-34 VPD Format](images/ch06_new/fig6_X_p874.png)
 <br><em>Figure 6-34 VPD Format | 图6-34 VPD格式</em>
 
 Vital Product Data (VPD) is the information that uniquely defines items such as the hardware, software, and microcode elements of a system. The VPD provides the system with information on various FRUs (Field Replaceable Unit) including Part Number, Serial Number, and other detailed information. VPD also provides a mechanism for storing information such as performance and failure data on the device being monitored. The objective, from a system point of view, is to collect this information by reading it from the hardware, software, and microcode components.
 
 >
-> 关键产品数据（VPD）是唯一定义系统硬件、软件和微码元素等项目的信息。VPD为系统提供各种FRU（现场可更换单元）的信息，包括部件号、序列号和其他详细信息。VPD还提供了一种在被监控设备上存储性能和故障数据等信息的机制。从系统的角度来看，目标是通过从硬件、软件和微码组件读取这些信息来收集它们。
+> 关键产品数据（VPD）是唯一定义系统硬件、软件和微码元素等项目的信息。VPD 为系统提供各种 FRU（现场可更换单元）的信息，包括部件号、序列号和其他详细信息。VPD 还提供了一种在被监控设备上存储性能和故障数据等信息的机制。从系统的角度来看，目标是通过从硬件、软件和微码组件读取这些信息来收集它们。
 >
 
 Support of VPD within add-in cards is optional depending on the manufacturer. Though support of VPD is optional, add-in card manufacturers are encouraged to provide VPD due to its inherent benefits for the add-in card, system manufacturers, and for Plug and Play.
 
 >
-> 附加卡中VPD的支持是可选的，取决于制造商。虽然VPD的支持是可选的，但鼓励附加卡制造商提供VPD，因为它对附加卡、系统制造商和即插即用具有固有的好处。
+> 附加卡中 VPD 的支持是可选的，取决于制造商。虽然 VPD 的支持是可选的，但鼓励附加卡制造商提供 VPD，因为它对附加卡、系统制造商和即插即用具有固有的好处。
 >
 
 VPD for PCI Express is unchanged from the definition in the PCI 3.0 specification. VPD is made up of Small and Large Resource Data Types.
 
 >
-> PCI Express的VPD与PCI 3.0规范中的定义相同。VPD由小资源数据类型和大资源数据类型组成。
+> PCI Express 的 VPD 与 PCI 3.0 规范中的定义相同。VPD 由小资源数据类型和大资源数据类型组成。
 >
 
 #### 6.27.1 VPD Format / VPD格式
@@ -1531,13 +1531,13 @@ VPD for PCI Express is unchanged from the definition in the PCI 3.0 specificatio
 The first VPD tag is the Identifier String (02h) and provides the product name of the device. One VPD-R (10h) tag is used as a header for the read-only keywords. The VPD-R list (including tag and length) must checksum to zero. Attempts to write the read-only data will be executed as a no-op. One VPD-W (11h) tag is used as a header for the read-write keywords. The storage component containing the read/write data is a non-volatile device that will retain the data when powered off. The last tag must be the End Tag (0Fh).
 
 >
-> 第一个VPD标签是标识字符串（02h），提供设备的产品名称。一个VPD-R（10h）标签用作只读关键字的头。VPD-R列表（包括标签和长度）必须校验和为零。对只读数据的写尝试将作为空操作执行。一个VPD-W（11h）标签用作读写关键字的头。包含读/写数据的存储组件是非易失性设备，在断电时将保留数据。最后一个标签必须是结束标签（0Fh）。
+> 第一个 VPD 标签是标识字符串（02h），提供设备的产品名称。一个 VPD-R（10h）标签用作只读关键字的头。VPD-R 列表（包括标签和长度）必须校验和为零。对只读数据的写尝试将作为空操作执行。一个 VPD-W（11h）标签用作读写关键字的头。包含读/写数据的存储组件是非易失性设备，在断电时将保留数据。最后一个标签必须是结束标签（0Fh）。
 >
 
 Information fields within a VPD resource type consist of a three-byte header followed by some amount of data. The three-byte header contains a two-byte keyword and a one-byte length. A keyword is a two-character (ASCII) mnemonic that uniquely identifies the information in the field. The last byte of the header is binary and represents the length value (in bytes) of the data that follows.
 
 >
-> VPD资源类型中的信息字段由一个三字节的头后跟一定量的数据组成。三字节头包含一个两字节关键字和一个一字节长度。关键字是一个两字符（ASCII）助记符，唯一标识字段中的信息。头的最后一个字节是二进制的，表示后续数据的长度值（以字节为单位）。
+> VPD 资源类型中的信息字段由一个三字节的头后跟一定量的数据组成。三字节头包含一个两字节关键字和一个一字节长度。关键字是一个两字符（ASCII）助记符，唯一标识字段中的信息。头的最后一个字节是二进制的，表示后续数据的长度值（以字节为单位）。
 >
 
 #### 6.27.2 VPD Definitions / VPD定义
@@ -1593,7 +1593,7 @@ Typical read/write fields include: Vx (Vendor Specific), YA (Asset Tag Identifie
 Enclosure Management provides a standardized mechanism for PCIe-based systems to communicate enclosure status and control information between the enclosure management controller and PCIe devices or Switches. This includes indicators (Attention, Power, Drive Activity, etc.), temperature sensors, fan control, and other enclosure-related management functions. The mechanism operates natively over PCI Express links, eliminating the need for sideband signals traditionally used for enclosure services.
 
 >
-> 机箱管理为基于PCIe的系统提供了一种标准化机制，用于在机箱管理控制器与PCIe设备或交换机之间传递机箱状态和控制信息。这包括指示灯（注意、电源、驱动器活动等）、温度传感器、风扇控制和其他与机箱相关的管理功能。该机制通过PCI Express链路原生运行，消除了传统上用于机箱服务的边带信号的需求。
+> 机箱管理为基于 PCIe 的系统提供了一种标准化机制，用于在机箱管理控制器与 PCIe 设备或交换机之间传递机箱状态和控制信息。这包括指示灯（注意、电源、驱动器活动等）、温度传感器、风扇控制和其他与机箱相关的管理功能。该机制通过 PCI Express 链路原生运行，消除了传统上用于机箱服务的边带信号的需求。
 >
 
 The Native PCIe Enclosure Management capability is implemented through the Native PCIe Enclosure Management Extended Capability structure. This structure defines standardized registers for:
@@ -1604,9 +1604,9 @@ The Native PCIe Enclosure Management capability is implemented through the Nativ
 - Support for various form factors and enclosure types
 
 >
-> 原生PCIe机箱管理能力通过原生PCIe机箱管理扩展能力结构实现。该结构定义了以下标准化寄存器：
+> 原生 PCIe 机箱管理能力通过原生 PCIe 机箱管理扩展能力结构实现。该结构定义了以下标准化寄存器：
 > - 机箱管理消息传递
-> - LED指示灯控制（注意、电源、驱动器故障、定位等）
+> - LED 指示灯控制（注意、电源、驱动器故障、定位等）
 > - 机箱状态信息
 > - 插槽状态和控制同步
 > - 支持各种外形尺寸和机箱类型
@@ -1615,7 +1615,7 @@ The Native PCIe Enclosure Management capability is implemented through the Nativ
 The enclosure management messages can be sent as vendor-defined messages (VDM) or through dedicated enclosure management TLP types, allowing flexible integration with existing platform management infrastructure. This capability supports binding between PCIe Functions and the enclosure services they require, enabling proper correlation between logical PCIe topology elements and physical enclosure components.
 
 >
-> 机箱管理消息可以作为供应商定义消息（VDM）或通过专用的机箱管理TLP类型发送，允许与现有平台管理基础设施灵活集成。此能力支持PCIe功能与其所需机箱服务之间的绑定，从而实现逻辑PCIe拓扑元素与物理机箱组件之间的正确关联。
+> 机箱管理消息可以作为供应商定义消息（VDM）或通过专用的机箱管理 TLP 类型发送，允许与现有平台管理基础设施灵活集成。此能力支持 PCIe 功能与其所需机箱服务之间的绑定，从而实现逻辑 PCIe 拓扑元素与物理机箱组件之间的正确关联。
 >
 
 ---
@@ -1630,17 +1630,17 @@ This section defines the operation and behavior of advanced features for Functio
 - **Interrupt Handling**: Mapping between PCI Express interrupt mechanisms (MSI/MSI-X) and Conventional PCI INTx signaling across PCIe-to-PCI bridges.
 
 >
-> 本节定义了同时支持PCI Express和传统PCI操作的功能的高级功能操作和行为。这些功能提供增强的能力，弥合了传统PCI行为与现代PCIe架构之间的差距。关键方面包括：
-> - **事务处理**：处理通过PCI Express桥源自或发往传统PCI段的事务的规则。
-> - **错误处理**：错误如何在PCI Express和传统PCI域之间传播，包括错误严重性映射和报告机制。
-> - **电源管理**：PCI Express电源管理与传统PCI电源状态之间的兼容性。
-> - **中断处理**：PCI Express中断机制（MSI/MSI-X）与传统PCI INTx信号在PCIe到PCI桥之间的映射。
+> 本节定义了同时支持 PCI Express 和传统 PCI 操作的功能的高级功能操作和行为。这些功能提供增强的能力，弥合了传统 PCI 行为与现代 PCIe 架构之间的差距。关键方面包括：
+> - **事务处理**：处理通过 PCI Express 桥源自或发往传统 PCI 段的事务的规则。
+> - **错误处理**：错误如何在 PCI Express 和传统 PCI 域之间传播，包括错误严重性映射和报告机制。
+> - **电源管理**：PCI Express 电源管理与传统 PCI 电源状态之间的兼容性。
+> - **中断处理**：PCI Express 中断机制（MSI/MSI-X）与传统 PCI INTx 信号在 PCIe 到 PCI 桥之间的映射。
 >
 
 The operation preserves full backward compatibility with Conventional PCI software models while allowing native PCI Express features to be leveraged when the underlying hardware supports them. System software must properly configure bridge functions to ensure correct translation between the two domains.
 
 >
-> 该操作保持与传统PCI软件模型的完全向后兼容性，同时在底层硬件支持时允许利用原生PCI Express功能。系统软件必须正确配置桥功能，以确保两个域之间的正确翻译。
+> 该操作保持与传统 PCI 软件模型的完全向后兼容性，同时在底层硬件支持时允许利用原生 PCI Express 功能。系统软件必须正确配置桥功能，以确保两个域之间的正确翻译。
 >
 
 ---
@@ -1650,13 +1650,13 @@ The operation preserves full backward compatibility with Conventional PCI softwa
 Data Object Exchange (DOE) is an optional mechanism for system firmware/software to perform data object exchanges with a Function or RCRB. Software discovers DOE support via the Data Object Exchange (DOE) Extended Capability structure. Because DOE depends on Configuration Requests, it is not usable for peer-to-peer operations directly between Functions. When DOE is implemented in an RCRB, it is permitted to block peer-to-peer operation.
 
 >
-> 数据对象交换（DOE）是一种可选机制，用于系统固件/软件与功能或RCRB之间执行数据对象交换。软件通过数据对象交换（DOE）扩展能力结构发现DOE支持。由于DOE依赖于配置请求，因此不能直接用于功能之间的对等操作。当DOE在RCRB中实现时，允许阻止对等操作。
+> 数据对象交换（DOE）是一种可选机制，用于系统固件/软件与功能或 RCRB 之间执行数据对象交换。软件通过数据对象交换（DOE）扩展能力结构发现 DOE 支持。由于 DOE 依赖于配置请求，因此不能直接用于功能之间的对等操作。当 DOE 在 RCRB 中实现时，允许阻止对等操作。
 >
 
 DOE is a prerequisite Extended Capability for a Function to support in-band access by system firmware/software using the Component Measurement and Authentication (CMA-SPDM) and Integrity & Data Encryption (IDE) mechanisms.
 
 >
-> DOE是功能支持系统固件/软件使用组件测量与认证（CMA-SPDM）和完整性及数据加密（IDE）机制进行带内访问的前提扩展能力。
+> DOE 是功能支持系统固件/软件使用组件测量与认证（CMA-SPDM）和完整性及数据加密（IDE）机制进行带内访问的前提扩展能力。
 >
 
 #### 6.30.1 Data Objects and Features / 数据对象与特性
@@ -1668,10 +1668,10 @@ The DOE capability is based on a protocol that enables system firmware/software 
 - **DOE Protocol Flow**: Write Object → Wait → Read Object sequence, with status signaling through the DOE Status register (Busy, Error, Data Object Ready bits).
 
 >
-> DOE能力基于一种协议，使系统固件/软件能够发现、枚举并与DOE响应器交换数据对象。数据对象是标准化容器，用于协议特定的信息交换。关键概念包括：
-> - **DOE发现**：一种标准化机制，用于识别功能支持哪些协议/特性。每个支持的特性都有唯一的Vendor ID和Feature ID。
-> - **DOE邮箱接口**：通过专用的DOE能力寄存器（DOE能力寄存器、DOE控制寄存器、DOE状态寄存器和DOE写数据/读数据邮箱寄存器）使用请求/响应协议。
-> - **DOE协议流**：写对象→等待→读对象序列，通过DOE状态寄存器（Busy、Error、Data Object Ready位）传递状态信号。
+> DOE 能力基于一种协议，使系统固件/软件能够发现、枚举并与 DOE 响应器交换数据对象。数据对象是标准化容器，用于协议特定的信息交换。关键概念包括：
+> - **DOE 发现**：一种标准化机制，用于识别功能支持哪些协议/特性。每个支持的特性都有唯一的 Vendor ID 和 Feature ID。
+> - **DOE 邮箱接口**：通过专用的 DOE 能力寄存器（DOE 能力寄存器、DOE 控制寄存器、DOE 状态寄存器和 DOE 写数据/读数据邮箱寄存器）使用请求/响应协议。
+> - **DOE 协议流**：写对象→等待→读对象序列，通过 DOE 状态寄存器（Busy、Error、Data Object Ready 位）传递状态信号。
 >
 
 ##### 6.30.1.1 DOE Discovery Feature / DOE发现特性
@@ -1679,7 +1679,7 @@ The DOE capability is based on a protocol that enables system firmware/software 
 The DOE Discovery Feature is a mandatory feature (Vendor ID 0001h, Feature ID 0000h) that all DOE implementations must support. It allows the host to enumerate which protocols are implemented on the Function. The Discovery response contains an array of supported feature entries, each described by a Vendor ID, Feature ID, and Protocol Type.
 
 >
-> DOE发现特性是所有DOE实现必须支持的强制性特性（Vendor ID 0001h，Feature ID 0000h）。它允许主机枚举功能上实现了哪些协议。发现响应包含一个受支持特性条目数组，每个条目由Vendor ID、Feature ID和协议类型描述。
+> DOE 发现特性是所有 DOE 实现必须支持的强制性特性（Vendor ID 0001h，Feature ID 0000h）。它允许主机枚举功能上实现了哪些协议。发现响应包含一个受支持特性条目数组，每个条目由 Vendor ID、Feature ID 和协议类型描述。
 >
 
 ##### 6.30.1.2 DOE Async Message / DOE异步消息
@@ -1687,7 +1687,7 @@ The DOE Discovery Feature is a mandatory feature (Vendor ID 0001h, Feature ID 00
 DOE supports asynchronous messages that can be sent from the Function to the host, providing a mechanism for the Function to signal events or status changes without polling. The host can use interrupt-based mechanisms to be notified of pending async messages.
 
 >
-> DOE支持异步消息，可从功能发送到主机，为功能提供一种机制来信号事件或状态变化而无需轮询。主机可以使用基于中断的机制来接收待处理异步消息的通知。
+> DOE 支持异步消息，可从功能发送到主机，为功能提供一种机制来信号事件或状态变化而无需轮询。主机可以使用基于中断的机制来接收待处理异步消息的通知。
 >
 
 #### 6.30.2 Operation / 操作
@@ -1701,13 +1701,13 @@ The DOE operational model follows a strict request-response protocol:
 6. Software reads the response from the DOE Read Data Mailbox
 
 >
-> DOE操作模型遵循严格的请求-响应协议：
-> 1. 系统固件/软件发现DOE能力和支持的协议
-> 2. 软件将数据对象请求写入DOE写数据邮箱
-> 3. 软件设置DOE控制寄存器中的Go位
-> 4. 功能处理请求（DOE状态 = Busy）
-> 5. 完成后，功能在DOE状态中设置Data Object Ready或Error
-> 6. 软件从DOE读数据邮箱读取响应
+> DOE 操作模型遵循严格的请求-响应协议：
+> 1. 系统固件/软件发现 DOE 能力和支持的协议
+> 2. 软件将数据对象请求写入 DOE 写数据邮箱
+> 3. 软件设置 DOE 控制寄存器中的 Go 位
+> 4. 功能处理请求（DOE 状态 = Busy）
+> 5. 完成后，功能在 DOE 状态中设置 Data Object Ready 或 Error
+> 6. 软件从 DOE 读数据邮箱读取响应
 >
 
 #### 6.30.3 Interrupt Generation / 中断生成
@@ -1715,7 +1715,7 @@ The DOE operational model follows a strict request-response protocol:
 The DOE Extended Capability supports optional interrupt generation to notify software when a Data Object is Ready for reading. When enabled, the Function will generate an interrupt (using MSI or MSI-X if enabled, or INTx emulation) when the Data Object Ready bit transitions from 0b to 1b.
 
 >
-> DOE扩展能力支持可选的中断生成，在数据对象准备好供读取时通知软件。启用后，当Data Object Ready位从0b转换为1b时，功能将生成中断（如果启用了MSI或MSI-X则使用它们，或使用INTx仿真）。
+> DOE 扩展能力支持可选的中断生成，在数据对象准备好供读取时通知软件。启用后，当 Data Object Ready 位从 0b 转换为 1b 时，功能将生成中断（如果启用了 MSI 或 MSI-X 则使用它们，或使用 INTx 仿真）。
 >
 
 ---
@@ -1729,8 +1729,8 @@ Component Measurement and Authentication (CMA) uses the Security Protocol and Da
 4. Establish secure sessions for subsequent communication
 
 >
-> 组件测量与认证（CMA）使用安全协议与数据模型（SPDM）协议，因此标记为CMA-SPDM。此机制使系统软件能够：
-> 1. 发现PCIe组件的安全能力
+> 组件测量与认证（CMA）使用安全协议与数据模型（SPDM）协议，因此标记为 CMA-SPDM。此机制使系统软件能够：
+> 1. 发现 PCIe 组件的安全能力
 > 2. 通过加密认证验证组件的身份
 > 3. 获取组件固件和配置的测量值（加密哈希）
 > 4. 建立安全会话以供后续通信
@@ -1746,8 +1746,8 @@ CMA-SPDM leverages the DOE capability as the transport mechanism. The CMA-SPDM p
 - **GET_MEASUREMENTS / MEASUREMENTS**: Obtain firmware/configuration measurements
 
 >
-> CMA-SPDM利用DOE能力作为传输机制。CMA-SPDM协议定义了标准化的消息交换，包括：
-> - **GET_VERSION / VERSION**：协商SPDM协议版本
+> CMA-SPDM 利用 DOE 能力作为传输机制。CMA-SPDM 协议定义了标准化的消息交换，包括：
+> - **GET_VERSION / VERSION**：协商 SPDM 协议版本
 > - **GET_CAPABILITIES / CAPABILITIES**：交换安全能力
 > - **NEGOTIATE_ALGORITHMS / ALGORITHMS**：选择加密算法
 > - **GET_DIGESTS / DIGESTS**：检索证书链摘要
@@ -1767,13 +1767,13 @@ Key rules governing CMA-SPDM implementation:
 - After a Conventional Reset or FLR, all CMA-SPDM session state must be cleared.
 
 >
-> 管理CMA-SPDM实现的关键规则：
-> - 每个支持CMA-SPDM的功能必须实现DOE扩展能力并支持发现和SPDM协议。
-> - CMA-SPDM操作由作为SPDM请求者的系统软件发起。
-> - 功能作为SPDM响应者。
-> - 所有SPDM消息封装在DOE数据对象中。
-> - 功能必须在规定的时序要求内响应SPDM请求。
-> - 在常规复位或FLR之后，所有CMA-SPDM会话状态必须被清除。
+> 管理 CMA-SPDM 实现的关键规则：
+> - 每个支持 CMA-SPDM 的功能必须实现 DOE 扩展能力并支持发现和 SPDM 协议。
+> - CMA-SPDM 操作由作为 SPDM 请求者的系统软件发起。
+> - 功能作为 SPDM 响应者。
+> - 所有 SPDM 消息封装在 DOE 数据对象中。
+> - 功能必须在规定的时序要求内响应 SPDM 请求。
+> - 在常规复位或 FLR 之后，所有 CMA-SPDM 会话状态必须被清除。
 >
 
 #### 6.31.4 Secured CMA-SPDM / 安全的CMA-SPDM
@@ -1781,7 +1781,7 @@ Key rules governing CMA-SPDM implementation:
 Secured CMA-SPDM extends the base CMA-SPDM mechanism by establishing encrypted and authenticated communication channels between software and Functions. This utilizes the session keys established during SPDM authentication to protect subsequent DOE data exchanges.
 
 >
-> 安全的CMA-SPDM通过建立软件与功能之间加密和认证的通信信道来扩展基础CMA-SPDM机制。这利用在SPDM认证期间建立的会话密钥来保护后续的DOE数据交换。
+> 安全的 CMA-SPDM 通过建立软件与功能之间加密和认证的通信信道来扩展基础 CMA-SPDM 机制。这利用在 SPDM 认证期间建立的会话密钥来保护后续的 DOE 数据交换。
 >
 
 ---
@@ -1801,17 +1801,17 @@ Key characteristics of DMW:
 - **No Guarantee of Deferral**: Intermediate components are not required to actually defer a DMW transaction — it is a hint that may be ignored.
 
 >
-> DMW的关键特性：
-> - **TLP处理提示（TPH）集成**：DMW利用TPH机制将延迟语义传递给根复合体和中间组件。
-> - **延迟语义**：DMW指示提供一个提示，即关联的写事务可以延迟而不影响功能正确性。系统组件（根复合体、交换机）可以使用此提示来优先处理不可延迟的事务或批量处理可延迟写入以提高内存子系统效率。
-> - **排序**：可延迟写入维持其相对于PCIe事务排序规则定义的其他事务的排序关系。延迟提示不允许违反生产者-消费者排序模型。
-> - **无延迟保证**：中间组件不需要实际延迟DMW事务——这是一个可以忽略的提示。
+> DMW 的关键特性：
+> - **TLP 处理提示（TPH）集成**：DMW 利用 TPH 机制将延迟语义传递给根复合体和中间组件。
+> - **延迟语义**：DMW 指示提供一个提示，即关联的写事务可以延迟而不影响功能正确性。系统组件（根复合体、交换机）可以使用此提示来优先处理不可延迟的事务或批量处理可延迟写入以提高内存子系统效率。
+> - **排序**：可延迟写入维持其相对于 PCIe 事务排序规则定义的其他事务的排序关系。延迟提示不允许违反生产者-消费者排序模型。
+> - **无延迟保证**：中间组件不需要实际延迟 DMW 事务——这是一个可以忽略的提示。
 >
 
 System software controls DMW behavior through the Deferrable Memory Write Enable bit. When enabled, the Function may apply the DMW hint to eligible Memory Write transactions based on the TPH Steering Tag and other internal criteria.
 
 >
-> 系统软件通过Deferrable Memory Write Enable位控制DMW行为。启用后，功能可根据TPH导向标签和其他内部条件对符合条件的内存写事务应用DMW提示。
+> 系统软件通过 Deferrable Memory Write Enable 位控制 DMW 行为。启用后，功能可根据 TPH 导向标签和其他内部条件对符合条件的内存写事务应用 DMW 提示。
 >
 
 ---
@@ -1821,7 +1821,7 @@ System software controls DMW behavior through the Deferrable Memory Write Enable
 Integrity & Data Encryption (IDE) provides a standardized mechanism for PCI Express components to protect data integrity and confidentiality for TLPs in transit across a PCIe Link. IDE is a critical security feature that addresses physical attacks on the link interconnect, protecting against data tampering, snooping, and replay attacks.
 
 >
-> 完整性与数据加密（IDE）为PCI Express组件提供了一种标准化机制，用于保护跨PCIe链路传输中的TLP的数据完整性和机密性。IDE是一项关键的安全特性，应对对链路互连的物理攻击，防止数据篡改、窃听和重放攻击。
+> 完整性与数据加密（IDE）为 PCI Express 组件提供了一种标准化机制，用于保护跨 PCIe 链路传输中的 TLP 的数据完整性和机密性。IDE 是一项关键的安全特性，应对对链路互连的物理攻击，防止数据篡改、窃听和重放攻击。
 >
 
 IDE operates at the Link level and can be established on a per-Link basis between two directly connected components (IDE Streams). Key IDE concepts include:
@@ -1833,12 +1833,12 @@ IDE operates at the Link level and can be established on a per-Link basis betwee
 - **IDE Key Management (IDE_KM)**: The protocol and mechanism for establishing, updating, and tearing down IDE security associations, using the CMA-SPDM and DOE infrastructure.
 
 >
-> IDE在链路级别运行，可以在两个直连组件之间按每条链路建立（IDE流）。关键IDE概念包括：
-> - **IDE流**：链路上两个支持IDE的组件之间的逻辑安全信道，由流ID标识。每个流都有自己的安全关联（密钥、密码套件）。
-> - **IDE TLP**：经过IDE机制处理的TLP，携带经过认证（仅完整性）或加密（完整性+机密性）的有效载荷。
-> - **选择性IDE**：基于可配置标准（TC、地址范围等）仅对特定TLP应用IDE保护，而无需IDE处理地传递其他TLP的能力。
-> - **透传IDE**：一种在不终止和重新发起TLP流的情况下应用IDE处理的模式，允许IDE透明地在交换机配置中使用。
-> - **IDE密钥管理（IDE_KM）**：使用CMA-SPDM和DOE基础设施建立、更新和拆除IDE安全关联的协议和机制。
+> IDE 在链路级别运行，可以在两个直连组件之间按每条链路建立（IDE 流）。关键 IDE 概念包括：
+> - **IDE 流**：链路上两个支持 IDE 的组件之间的逻辑安全信道，由流 ID 标识。每个流都有自己的安全关联（密钥、密码套件）。
+> - **IDE TLP**：经过 IDE 机制处理的 TLP，携带经过认证（仅完整性）或加密（完整性+机密性）的有效载荷。
+> - **选择性 IDE**：基于可配置标准（TC、地址范围等）仅对特定 TLP 应用 IDE 保护，而无需 IDE 处理地传递其他 TLP 的能力。
+> - **透传 IDE**：一种在不终止和重新发起 TLP 流的情况下应用 IDE 处理的模式，允许 IDE 透明地在交换机配置中使用。
+> - **IDE 密钥管理（IDE_KM）**：使用 CMA-SPDM 和 DOE 基础设施建立、更新和拆除 IDE 安全关联的协议和机制。
 >
 
 #### 6.33.1 IDE Stream and TEE State Machines / IDE流与TEE状态机
@@ -1846,7 +1846,7 @@ IDE operates at the Link level and can be established on a per-Link basis betwee
 IDE defines a set of TEE (TEE Device Interface) state machines that govern the lifecycle of IDE Streams. These state machines manage transitions between states such as: Inactive, Establishing, Active, Rekeying, and Teardown. The state transitions are coordinated between the two link partners through the IDE_KM protocol running over DOE.
 
 >
-> IDE定义了一组TEE（TEE设备接口）状态机，管理IDE流的生命周期。这些状态机管理诸如非活动、建立中、活动、重密钥和拆除等状态之间的转换。状态转换通过运行在DOE上的IDE_KM协议在两个链路伙伴之间协调。
+> IDE 定义了一组 TEE（TEE 设备接口）状态机，管理 IDE 流的生命周期。这些状态机管理诸如非活动、建立中、活动、重密钥和拆除等状态之间的转换。状态转换通过运行在 DOE 上的 IDE_KM 协议在两个链路伙伴之间协调。
 >
 
 #### 6.33.2 IDE Stream Establishment / IDE流建立
@@ -1860,13 +1860,13 @@ IDE Stream establishment follows a defined sequence:
 6. Hardware begins protecting eligible TLPs
 
 >
-> IDE流建立遵循定义的序列：
-> 1. 软件通过IDE扩展能力结构发现IDE能力
-> 2. 软件使用CMA-SPDM认证组件并建立信任
-> 3. 软件通过DOE/IDE_KM向两个链路伙伴供应IDE密钥
-> 4. 两个链路伙伴配置IDE参数（流ID、密码套件、密钥集、地址过滤器）
-> 5. 软件启用IDE流
-> 6. 硬件开始保护符合条件的TLP
+> IDE 流建立遵循定义的序列：
+> 1. 软件通过 IDE 扩展能力结构发现 IDE 能力
+> 2. 软件使用 CMA-SPDM 认证组件并建立信任
+> 3. 软件通过 DOE/IDE_KM 向两个链路伙伴供应 IDE 密钥
+> 4. 两个链路伙伴配置 IDE 参数（流 ID、密码套件、密钥集、地址过滤器）
+> 5. 软件启用 IDE 流
+> 6. 硬件开始保护符合条件的 TLP
 >
 
 #### 6.33.3 IDE Key Management (IDE_KM) / IDE密钥管理 (IDE_KM)
@@ -1878,7 +1878,7 @@ The IDE Key Management protocol defines standardized messages for:
 - **K_SET_GO_ACK/NACK**: Response to key set activation requests
 
 >
-> IDE密钥管理协议定义了标准化消息用于：
+> IDE 密钥管理协议定义了标准化消息用于：
 > - **KEY_PROG**：向链路伙伴供应新密钥集
 > - **KEY_SET_GO**：激活先前供应的密钥集
 > - **KEY_SET_STOP**：停用活动密钥集
@@ -1888,7 +1888,7 @@ The IDE Key Management protocol defines standardized messages for:
 IDE supports multiple cipher suites including AES-GCM with 128-bit and 256-bit keys. The IDE Extended Capability registers provide software control over Stream configuration, including the IDE Address Association registers that define which address ranges are subject to IDE protection (for Selective IDE).
 
 >
-> IDE支持多种密码套件，包括使用128位和256位密钥的AES-GCM。IDE扩展能力寄存器为软件提供对流配置的控制，包括定义哪些地址范围受到IDE保护（用于选择性IDE）的IDE地址关联寄存器。
+> IDE 支持多种密码套件，包括使用 128 位和 256 位密钥的 AES-GCM。IDE 扩展能力寄存器为软件提供对流配置的控制，包括定义哪些地址范围受到 IDE 保护（用于选择性 IDE）的 IDE 地址关联寄存器。
 >
 
 #### 6.33.4 IDE TLPs / IDE TLP
@@ -1896,7 +1896,7 @@ IDE supports multiple cipher suites including AES-GCM with 128-bit and 256-bit k
 IDE TLPs are constructed by incorporating a MAC (Message Authentication Code) and optionally encrypting the TLP payload. The IDE MAC covers the TLP header, payload (ciphertext if encrypted), and additional authentication data. IDE uses a counter-based mechanism (nonce) to prevent replay attacks, with each IDE TLP carrying a portion of the nonce.
 
 >
-> IDE TLP通过包含MAC（消息认证码）并可选地加密TLP有效载荷来构造。IDE MAC覆盖TLP头、有效载荷（如果加密则为密文）和附加认证数据。IDE使用基于计数器的机制（nonce）来防止重放攻击，每个IDE TLP携带一部分nonce。
+> IDE TLP 通过包含 MAC（消息认证码）并可选地加密 TLP 有效载荷来构造。IDE MAC 覆盖 TLP 头、有效载荷（如果加密则为密文）和附加认证数据。IDE 使用基于计数器的机制（nonce）来防止重放攻击，每个 IDE TLP 携带一部分 nonce。
 >
 
 #### 6.33.5 IDE TLP Sub-Streams / IDE TLP子流
@@ -1904,7 +1904,7 @@ IDE TLPs are constructed by incorporating a MAC (Message Authentication Code) an
 IDE TLP Sub-Streams allow finer-grained differentiation of traffic within a single IDE Stream. Sub-Streams enable independent nonce management for different traffic flows, allowing, for example, separate nonce counters for different Traffic Classes or address ranges within the same Stream.
 
 >
-> IDE TLP子流允许在单个IDE流内对流量进行更细粒度的区分。子流为不同的流量流提供独立的nonce管理，例如允许在同一流内为不同的流量类别或地址范围使用单独的nonce计数器。
+> IDE TLP 子流允许在单个 IDE 流内对流量进行更细粒度的区分。子流为不同的流量流提供独立的 nonce 管理，例如允许在同一流内为不同的流量类别或地址范围使用单独的 nonce 计数器。
 >
 
 #### 6.33.6 IDE TLP Aggregation / IDE TLP聚合
@@ -1912,7 +1912,7 @@ IDE TLP Sub-Streams allow finer-grained differentiation of traffic within a sing
 IDE TLP Aggregation allows multiple smaller TLPs to be aggregated into a single IDE-protected TLP for improved link efficiency. This reduces the per-TLP IDE overhead by amortizing the MAC and nonce overhead across multiple aggregated TLPs.
 
 >
-> IDE TLP聚合允许将多个较小的TLP聚合成一个受IDE保护的TLP，以提高链路效率。通过在多个聚合的TLP之间摊销MAC和nonce开销来减少每个TLP的IDE开销。
+> IDE TLP 聚合允许将多个较小的 TLP 聚合成一个受 IDE 保护的 TLP，以提高链路效率。通过在多个聚合的 TLP 之间摊销 MAC 和 nonce 开销来减少每个 TLP 的 IDE 开销。
 >
 
 #### 6.33.7 Flow-Through Selective IDE Streams / 透传选择性IDE流
@@ -1920,7 +1920,7 @@ IDE TLP Aggregation allows multiple smaller TLPs to be aggregated into a single 
 Flow-Through Selective IDE Streams enable IDE protection to be applied in a manner compatible with Switch operation. In this mode, TLPs matching selective IDE criteria are IDE-protected while TLPs not matching continue to be forwarded without IDE processing. This allows for mixed-mode operation where only sensitive traffic requires the security guarantees of IDE.
 
 >
-> 透传选择性IDE流使IDE保护能够以与交换机操作兼容的方式应用。在此模式下，匹配选择性IDE标准的TLP受IDE保护，而不匹配的TLP继续转发而无需IDE处理。这允许混合模式操作，其中只有敏感流量需要IDE的安全保证。
+> 透传选择性 IDE 流使 IDE 保护能够以与交换机操作兼容的方式应用。在此模式下，匹配选择性 IDE 标准的 TLP 受 IDE 保护，而不匹配的 TLP 继续转发而无需 IDE 处理。这允许混合模式操作，其中只有敏感流量需要 IDE 的安全保证。
 >
 
 #### 6.33.8 Other IDE Rules / 其他IDE规则
@@ -1933,12 +1933,12 @@ Additional rules governing IDE operation include:
 - IDE does not change any of the existing PCIe ordering rules or flow control mechanisms.
 
 >
-> 管理IDE操作的附加规则包括：
-> - IDE仅允许在处于L0或以上链路状态的操作链路上使用。
-> - IDE流在链路的每个方向上独立建立。
-> - 当检测到IDE TLP上的错误时（MAC验证失败、nonce错误），丢弃该TLP并将错误报告为咨询性非致命错误。
-> - IDE对现有PCIe事务排序、流控和TLP处理规则透明运行。
-> - IDE不改变任何现有的PCIe排序规则或流控机制。
+> 管理 IDE 操作的附加规则包括：
+> - IDE 仅允许在处于 L0 或以上链路状态的操作链路上使用。
+> - IDE 流在链路的每个方向上独立建立。
+> - 当检测到 IDE TLP 上的错误时（MAC 验证失败、nonce 错误），丢弃该 TLP 并将错误报告为咨询性非致命错误。
+> - IDE 对现有 PCIe 事务排序、流控和 TLP 处理规则透明运行。
+> - IDE 不改变任何现有的 PCIe 排序规则或流控机制。
 >
 
 ---
@@ -1948,7 +1948,7 @@ Additional rules governing IDE operation include:
 Unordered IO (UIO) is an optional mechanism that allows a Function to indicate that specific IO transactions can be processed without maintaining strict ordering relative to other IO transactions. This enables improved IO performance by allowing the system to reorder IO transactions for optimal memory subsystem utilization.
 
 >
-> 无序IO（UIO）是一种可选机制，允许功能指示特定的IO事务可以在不保持相对于其他IO事务的严格顺序的情况下处理。这使得系统能够重新排序IO事务以优化内存子系统利用率，从而提高IO性能。
+> 无序 IO（UIO）是一种可选机制，允许功能指示特定的 IO 事务可以在不保持相对于其他 IO 事务的严格顺序的情况下处理。这使得系统能够重新排序 IO 事务以优化内存子系统利用率，从而提高 IO 性能。
 >
 
 #### 6.34.1 UIO Rules / UIO规则
@@ -1961,12 +1961,12 @@ Unordered IO (UIO) is an optional mechanism that allows a Function to indicate t
 - Functions that do not support UIO must treat any received IO Request with the UIO attribute as a Malformed TLP.
 
 >
-> - UIO仅适用于IO请求TLP。
-> - 当功能在IO请求中设置UIO属性时，表明此IO请求可以相对于其他IO请求重新排序。
-> - UIO属性通过保留的TLP头字段传递。
-> - 系统软件必须通过设备控制寄存器中的UIO使能位启用UIO。
-> - UIO不影响IO请求相对于内存、配置或消息事务的排序。
-> - 不支持UIO的功能必须将任何收到带有UIO属性的IO请求视为畸形TLP。
+> - UIO 仅适用于 IO 请求 TLP。
+> - 当功能在 IO 请求中设置 UIO 属性时，表明此 IO 请求可以相对于其他 IO 请求重新排序。
+> - UIO 属性通过保留的 TLP 头字段传递。
+> - 系统软件必须通过设备控制寄存器中的 UIO 使能位启用 UIO。
+> - UIO 不影响 IO 请求相对于内存、配置或消息事务的排序。
+> - 不支持 UIO 的功能必须将任何收到带有 UIO 属性的 IO 请求视为畸形 TLP。
 >
 
 ---
@@ -1976,7 +1976,7 @@ Unordered IO (UIO) is an optional mechanism that allows a Function to indicate t
 MMIO Register Blocks define a standardized framework for Functions to expose memory-mapped I/O registers to system software. This enables Functions to implement register-based interfaces that are mapped into system memory space, providing flexible, high-performance access to device control and status registers.
 
 >
-> MMIO寄存器块为功能定义了一个标准化框架，用于向系统软件公开内存映射I/O寄存器。这使功能能够实现映射到系统内存空间的基于寄存器的接口，为设备控制和状态寄存器提供灵活、高性能的访问。
+> MMIO 寄存器块为功能定义了一个标准化框架，用于向系统软件公开内存映射 I/O 寄存器。这使功能能够实现映射到系统内存空间的基于寄存器的接口，为设备控制和状态寄存器提供灵活、高性能的访问。
 >
 
 #### 6.35.1 MMIO Capabilities Register Block (MCAP) / MMIO能力寄存器块 (MCAP)
@@ -1984,7 +1984,7 @@ MMIO Register Blocks define a standardized framework for Functions to expose mem
 The MMIO Capabilities Register Block (MCAP) provides a discoverable structure for MMIO-based capabilities. The MCAP array allows software to enumerate all MMIO capability blocks implemented by a Function, each identified by a unique Capability ID and Version.
 
 >
-> MMIO能力寄存器块（MCAP）为基于MMIO的能力提供可发现的结构。MCAP数组允许软件枚举功能实现的所有MMIO能力块，每个能力块由唯一的Capability ID和Version标识。
+> MMIO 能力寄存器块（MCAP）为基于 MMIO 的能力提供可发现的结构。MCAP 数组允许软件枚举功能实现的所有 MMIO 能力块，每个能力块由唯一的 Capability ID 和 Version 标识。
 >
 
 ##### 6.35.1.1 MCAP Array Register / MCAP数组寄存器
@@ -1992,7 +1992,7 @@ The MMIO Capabilities Register Block (MCAP) provides a discoverable structure fo
 The MCAP Array Register (Offset 00h) provides the entry point for discovering MCAP-based capabilities. It contains the number of implemented capability entries and pointers to the beginning of the capability header block array.
 
 >
-> MCAP数组寄存器（偏移量00h）为发现基于MCAP的能力提供入口点。它包含已实现能力条目的数量和指向能力头块数组开头的指针。
+> MCAP 数组寄存器（偏移量 00h）为发现基于 MCAP 的能力提供入口点。它包含已实现能力条目的数量和指向能力头块数组开头的指针。
 >
 
 ##### 6.35.1.2 MCAP Header Register Block / MCAP头寄存器块
@@ -2000,7 +2000,7 @@ The MCAP Array Register (Offset 00h) provides the entry point for discovering MC
 Each MCAP Header Register Block (Offset varies) describes a specific MMIO capability, containing the Capability ID, Version, and offset to the capability-specific register block. The header allows software to identify and locate each MMIO capability.
 
 >
-> 每个MCAP头寄存器块（偏移量变化）描述一个特定的MMIO能力，包含Capability ID、Version和能力特定寄存器块的偏移量。头允许软件识别和定位每个MMIO能力。
+> 每个 MCAP 头寄存器块（偏移量变化）描述一个特定的 MMIO 能力，包含 Capability ID、Version 和能力特定寄存器块的偏移量。头允许软件识别和定位每个 MMIO 能力。
 >
 
 ##### 6.35.1.3 MMIO Mailbox Capability (MMB) / MMIO邮箱能力 (MMB)
@@ -2013,12 +2013,12 @@ The MMIO Mailbox Capability (MMB) defines a standardized interface for exchangin
 - MMB Payload Registers: Data transfer buffer
 
 >
-> MMIO邮箱能力（MMB）定义了一个标准化接口，用于通过MMIO寄存器在系统软件与功能之间交换命令和响应数据。MMB使用命令/响应协议，具有以下寄存器集：
-> - MMB能力寄存器：报告支持的功能和缓冲区大小
-> - MMB控制寄存器：启用MMB操作
-> - MMB命令寄存器：启动命令
-> - MMB状态寄存器：报告完成状态和返回码
-> - MMB有效载荷寄存器：数据传输缓冲区
+> MMIO 邮箱能力（MMB）定义了一个标准化接口，用于通过 MMIO 寄存器在系统软件与功能之间交换命令和响应数据。MMB 使用命令/响应协议，具有以下寄存器集：
+> - MMB 能力寄存器：报告支持的功能和缓冲区大小
+> - MMB 控制寄存器：启用 MMB 操作
+> - MMB 命令寄存器：启动命令
+> - MMB 状态寄存器：报告完成状态和返回码
+> - MMB 有效载荷寄存器：数据传输缓冲区
 >
 
 ##### 6.35.1.4 Management Message Passthrough (MMPT) Capability / 管理消息透传 (MMPT) 能力
@@ -2029,10 +2029,10 @@ The MMPT Capability enables system software to send and receive management messa
 - MMPT Receive Message Notification Register: Indicates received messages
 
 >
-> MMPT能力使系统软件能够通过MMIO邮箱机制发送和接收管理消息（如MCTP或其他管理协议）。这为平台管理流量提供带内路径。MMPT寄存器集包括：
-> - MMPT能力寄存器：报告支持的协议和缓冲区能力
-> - MMPT控制寄存器：控制MMPT操作
-> - MMPT接收消息通知寄存器：指示收到的消息
+> MMPT 能力使系统软件能够通过 MMIO 邮箱机制发送和接收管理消息（如 MCTP 或其他管理协议）。这为平台管理流量提供带内路径。MMPT 寄存器集包括：
+> - MMPT 能力寄存器：报告支持的协议和缓冲区能力
+> - MMPT 控制寄存器：控制 MMPT 操作
+> - MMPT 接收消息通知寄存器：指示收到的消息
 >
 
 #### 6.35.2 MMIO Designated Vendor-Specific Register Block (MDVS) / MMIO指定供应商特定寄存器块 (MDVS)
@@ -2040,7 +2040,7 @@ The MMPT Capability enables system software to send and receive management messa
 The MDVS provides a standardized mechanism for vendors to implement vendor-specific functionality within the MCAP framework. MDVS register blocks are identified by a unique Vendor ID and Vendor-defined ID, ensuring that vendor-specific extensions can coexist without conflicts. The MDVS Header Registers contain vendor identification and block-specific configuration information.
 
 >
-> MDVS为供应商在MCAP框架内实现供应商特定功能提供了标准化机制。MDVS寄存器块由唯一的Vendor ID和供应商定义的ID标识，确保供应商特定扩展可以在没有冲突的情况下共存。MDVS头寄存器包含供应商标识和块特定配置信息。
+> MDVS 为供应商在 MCAP 框架内实现供应商特定功能提供了标准化机制。MDVS 寄存器块由唯一的 Vendor ID 和供应商定义的 ID 标识，确保供应商特定扩展可以在没有冲突的情况下共存。MDVS 头寄存器包含供应商标识和块特定配置信息。
 >
 
 ---
@@ -2050,7 +2050,7 @@ The MDVS provides a standardized mechanism for vendors to implement vendor-speci
 The MMB Command Interface builds upon the MMIO Mailbox Capability (MMB) to define standardized command operations. This interface enables system software to issue structured commands to Functions and receive structured responses, using a mailbox-based transport mechanism.
 
 >
-> MMB命令接口建立在MMIO邮箱能力（MMB）之上，定义了标准化的命令操作。此接口使系统软件能够向功能发出结构化命令并接收结构化响应，使用基于邮箱的传输机制。
+> MMB 命令接口建立在 MMIO 邮箱能力（MMB）之上，定义了标准化的命令操作。此接口使系统软件能够向功能发出结构化命令并接收结构化响应，使用基于邮箱的传输机制。
 >
 
 #### 6.36.1 Management Message Passthrough (MMPT) / 管理消息透传 (MMPT)
@@ -2058,7 +2058,7 @@ The MMB Command Interface builds upon the MMIO Mailbox Capability (MMB) to defin
 The MMPT feature of the MMB Command Interface provides a standardized mechanism for transporting management protocol messages (such as MCTP, PLDM, NCSI, etc.) through the MMIO mailbox. MMPT defines specific opcodes for message operations.
 
 >
-> MMB命令接口的MMPT特性提供了一种标准化机制，用于通过MMIO邮箱传输管理协议消息（如MCTP、PLDM、NCSI等）。MMPT定义了消息操作的具体操作码。
+> MMB 命令接口的 MMPT 特性提供了一种标准化机制，用于通过 MMIO 邮箱传输管理协议消息（如 MCTP、PLDM、NCSI 等）。MMPT 定义了消息操作的具体操作码。
 >
 
 ##### 6.36.1.1 MMPT Send Message (Opcode 0100h) / MMPT发送消息 (操作码 0100h)
@@ -2066,7 +2066,7 @@ The MMPT feature of the MMB Command Interface provides a standardized mechanism 
 The MMPT Send Message command allows software to transmit a management protocol message through the Function. Software places the message data in the MMB Payload registers and issues the send command. The Function transmits the message on the appropriate management interface and reports completion status through the MMB Status register.
 
 >
-> MMPT发送消息命令允许软件通过功能传输管理协议消息。软件将消息数据放入MMB有效载荷寄存器并发出发送命令。功能通过适当的管理接口传输消息，并通过MMB状态寄存器报告完成状态。
+> MMPT 发送消息命令允许软件通过功能传输管理协议消息。软件将消息数据放入 MMB 有效载荷寄存器并发出发送命令。功能通过适当的管理接口传输消息，并通过 MMB 状态寄存器报告完成状态。
 >
 
 ##### 6.36.1.2 MMPT Receive Message (Opcode 0101h) / MMPT接收消息 (操作码 0101h)
@@ -2074,13 +2074,13 @@ The MMPT Send Message command allows software to transmit a management protocol 
 The MMPT Receive Message command allows software to retrieve a received management protocol message from the Function. When a message is received, the Function signals availability through the MMPT Receive Message Notification register (or optionally through an interrupt). Software then issues the receive command to read the message data from the MMB Payload registers.
 
 >
-> MMPT接收消息命令允许软件从功能检索收到的管理协议消息。当收到消息时，功能通过MMPT接收消息通知寄存器（或可选地通过中断）信号可用性。软件然后发出接收命令从MMB有效载荷寄存器读取消息数据。
+> MMPT 接收消息命令允许软件从功能检索收到的管理协议消息。当收到消息时，功能通过 MMPT 接收消息通知寄存器（或可选地通过中断）信号可用性。软件然后发出接收命令从 MMB 有效载荷寄存器读取消息数据。
 >
 
 ---
 
-> **[End of Chapter 6 / 第6章结束]**
+> **[End of Chapter 6 / 第 6 章结束]**
 >
-> *Chapter 6: System Architecture — Complete Translation 第6章：系统架构 — 完整翻译*
+> *Chapter 6: System Architecture — Complete Translation 第 6 章：系统架构 — 完整翻译*
 >
-> *Covering all 36 sections: 6.1 Interrupt and PME Support through 6.36 MMB Command Interface. 涵盖全部36个小节：从6.1中断与PME支持到6.36 MMB命令接口。*
+> *Covering all 36 sections: 6.1 Interrupt and PME Support through 6.36 MMB Command Interface. 涵盖全部 36 个小节：从 6.1 中断与 PME 支持到 6.36 MMB 命令接口。*
