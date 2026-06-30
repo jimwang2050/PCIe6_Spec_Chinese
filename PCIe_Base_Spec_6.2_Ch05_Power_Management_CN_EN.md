@@ -530,17 +530,17 @@ Entry into L1.1 or L1.2 always goes through L1.0 first. Exit from all L1 PM Subs
 
 <p align="center">
 <img src="images/ch05/ch05_p690_img0.png" alt="CLKREQ# Connection Topologies" width="95%">
-<br><em>CLKREQ# Connection Topologies / CLKREQ#连接拓扑</em>
+<br><em>Figure 5-10: CLKREQ# Connection Topologies | 图5-10：CLKREQ#连接拓扑</em>
 </p>
 
 <p align="center">
 <img src="images/ch05/ch05_p691_img0.png" alt="CLKREQ# Configuration Example" width="95%">
-<br><em>CLKREQ# Configuration Example / CLKREQ#配置示例</em>
+<br><em>Figure 5-11: CLKREQ# Configuration Example | 图5-11：CLKREQ#配置示例</em>
 </p>
 
 <p align="center">
 <img src="images/ch05/ch05_p693_img0.png" alt="L1 PM Substates Exit Flow Diagram" width="95%">
-<br><em>L1 PM Substates Exit Flow Diagram / L1 PM子状态退出流程图</em>
+<br><em>Figure 5-12: L1 PM Substates Exit Flow Diagram | 图5-12：L1 PM子状态退出流程图</em>
 </p>
 
 <p align="center">
@@ -560,7 +560,7 @@ Entry into L1.1 or L1.2 always goes through L1.0 first. Exit from all L1 PM Subs
 
 <p align="center">
 <img src="images/ch05/ch05_p697_img0.png" alt="L1.2 Exit Mechanism" width="95%">
-<br><em>L1.2 Exit Mechanism / L1.2退出机制</em>
+<br><em>Figure 5-16: L1.2 Exit Mechanism | 图5-16：L1.2退出机制</em>
 </p>
 
 <p align="center">
