@@ -1,7 +1,7 @@
 # Chapter 5: Power Management — 第5章：电源管理
 > **来源：** PCI Express Base Specification Revision 6.2 (2024-01-25)
-> **PDF页码：** 651–706 (共56页)
-> **格式：** 中英文段落对照 (Chinese-English Parallel)
+> **PDF页码：** 651–706（共56页）
+> **格式：** 中英文段落对照（Chinese-English Parallel）
 ---
 ## 5.1 Overview — 概述
 > PDF页码：651

@@ -148,7 +148,7 @@ TLP headers are either 3 DW (Non-Flit Mode) or contain OHC (Flit Mode). Key head
 >
 > | 字段 | 描述 |
 > |------|------|
-> | **Fmt** | 格式：00=3DW无数据, 01=4DW无数据, 10=3DW带数据, 11=4DW带数据 |
+> | **Fmt** | 格式：00=3DW无数据、01=4DW无数据、10=3DW带数据、11=4DW带数据 |
 > | **Type** | 事务类型（内存读/写、配置读/写、消息、完成等）|
 > | **TC** | 流量类别（0–7） |
 > | **Attr** | 属性（No Snoop、Relaxed Ordering、ID-Based Ordering）|
@@ -187,9 +187,9 @@ Flit Mode replaces the traditional 3/4 DW header with OHC structures. The OHC ty
 
 The Flit_Marker (embedded in DLP) indicates special conditions:
 
-- **Poisoned TLP (PTLP)**：Indicates data integrity issue within the Flit
-- **Nullified TLP (NTLP)**：TLP marked for discard
-- **NAK_WITHDRAWAL**：Cancels pending NAKs when subsequent Flits received correctly
+- **Poisoned TLP (PTLP)**: Indicates data integrity issue within the Flit
+- **Nullified TLP (NTLP)**: TLP marked for discard
+- **NAK_WITHDRAWAL**: Cancels pending NAKs when subsequent Flits received correctly
 
 **Flit Structure (256 bytes total) / Flit结构（总共256字节）：**
 

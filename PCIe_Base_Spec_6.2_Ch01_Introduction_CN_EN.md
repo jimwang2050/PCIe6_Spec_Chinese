@@ -104,7 +104,7 @@ The high-level requirements for this evolving I/O interconnect are as follows:
     - Ability to support PCI-Compatible error handling / 能够支持 PCI 兼容的错误处理
     - Ability to support advanced error reporting and handling to improve fault isolation and recovery solutions / 能够支持高级错误报告和处理，以改进故障隔离和恢复解决方案
   - Process Technology Independence / 工艺技术独立性：
-    - Ability to support different DC common mode voltages at Transmitter and Receiver / 能够在发送器和接收器支持不同的直流共模电压
+    - Ability to support different DC common mode voltages at Transmitter and Receiver / 能够在发送端和接收端支持不同的直流共模电压
   - Ease of Testing / 易于测试：
     - Ability to test electrical compliance via simple connection to test equipment / 能够通过简单连接到测试设备来测试电气合规性
 
@@ -320,22 +320,22 @@ Endpoint refers to a type of Function that can be the Requester or Completer of 
 > - 如果请求中断资源，RCiEP 需要支持 MSI 或 MSI-X 或两者。如果实现了 MSI，RCiEP 被允许支持 MSI 能力结构的 32 位或 64 位消息地址版本。
 
 - An RCiEP is permitted to support 32-bit addressing for Base Address Registers that request memory resources.
-- RCiEP 被允许为请求存储器资源的基地址寄存器支持 32 位寻址。
+> - RCiEP 被允许为请求存储器资源的基地址寄存器支持 32 位寻址。
 
 - An RCiEP must not implement Link Capabilities, Link Status, Link Control, Link Capabilities 2, Link Status 2, and Link Control 2 registers in the PCI Express Extended Capability.
-- RCiEP 不得在 PCI Express 扩展能力中实现链路能力、链路状态、链路控制、链路能力2、链路状态2和链路控制2寄存器。
+> - RCiEP 不得在 PCI Express 扩展能力中实现链路能力、链路状态、链路控制、链路能力2、链路状态2和链路控制2寄存器。
 
 - If an RCiEP is associated with an optional Root Complex Event Collector, it must signal PME and error conditions through the Root Complex Event Collector.
 > - 如果 RCiEP 与可选的根复合体事件收集器关联，则必须通过根复合体事件收集器发出 PME 和错误条件信号。
 
 - An RCiEP must not be associated with more than one Root Complex Event Collector.
-- RCiEP 不得与多个根复合体事件收集器关联。
+> - RCiEP 不得与多个根复合体事件收集器关联。
 
 - An RCiEP does not implement Active State Power Management.
-- RCiEP 不实现主动状态电源管理。
+> - RCiEP 不实现主动状态电源管理。
 
 - An RCiEP may not be hot-plugged independent of the Root Complex as a whole.
-- RCiEP 不能独立于整个根复合体进行热插拔。
+> - RCiEP 不能独立于整个根复合体进行热插拔。
 
 - An RCiEP must not appear in any of the hierarchy domains exposed by the Root Complex.
 - RCiEP 不得出现在根复合体公开的任何层次结构域中。
@@ -370,7 +370,7 @@ A Switch is defined as a logical assembly of multiple virtual PCI-to-PCI Bridge 
 > - 必须按照第6.5节的规定支持锁定请求。不要求交换机支持下行端口作为锁定请求的发起端口。
 
 - Each enabled Switch Port must comply with the Flow Control specification within this document.
-> - 每个启用的交换机端口必须符合本文件中的流控制规范。
+> - 每个启用的交换机端口必须符合本文件中的流量控制规范。
 
 - A Switch is not allowed to split a packet into smaller packets, e.g., a single packet with a 256-byte payload must not be divided into two packets of 128 bytes payload each.
 > - 不允许交换机将数据包拆分为更小的数据包，例如，不得将具有256字节有效载荷的单个数据包拆分为各具有128字节有效载荷的两个数据包。
@@ -434,7 +434,7 @@ The PCI/PCIe hardware/software model includes architectural constructs necessary
 > - 启用/禁用控制，用于功能对接收到的请求的响应以及请求的发起
 
 - Well-defined ordering and flow control models to support the consistent and robust implementation of hardware/software interfaces
-> - 定义良好的排序和流控制模型，以支持硬件/软件接口的一致和健壮实现
+> - 定义良好的排序和流量控制模型，以支持硬件/软件接口的一致和健壮实现
 
 The PCI Express configuration model supports two mechanisms:
 
@@ -489,7 +489,7 @@ Note that a simpler form of packet communication is supported between two Data L
 The upper Layer of the architecture is the Transaction Layer. The Transaction Layer's primary responsibility is the assembly and disassembly of TLPs. TLPs are used to communicate transactions, such as read and write, as well as certain types of events. The Transaction Layer is also responsible for managing credit-based flow control for TLPs.
 
 >
-> 架构的上层是事务层。事务层的主要职责是 TLP 的组装和拆解。TLP 用于传递事务，如读和写，以及某些类型的事件。事务层还负责管理 TLP 的基于信用的流控制。
+> 架构的上层是事务层。事务层的主要职责是 TLP 的组装和拆解。TLP 用于传递事务，如读和写，以及某些类型的事件。事务层还负责管理 TLP 的基于信用的流量控制。
 >
 
 Every request packet requiring a response packet is implemented as a Split Transaction. Each packet has a unique identifier that enables response packets to be directed to the correct originator. The packet format supports different forms of addressing depending on the type of the transaction (Memory, I/O, Configuration, and Message). The packets may also have attributes such as No Snoop, Relaxed Ordering, and ID-Based Ordering (IDO).
@@ -545,7 +545,7 @@ The PCI Express architecture has "hooks" to support future performance enhanceme
 The Transaction Layer, in the process of generating and receiving TLPs, exchanges Flow Control information with its complementary Transaction Layer on the other side of the Link. It is also responsible for supporting both software and hardware-initiated power management.
 
 >
-> 事务层在生成和接收 TLP 的过程中，与链路另一侧的互补事务层交换流控制信息。它还负责支持软件和硬件启动的电源管理。
+> 事务层在生成和接收 TLP 的过程中，与链路另一侧的互补事务层交换流量控制信息。它还负责支持软件和硬件启动的电源管理。
 >
 
 Initialization and configuration functions require the Transaction Layer to:
@@ -580,10 +580,10 @@ Flow Control services:
 - Remote Flow Control information is used to throttle TLP transmission.
 
 >
-> 流控制服务：
-> - 事务层跟踪链路上 TLP 的流控制信用。
+> 流量控制服务：
+> - 事务层跟踪链路上 TLP 的流量控制信用。
 > - 事务信用状态使用数据链路层的传输服务定期传输到远程事务层。
-> - 远程流控制信息用于限制 TLP 传输。
+> - 远程流量控制信息用于限制 TLP 传输。
 >
 
 Ordering rules:
