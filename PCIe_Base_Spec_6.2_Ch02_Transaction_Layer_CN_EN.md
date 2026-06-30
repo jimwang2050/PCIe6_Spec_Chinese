@@ -148,7 +148,7 @@ TLP headers are either 3 DW (Non-Flit Mode) or contain OHC (Flit Mode). Key head
 >
 > | 字段 | 描述 |
 > |------|------|
-> | **Fmt** | 格式：00=3DW无数据、01=4DW无数据、10=3DW带数据、11=4DW带数据 |
+> | **Fmt** | 格式：00=3DW 无数据、01=4DW 无数据、10=3DW 带数据、11=4DW 带数据 |
 > | **Type** | 事务类型（内存读/写、配置读/写、消息、完成等）|
 > | **TC** | 流量类别（0–7） |
 > | **Attr** | 属性（No Snoop、Relaxed Ordering、ID-Based Ordering）|
@@ -201,7 +201,7 @@ The Flit_Marker (embedded in DLP) indicates special conditions:
 | FEC | 6 bytes | Reed-Solomon forward error correction |
 | Reserved | 2 bytes | Reserved for future use |
 
-> **注意**：Flit Mode是PCIe 6.0的核心新特性，取代了传统的TLP封装方式。在Flit Mode下，ECRC被FEC取代，事务层错误检测由FEC和CRC共同完成。
+> **注意**：Flit Mode 是 PCIe 6.0 的核心新特性，取代了传统的 TLP 封装方式。在 Flit Mode 下，ECRC 被 FEC 取代，事务层错误检测由 FEC 和 CRC 共同完成。
 
 ---
 
@@ -374,7 +374,7 @@ The general ordering table (Table 2-40) defines pass/fail relationships between 
 - Empty cells (diagonal) = same transaction type, typically maintains ordering
 - UIO ordering and IDE ordering have additional rules beyond this table
 
-> 注：表2-40是PCIe规范中定义事务排序的核心表格。实际实现需结合TC映射、IDO和UIO规则综合判断。
+> 注：表 2-40 是 PCIe 规范中定义事务排序的核心表格。实际实现需结合 TC 映射、IDO 和 UIO 规则综合判断。
 
 ---
 

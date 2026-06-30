@@ -17,16 +17,16 @@
 ## Table of Contents / 目录
 
 > **1. Introduction / 引言** ........................................................................................ 127
->   1.1 An Evolving I/O Interconnect / 不断演进的I/O互连 ............................................ 127
->   1.2 PCI Express Link / PCI Express链路 ............................................................... 128
->   1.3 PCI Express Fabric Topology / PCI Express结构拓扑 ........................................... 129
+>   1.1 An Evolving I/O Interconnect / 不断演进的 I/O 互连 ............................................ 127
+>   1.2 PCI Express Link / PCI Express 链路 ............................................................... 128
+>   1.3 PCI Express Fabric Topology / PCI Express 结构拓扑 ........................................... 129
 >      1.3.1 Root Complex / 根复合体 .................................................................. 130
 >      1.3.2 Endpoints / 端点 .............................................................................. 131
 >      1.3.3 Switch / 交换机 ................................................................................ 133
 >      1.3.4 Root Complex Event Collector / 根复合体事件收集器 ............................... 134
->      1.3.5 PCI Express to PCI/PCI-X Bridge / PCI Express到PCI/PCI-X桥 ...................... 134
+>      1.3.5 PCI Express to PCI/PCI-X Bridge / PCI Express 到 PCI/PCI-X 桥 ...................... 134
 >   1.4 Hardware/Software Model for Discovery, Configuration and Operation / 硬件/软件发现、配置与操作模型 ............................................................................................. 134
->   1.5 PCI Express Layering Overview / PCI Express分层概述 ......................................... 135
+>   1.5 PCI Express Layering Overview / PCI Express 分层概述 ......................................... 135
 >      1.5.1 Transaction Layer / 事务层 ................................................................ 136
 >      1.5.2 Data Link Layer / 数据链路层 ............................................................. 136
 >      1.5.3 Physical Layer / 物理层 ...................................................................... 136
@@ -120,11 +120,11 @@ A Link represents a dual-simplex communications channel between two components. 
 
 ![Figure 1-1: PCI Express Link / 图1-1：PCI Express链路](images/ch01/fig1-1.png)
 
-> *Figure 1-1: PCI Express Link / 图1-1：PCI Express链路*
+> *Figure 1-1: PCI Express Link / 图 1-1：PCI Express 链路*
 >
 > *[Component A] ← Packet / 数据包 → [Component B]*
 >
-> *The diagram shows a bidirectional Link between Component A and Component B, consisting of a Transmit pair and a Receive pair. 该图显示了组件A和组件B之间的双向链路，由一对发送对和一对接收对组成。*
+> *The diagram shows a bidirectional Link between Component A and Component B, consisting of a Transmit pair and a Receive pair. 该图显示了组件 A 和组件 B 之间的双向链路，由一对发送对和一对接收对组成。*
 
 The primary Link attributes for PCI Express Link are:
 
@@ -133,10 +133,10 @@ The primary Link attributes for PCI Express Link are:
 >
 
 - **The basic Link** — PCI Express Link consists of dual unidirectional differential Links, implemented as a Transmit pair and a Receive pair. A data clock is embedded using an encoding scheme (see Chapter 4) to achieve very high data rates.
-> **基本链路** — PCI Express 链路由双单向差分链路组成，实现为一对发送对和一对接收对。数据时钟使用编码方案嵌入（见第4章），以实现非常高的数据速率。
+> **基本链路** — PCI Express 链路由双单向差分链路组成，实现为一对发送对和一对接收对。数据时钟使用编码方案嵌入（见第 4 章），以实现非常高的数据速率。
 
 - **The Signaling method** — Each major revision of PCI Express signaling has evolved one (or more) characteristics to increase bandwidth. Throughout this specification, the term GT/s is used to refer to the number of encoded bits transferred in a second on a direction of a Lane. The actual effective data rate is dependent on a combination of modulation method, encoding method, and data rate. Table 1-1 provides a summary of Max Data Rate, Modulation Scheme, Encoding Method, and Effective Max Data Rate with the accounting of only encoding overhead for all the six major revisions of PCI Express. See Chapter 4 for more information about the combined signaling method and Chapter 8 for electrical specification details for each major PCI Express revision.
-> **信号方法** — PCI Express 信号的每个主要修订版都演进了一项（或多项）特性以增加带宽。在本规范中，术语 GT/s 用于指代一条通道的一个方向上每秒传输的编码比特数。实际有效数据速率取决于调制方法、编码方法和数据速率的组合。表 1-1 总结了 PCI Express 所有六个主要修订版的最大数据速率、调制方案、编码方法和扣除编码开销后的有效最大数据速率。有关组合信号方法的更多信息，请参见第4章，有关每个主要 PCI Express 修订版的电气规范详情，请参见第8章。
+> **信号方法** — PCI Express 信号的每个主要修订版都演进了一项（或多项）特性以增加带宽。在本规范中，术语 GT/s 用于指代一条通道的一个方向上每秒传输的编码比特数。实际有效数据速率取决于调制方法、编码方法和数据速率的组合。表 1-1 总结了 PCI Express 所有六个主要修订版的最大数据速率、调制方案、编码方法和扣除编码开销后的有效最大数据速率。有关组合信号方法的更多信息，请参见第 4 章，有关每个主要 PCI Express 修订版的电气规范详情，请参见第 8 章。
 
 **Table 1-1: PCIe Signaling Characteristics / 表1-1：PCIe 信号特性**
 
@@ -149,18 +149,18 @@ The primary Link attributes for PCI Express Link are:
 | 32.0 GT/s | NRZ | 128b/130b | ~32 Gbit/s | 5.x, 6.x |
 | 64.0 GT/s | PAM4 | 1b/1b | 64 Gbit/s | 6.x |
 
-> *Note: Terms like "PCIe Gen3" are ambiguous and should be avoided. For example, "gen3" could mean (1) compliant with Base 3.0, (2) compliant with Base 3.1 (last revision of 3.x), (3) compliant with Base 3.0 and supporting 8.0 GT/s, (4) compliant with Base 3.0 or later and supporting 8.0 GT/s, etc. 注意：像"PCIe Gen3"这样的术语是模糊的，应避免使用。例如，"gen3"可能意味着(1)符合Base 3.0，(2)符合Base 3.1（3.x的最后一个修订版），(3)符合Base 3.0并支持8.0 GT/s，(4)符合Base 3.0或更高版本并支持8.0 GT/s等。*
+> *Note: Terms like "PCIe Gen3" are ambiguous and should be avoided. For example, "gen3" could mean (1) compliant with Base 3.0, (2) compliant with Base 3.1 (last revision of 3.x), (3) compliant with Base 3.0 and supporting 8.0 GT/s, (4) compliant with Base 3.0 or later and supporting 8.0 GT/s, etc. 注意：像"PCIe Gen3"这样的术语是模糊的，应避免使用。例如，"gen3"可能意味着(1)符合 Base 3.0，(2)符合 Base 3.1（3.x 的最后一个修订版），(3)符合 Base 3.0 并支持 8.0 GT/s，(4)符合 Base 3.0 或更高版本并支持 8.0 GT/s 等。*
 - **Lanes** — A Link must support at least one Lane — each Lane represents a set of differential signal pairs (one pair for transmission, one pair for reception). To scale bandwidth, a Link may aggregate multiple Lanes denoted by xN where N may be any of the supported Link widths. A x8 Link operating at the 2.5 GT/s data rate represents an aggregate bandwidth of 20 Gigabits/second of raw bandwidth in each direction. This specification describes operations for x1, x2, x4, x8, and x16 Lane widths.
 > **通道（Lanes）** — 链路必须支持至少一条通道 — 每条通道代表一组差分信号对（一对用于发送，一对用于接收）。为扩展带宽，链路可以聚合多个通道，用 xN 表示，其中 N 可以是任何支持的链路宽度。以 2.5 GT/s 数据速率运行的 x8 链路在每个方向上表示 20 Gbps 的原始聚合带宽。本规范描述了 x1、x2、x4、x8 和 x16 通道宽度的操作。
 
 - **Data Stream** — PCI Express uses Data Stream in Flit Mode and Data Stream in Non-Flit Mode (see Section 4.2, including Table 4-1 and Table 4-2). Support of Data Stream in Non-Flit Mode is mandatory, while support of Data Stream in Flit Mode is mandatory only if a data rate that exceeds 32.0 GT/s is supported.
-> **数据流（Data Stream）** — PCI Express 使用 Flit 模式下的数据流和非 Flit 模式下的数据流（见第4.2节，包括表4-1和表4-2）。支持非 Flit 模式的数据流是强制性的，而支持 Flit 模式的数据流仅在支持超过 32.0 GT/s 的数据速率时才是强制性的。
+> **数据流（Data Stream）** — PCI Express 使用 Flit 模式下的数据流和非 Flit 模式下的数据流（见第 4.2 节，包括表 4-1 和表 4-2）。支持非 Flit 模式的数据流是强制性的，而支持 Flit 模式的数据流仅在支持超过 32.0 GT/s 的数据速率时才是强制性的。
 
 - **Initialization** — During hardware initialization, each PCI Express Link is set up following a negotiation of Link width, data rate, and Flit mode by the two agents at each end of the Link. No firmware or operating system software is involved.
 > **初始化** — 在硬件初始化期间，每个 PCI Express 链路由链路两端的两个代理协商链路宽度、数据速率和 Flit 模式后进行设置。不涉及固件或操作系统软件。
 
 - **Symmetry** — Each Link must support a symmetric number of Lanes in each direction, i.e., a x16 Link indicates there are 16 differential signal pairs in each direction.
-> **对称性** — 每条链路必须在每个方向上支持对称数量的通道，即 x16 链路表示每个方向有16对差分信号对。
+> **对称性** — 每条链路必须在每个方向上支持对称数量的通道，即 x16 链路表示每个方向有 16 对差分信号对。
 
 ---
 
@@ -174,7 +174,7 @@ A fabric is composed of point-to-point Links that interconnect a set of componen
 
 ![Figure 1-2: Example PCI Express Topology / 图1-2：PCI Express拓扑示例](images/ch01/fig1-2.png)
 
-> *Figure 1-2: Example PCI Express Topology. The diagram shows an RC connected to CPU/System Memory, multiple Root Ports forming hierarchy domains, Switches, and various Endpoints including RCiEPs. 图1-2：PCI Express拓扑示例。该图显示了连接到CPU/系统内存的RC、形成层次结构域的多个根端口、交换机以及包括RCiEP在内的各种端点。*
+> *Figure 1-2: Example PCI Express Topology. The diagram shows an RC connected to CPU/System Memory, multiple Root Ports forming hierarchy domains, Switches, and various Endpoints including RCiEPs. 图 1-2：PCI Express 拓扑示例。该图显示了连接到 CPU/系统内存的 RC、形成层次结构域的多个根端口、交换机以及包括 RCiEP 在内的各种端点。*
 
 #### 1.3.1 Root Complex / 根复合体
 
@@ -182,22 +182,22 @@ A fabric is composed of point-to-point Links that interconnect a set of componen
 >- RC 表示将 CPU/内存子系统连接到 I/O 的 I/O 层次结构的根。
 
 - As illustrated in Figure 1-2, an RC may support one or more PCI Express Ports. Each interface defines a separate hierarchy domain. Each hierarchy domain may be composed of a single Endpoint or a sub-hierarchy containing one or more Switch components and Endpoints.
-> - 如图1-2所示，一个RC可以支持一个或多个 PCI Express 端口。每个接口定义了一个独立的层次结构域。每个层次结构域可以由单个端点或包含一个或多个交换机组件和端点的子层次结构组成。
+> - 如图 1-2 所示，一个 RC 可以支持一个或多个 PCI Express 端口。每个接口定义了一个独立的层次结构域。每个层次结构域可以由单个端点或包含一个或多个交换机组件和端点的子层次结构组成。
 
 - The capability to route peer-to-peer transactions between hierarchy domains through an RC is optional and implementation dependent. An RC is permitted to "take ownership" of Requests that pass peer-to-peer between Root Ports, reforming and potentially splitting a Request such that it may appear to the ultimate Completer that the RC was the origin of the Request, and subsequently the RC must reform the Completion(s) being returned to the original Requester. Alternatively, an RC implementation may incorporate a real or virtual Switch internally within the Root Complex to enable full peer-to-peer support in a software transparent way.
 > - 通过 RC 在层次结构域之间路由对等事务的能力是可选的，且取决于具体实现。RC 被允许"接管"在根端口之间通过对等传输的请求，重新构造并可能拆分请求，使得最终的完成者看起来 RC 是请求的发起者，随后 RC 必须重新构造返回给原始请求者的完成。或者，RC 实现可以在根复合体内部包含一个真实或虚拟的交换机，以软件透明的方式实现完全的对等支持。
 
 - Unlike the rules for a Switch, an RC is generally permitted to split a packet into smaller packets when routing transactions peer-to-peer between hierarchy domains (except as noted below), e.g., split a single packet with a 256-byte payload into two packets of 128 bytes payload each. The resulting packets are subject to the normal packet formation rules contained in this specification (e.g., Max_Payload_Size, Read Completion Boundary (RCB), etc.). Component designers should note that splitting a packet into smaller packets may have negative performance consequences, especially for a transaction addressing a device behind a PCI Express to PCI/PCI-X bridge.
-> - 与交换机的规则不同，RC 通常被允许在层次结构域之间对等路由事务时将数据包拆分为更小的数据包（除非下文另有说明），例如，将一个具有256字节有效载荷的单个数据包拆分为两个各具有128字节有效载荷的数据包。生成的数据包受本规范中包含的常规数据包形成规则的约束（例如，Max_Payload_Size、Read Completion Boundary (RCB) 等）。组件设计者应注意，将数据包拆分为更小的数据包可能会对性能产生负面影响，特别是对于寻址 PCI Express 到 PCI/PCI-X 桥后面设备的事务。
+> - 与交换机的规则不同，RC 通常被允许在层次结构域之间对等路由事务时将数据包拆分为更小的数据包（除非下文另有说明），例如，将一个具有 256 字节有效载荷的单个数据包拆分为两个各具有 128 字节有效载荷的数据包。生成的数据包受本规范中包含的常规数据包形成规则的约束（例如，Max_Payload_Size、Read Completion Boundary (RCB) 等）。组件设计者应注意，将数据包拆分为更小的数据包可能会对性能产生负面影响，特别是对于寻址 PCI Express 到 PCI/PCI-X 桥后面设备的事务。
 
 - **Exception**: An RC that supports UIO peer-to-peer routing is permitted to split UIO Memory Write Requests only at naturally aligned 64B boundaries.
 > - **例外**：支持 UIO 对等路由的 RC 仅允许在自然对齐的 64B 边界上拆分 UIO 存储器写请求。
 
 - **Exception**: An RC that supports peer-to-peer routing of Deferrable Memory Write Requests is not permitted to split a Deferrable Memory Write Request packet into smaller packets (see Section 6.32).
-> - **例外**：支持可延迟存储器写请求对等路由的 RC 不允许将可延迟存储器写请求数据包拆分为更小的数据包（见第6.32节）。
+> - **例外**：支持可延迟存储器写请求对等路由的 RC 不允许将可延迟存储器写请求数据包拆分为更小的数据包（见第 6.32 节）。
 
 - **Exception**: An RC that supports peer-to-peer routing of Vendor-Defined Messages is not permitted to split a Vendor-Defined Message packet into smaller packets except at 128-byte boundaries (i.e., all resulting packets except the last must be an integral multiple of 128 bytes in length) in order to retain the ability to forward the Message across a PCI Express to PCI/PCI-X Bridge.
-> - **例外**：支持供应商定义消息对等路由的 RC 不允许将供应商定义消息数据包拆分为更小的数据包，除非在128字节边界上（即，除最后一个外，所有生成的数据包长度必须是128字节的整数倍），以便保留通过 PCI Express 到 PCI/PCI-X 桥转发消息的能力。
+> - **例外**：支持供应商定义消息对等路由的 RC 不允许将供应商定义消息数据包拆分为更小的数据包，除非在 128 字节边界上（即，除最后一个外，所有生成的数据包长度必须是 128 字节的整数倍），以便保留通过 PCI Express 到 PCI/PCI-X 桥转发消息的能力。
 
 - An RC must support generation of Configuration Requests as a Requester.
 > - RC 必须支持作为请求者生成配置请求。
@@ -282,7 +282,7 @@ Endpoint refers to a type of Function that can be the Requester or Completer of 
 > - 如果请求中断资源，PCI Express 端点需要支持 MSI 或 MSI-X 或两者。如果实现了 MSI，PCI Express 端点必须支持 MSI 能力结构的 64 位消息地址版本。
 
 - A PCI Express Endpoint requesting memory resources through a BAR must set the BAR's Prefetchable bit unless the range contains locations with read side-effects or locations in which the Function does not tolerate write merging. See Section 7.5.1.2.1 for additional guidance on having the Prefetchable bit Set.
-> - 通过 BAR 请求存储器资源的 PCI Express 端点必须设置 BAR 的预取位，除非该范围包含具有读副作用的地址或功能不允许写合并的地址。有关设置预取位的其他指导，请参见第7.5.1.2.1节。
+> - 通过 BAR 请求存储器资源的 PCI Express 端点必须设置 BAR 的预取位，除非该范围包含具有读副作用的地址或功能不允许写合并的地址。有关设置预取位的其他指导，请参见第 7.5.1.2.1 节。
 
 - For a PCI Express Endpoint, 64-bit addressing must be supported for all BARs that have the Prefetchable bit Set. 32-bit addressing is permitted for all BARs that do not have the Prefetchable bit Set.
 > - 对于 PCI Express 端点，必须为所有设置了预取位的 BAR 支持 64 位寻址。允许为所有未设置预取位的 BAR 支持 32 位寻址。
@@ -323,7 +323,7 @@ Endpoint refers to a type of Function that can be the Requester or Completer of 
 > - RCiEP 被允许为请求存储器资源的基地址寄存器支持 32 位寻址。
 
 - An RCiEP must not implement Link Capabilities, Link Status, Link Control, Link Capabilities 2, Link Status 2, and Link Control 2 registers in the PCI Express Extended Capability.
-> - RCiEP 不得在 PCI Express 扩展能力中实现链路能力、链路状态、链路控制、链路能力2、链路状态2和链路控制2寄存器。
+> - RCiEP 不得在 PCI Express 扩展能力中实现链路能力、链路状态、链路控制、链路能力 2、链路状态 2 和链路控制 2 寄存器。
 
 - If an RCiEP is associated with an optional Root Complex Event Collector, it must signal PME and error conditions through the Root Complex Event Collector.
 > - 如果 RCiEP 与可选的根复合体事件收集器关联，则必须通过根复合体事件收集器发出 PME 和错误条件信号。
@@ -355,25 +355,25 @@ A Switch is defined as a logical assembly of multiple virtual PCI-to-PCI Bridge 
 
 ![Figure 1-3: Logical Block Diagram of a Switch / 图1-3：交换机逻辑框图](images/ch01/fig1-3.png)
 
-> *Figure 1-3: Logical Block Diagram of a Switch. Shows an Upstream Port connected to multiple Downstream Ports through virtual PCI-to-PCI Bridges. 图1-3：交换机逻辑框图。显示了一个上行端口通过虚拟PCI-to-PCI桥连接到多个下行端口。*
+> *Figure 1-3: Logical Block Diagram of a Switch. Shows an Upstream Port connected to multiple Downstream Ports through virtual PCI-to-PCI Bridges. 图 1-3：交换机逻辑框图。显示了一个上行端口通过虚拟 PCI-to-PCI 桥连接到多个下行端口。*
 
 - Switches appear to configuration software as two or more logical PCI-to-PCI Bridges.
 > - 交换机在配置软件中呈现为两个或多个逻辑 PCI-to-PCI 桥。
 
 - A Switch forwards transactions using PCI Bridge mechanisms; e.g., address-based routing except when engaged in a Multicast, as defined in Section 6.14.
-> - 交换机使用 PCI 桥机制转发事务；例如，基于地址的路由，除非在进行了多播时（如第6.14节所定义）。
+> - 交换机使用 PCI 桥机制转发事务；例如，基于地址的路由，除非在进行了多播时（如第 6.14 节所定义）。
 
 - Except as noted in this document, a Switch must forward all types of Transaction Layer Packets (TLPs) between any set of Ports.
 > - 除非本文件另有说明，交换机必须在任意端口组之间转发所有类型的事务层数据包（TLP）。
 
 - Locked Requests must be supported as specified in Section 6.5. Switches are not required to support Downstream Ports as initiating Ports for Locked Requests.
-> - 必须按照第6.5节的规定支持锁定请求。不要求交换机支持下行端口作为锁定请求的发起端口。
+> - 必须按照第 6.5 节的规定支持锁定请求。不要求交换机支持下行端口作为锁定请求的发起端口。
 
 - Each enabled Switch Port must comply with the Flow Control specification within this document.
 > - 每个启用的交换机端口必须符合本文件中的流量控制规范。
 
 - A Switch is not allowed to split a packet into smaller packets, e.g., a single packet with a 256-byte payload must not be divided into two packets of 128 bytes payload each.
-> - 不允许交换机将数据包拆分为更小的数据包，例如，不得将具有256字节有效载荷的单个数据包拆分为各具有128字节有效载荷的两个数据包。
+> - 不允许交换机将数据包拆分为更小的数据包，例如，不得将具有 256 字节有效载荷的单个数据包拆分为各具有 128 字节有效载荷的两个数据包。
 
 - Arbitration between Ingress Ports (inbound Link) of a Switch may be implemented using round robin or weighted round robin when contention occurs on the same Virtual Channel. This is described in more detail later within the specification.
 > - 当在同一虚拟通道上发生竞争时，交换机入口端口（入站链路）之间的仲裁可以使用轮询或加权轮询来实现。这将在本规范的后续部分中更详细地描述。
@@ -395,7 +395,7 @@ A Switch is defined as a logical assembly of multiple virtual PCI-to-PCI Bridge 
 > - 根复合体事件收集器不需要解码任何存储器或 I/O 资源。
 
 - A Root Complex Event Collector is identified by its Device/Port Type value (see Section 7.5.3.2).
-> - 根复合体事件收集器通过其设备/端口类型值来识别（见第7.5.3.2节）。
+> - 根复合体事件收集器通过其设备/端口类型值来识别（见第 7.5.3.2 节）。
 
 - A Root Complex Event Collector has the Base Class 08h, Sub-Class 07h and Programming Interface 00h. (Since an earlier version of this specification used Sub-Class 06h for this purpose, an implementation is still permitted to use Sub-Class 06h, but this is strongly discouraged.)
 > - 根复合体事件收集器的基类为 08h，子类为 07h，编程接口为 00h。（由于本规范的早期版本为此目的使用了子类 06h，仍然允许实现使用子类 06h，但强烈不建议这样做。）
@@ -466,7 +466,7 @@ This document specifies the architecture in terms of three discrete logical laye
 
 ![Figure 1-4: High-Level Layering Diagram / 图1-4：高层分层图](images/ch01/fig1-4.png)
 
-> *Figure 1-4: High-Level Layering Diagram. Shows Tx/Rx for Transaction Layer, Data Link Layer, and Physical Layer (with Logical and Electrical sub-blocks). 图1-4：高层分层图。显示了事务层、数据链路层和物理层（含逻辑和电气子块）的Tx/Rx。*
+> *Figure 1-4: High-Level Layering Diagram. Shows Tx/Rx for Transaction Layer, Data Link Layer, and Physical Layer (with Logical and Electrical sub-blocks). 图 1-4：高层分层图。显示了事务层、数据链路层和物理层（含逻辑和电气子块）的 Tx/Rx。*
 
 PCI Express uses packets to communicate information between components. Packets are formed in the Transaction and Data Link Layers to carry the information from the transmitting component to the receiving component. As the transmitted packets flow through the other layers, they are extended with additional information necessary to handle packets at those layers. At the receiving side the reverse process occurs and packets get transformed from their Physical Layer representation to the Data Link Layer representation and finally (for Transaction Layer Packets) to the form that can be processed by the Transaction Layer of the receiving device. Figure 1-5 shows the conceptual flow of transaction level packet information through the layers.
 
@@ -476,7 +476,7 @@ PCI Express uses packets to communicate information between components. Packets 
 
 ![Figure 1-5: Packet Flow Through the Layers / 图1-5：数据包流经各层](images/ch01/fig1-5.png)
 
-> *Figure 1-5: Packet Flow Through the Layers. Shows the framing, sequence number, header, data, ECRC, LCRC being added/removed at each layer. 图1-5：数据包流经各层。显示了帧定界、序列号、头部、数据、ECRC、LCRC在各层的添加/移除。*
+> *Figure 1-5: Packet Flow Through the Layers. Shows the framing, sequence number, header, data, ECRC, LCRC being added/removed at each layer. 图 1-5：数据包流经各层。显示了帧定界、序列号、头部、数据、ECRC、LCRC 在各层的添加/移除。*
 
 Note that a simpler form of packet communication is supported between two Data Link Layers (connected to the same Link) for the purpose of Link management.
 
@@ -717,10 +717,10 @@ System Design For Testability (DFT) support features:
 
 >
 > 系统可测试性设计 (DFT) 支持功能：
-> - 合规模式（见第4.2.9节、第4.2.11节和第4.2.14节）
-> - 修改的合规模式（见第4.2.10节、第4.2.12节和第4.2.15节）
-> - 抖动测量模式（见第4.2.13节和第4.2.16节）
-> - Flit 错误注入（见第7.8.13节）
+> - 合规模式（见第 4.2.9 节、第 4.2.11 节和第 4.2.14 节）
+> - 修改的合规模式（见第 4.2.10 节、第 4.2.12 节和第 4.2.15 节）
+> - 抖动测量模式（见第 4.2.13 节和第 4.2.16 节）
+> - Flit 错误注入（见第 7.8.13 节）
 >
 
 ##### 1.5.4.4 Inter-Layer Interfaces / 层间接口
@@ -789,8 +789,8 @@ The Physical to Data Link interface provides:
 
 ---
 
-> **[End of Chapter 1 / 第1章结束]**
+> **[End of Chapter 1 / 第 1 章结束]**
 >
-> *Next: Chapter 2 — Transaction Layer Specification / 下一章：第2章 — 事务层规范*
+> *Next: Chapter 2 — Transaction Layer Specification / 下一章：第 2 章 — 事务层规范*
 >
-> *Translation Batch 1 of N. Subsequent chapters will be translated in follow-up batches. 翻译第1批，共N批。后续章节将在后续批次中翻译。*
+> *Translation Batch 1 of N. Subsequent chapters will be translated in follow-up batches. 翻译第 1 批，共 N 批。后续章节将在后续批次中翻译。*
