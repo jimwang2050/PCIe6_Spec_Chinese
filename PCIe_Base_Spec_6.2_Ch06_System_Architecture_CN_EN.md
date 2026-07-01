@@ -12,7 +12,7 @@
 ## 6. System Architecture / 系统架构
 
 ![Page 707 — Chapter 6 opening](images/ch06/ch06_pg0707.png)
-<br><em>Figure 6-?: Chapter 6 opening | 图6-?: 第6章开篇</em>
+<br><em>Chapter 6 opening | 第6章开篇</em>
 
 This chapter addresses various aspects of PCI Express interconnect architecture in a platform context.
 
@@ -148,7 +148,7 @@ A Function is permitted to implement both MSI and MSI-X, but system software is 
 >
 
 ![Page 708-709 — MSI/MSI-X overview](images/ch06/ch06_pg0709.png)
-<br><em>Figure 6-?: MSI/MSI-X overview | 图6-?: MSI/MSI-X概述</em>
+<br><em>MSI/MSI-X overview | MSI/MSI-X概述</em>
 
 All PCI Express device Functions that are capable of generating interrupts must support MSI or MSI-X or both. The MSI and MSI-X mechanisms deliver interrupts by performing Memory Write transactions. MSI and MSI-X are edge-triggered interrupt mechanisms; neither [PCI] nor this specification support level-triggered MSI/MSI-X interrupts. Certain PCI devices and their drivers rely on INTx-type level-triggered interrupt behavior (addressed by the PCI Express legacy INTx emulation mechanism). To take advantage of the MSI or MSI-X capability and edge-triggered interrupt semantics, these devices and their drivers may have to be redesigned.
 
@@ -240,8 +240,8 @@ If the Extended Message Data Capable bit is Set and system software supports 32-
 
 ##### 6.1.4.2 MSI-X Configuration / MSI-X 配置
 
-[Page 710 — MSI-X Configuration](images/ch06/ch06_pg0710.png)
-<br><em>Figure 6-?: [Page 710 — MSI-X Configuration](images/ch06/ch06_pg0710.png)</em>
+![Page 710 — MSI-X Configuration](images/ch06/ch06_pg0710.png)
+<br><em>MSI-X Configuration | MSI-X Configuration</em>
 
 In this section, all register and field references are in the context of the MSI-X Capability, MSI-X Table, and MSI-X PBA structures.
 
@@ -297,8 +297,8 @@ Software is permitted to configure multiple MSI-X Table entries with the same ve
 > 软件可以使用相同向量配置多个 MSI-X 表条目，并且当分配的向量少于请求时，这确实是必要的。
 >
 
-[Page 711 — Enabling, Implementation Notes](images/ch06/ch06_pg0711.png)
-<br><em>Figure 6-?: [Page 711 — Enabling, Implementation Notes](images/ch06/ch06_pg0711.png)</em>
+![Page 711 — Enabling, Implementation Notes](images/ch06/ch06_pg0711.png)
+<br><em>Enabling, Implementation Notes | Enabling, Implementation Notes</em>
 
 **Implementation Note: Special Considerations for QWORD Accesses** / 实现说明：QWORD 访问的特殊考虑
 
@@ -326,8 +326,8 @@ To maintain backward compatibility, the MSI Enable bit in the Message Control Re
 
 ##### 6.1.4.4 Sending Messages / 发送消息
 
-[Page 712 — Sending Messages, Synchronization](images/ch06/ch06_pg0712.png)
-<br><em>Figure 6-?: [Page 712 — Sending Messages, Synchronization](images/ch06/ch06_pg0712.png)</em>
+![Page 712 — Sending Messages, Synchronization](images/ch06/ch06_pg0712.png)
+<br><em>Sending Messages, Synchronization | Sending Messages, Synchronization</em>
 
 Once MSI or MSI-X is enabled (the appropriate bit in one of the Message Control registers is Set), and one or more vectors is unmasked, the Function is permitted to send messages. To send a message, a Function does a DWORD Memory Write to the appropriate message address with the appropriate message data.
 
@@ -385,8 +385,8 @@ Similarly, when software updates multiple MSI-X Table entries, it should mask th
 
 ##### 6.1.4.7 Message Transaction Reception and Ordering Requirements / 消息事务接收和排序要求
 
-[Page 715 — MSI ordering, PME](images/ch06/ch06_pg0715.png)
-<br><em>Figure 6-?: [Page 715 — MSI ordering, PME](images/ch06/ch06_pg0715.png)</em>
+![Page 715 — MSI ordering, PME](images/ch06/ch06_pg0715.png)
+<br><em>MSI ordering, PME | MSI ordering, PME</em>
 
 An MSI or MSI-X message, by virtue of being a Posted Request, is prohibited by transaction ordering rules from passing any earlier Posted Request. This preserves the ordering of data versus interrupts.
 
@@ -438,8 +438,8 @@ PME messages can be routed between PCI Express and PCI hierarchies through PCI E
 
 ### 6.2 Error Signaling and Logging / 错误信号与记录
 
-[Page 717 — Error Signaling](images/ch06/ch06_pg0717.png)
-<br><em>Figure 6-?: [Page 717 — Error Signaling](images/ch06/ch06_pg0717.png)</em>
+![Page 717 — Error Signaling](images/ch06/ch06_pg0717.png)
+<br><em>Error Signaling | Error Signaling</em>
 
 #### 6.2.1 Scope / 范围
 
@@ -481,8 +481,8 @@ Uncorrectable errors are those that cannot be corrected by hardware. These error
 
 #### 6.2.3 Error Signaling / 错误信号
 
-[Page 719 — Error Signaling Methods](images/ch06/ch06_pg0719.png)
-<br><em>Figure 6-?: [Page 719 — Error Signaling Methods](images/ch06/ch06_pg0719.png)</em>
+![Page 719 — Error Signaling Methods](images/ch06/ch06_pg0719.png)
+<br><em>Error Signaling Methods | Error Signaling Methods</em>
 
 PCI Express uses three primary mechanisms for error signaling:
 
@@ -610,8 +610,8 @@ Optional error checking mechanisms, such as ECRC, provide additional layers of e
 
 #### 6.2.4 Error Logging / 错误记录
 
-[Page 725 — Error Logging](images/ch06/ch06_pg0725.png)
-<br><em>Figure 6-?: [Page 725 — Error Logging](images/ch06/ch06_pg0725.png)</em>
+![Page 725 — Error Logging](images/ch06/ch06_pg0725.png)
+<br><em>Error Logging | Error Logging</em>
 
 PCI Express provides several registers for error logging:
 
@@ -669,8 +669,8 @@ In Non-Flit Mode, End-End TLP Prefixes are logged as part of the Header Log regi
 
 #### 6.2.5 Sequence of Device Error Signaling and Logging Operations / 设备错误信号和记录操作序列
 
-[Page 731 — Error Sequence](images/ch06/ch06_pg0731.png)
-<br><em>Figure 6-?: [Page 731 — Error Sequence](images/ch06/ch06_pg0731.png)</em>
+![Page 731 — Error Sequence](images/ch06/ch06_pg0731.png)
+<br><em>Error Sequence | Error Sequence</em>
 
 The sequence of error signaling and logging operations is defined to ensure consistent behavior across implementations:
 1. Error is detected by the device
@@ -696,8 +696,8 @@ The sequence of error signaling and logging operations is defined to ensure cons
 
 #### 6.2.6 Error Message Controls / 错误消息控制
 
-[Page 733 — Error Message Controls](images/ch06/ch06_pg0733.png)
-<br><em>Figure 6-?: [Page 733 — Error Message Controls](images/ch06/ch06_pg0733.png)</em>
+![Page 733 — Error Message Controls](images/ch06/ch06_pg0733.png)
+<br><em>Error Message Controls | Error Message Controls</em>
 
 Error messages are controlled through several mechanisms:
 - The SERR Enable bit controls forwarding of error messages by Bridges
@@ -719,8 +719,8 @@ This section provides a comprehensive listing of all PCI Express error types and
 > 本节提供了所有 PCI Express 错误类型的全面列表以及管理其检测、信号和记录的规则。
 >
 
-[Page 734 — Error Listing](images/ch06/ch06_pg0734.png)
-<br><em>Figure 6-?: [Page 734 — Error Listing](images/ch06/ch06_pg0734.png)</em>
+![Page 734 — Error Listing](images/ch06/ch06_pg0734.png)
+<br><em>Error Listing | Error Listing</em>
 
 Errors are categorized by their functional source:
 - **Physical Layer Errors** / 物理层错误 — Receiver errors, framing errors, etc.
@@ -746,8 +746,8 @@ PCI Express error types are mapped to conventional PCI error reporting mechanism
 
 #### 6.2.8 Virtual PCI Bridge Error Handling / 虚拟 PCI 桥错误处理
 
-[Page 739 — Bridge Error Handling](images/ch06/ch06_pg0739.png)
-<br><em>Figure 6-?: [Page 739 — Bridge Error Handling](images/ch06/ch06_pg0739.png)</em>
+![Page 739 — Bridge Error Handling](images/ch06/ch06_pg0739.png)
+<br><em>Bridge Error Handling | Bridge Error Handling</em>
 
 ##### 6.2.8.1 Error Message Forwarding and PCI Mapping for Bridge — Rules / 桥的错误消息转发和 PCI 映射 — 规则
 
@@ -759,8 +759,8 @@ Virtual PCI Bridges in Switches and Root Ports follow specific rules for forward
 
 #### 6.2.9 SR-IOV Baseline Error Handling / SR-IOV 基线错误处理
 
-[Page 740 — SR-IOV Error Handling](images/ch06/ch06_pg0740.png)
-<br><em>Figure 6-?: [Page 740 — SR-IOV Error Handling](images/ch06/ch06_pg0740.png)</em>
+![Page 740 — SR-IOV Error Handling](images/ch06/ch06_pg0740.png)
+<br><em>SR-IOV Error Handling | SR-IOV Error Handling</em>
 
 For SR-IOV devices, error handling must account for the separation of Physical Functions (PFs) and Virtual Functions (VFs). Each VF has its own set of error status registers, and errors must be properly attributed to the correct Function.
 
@@ -770,8 +770,8 @@ For SR-IOV devices, error handling must account for the separation of Physical F
 
 #### 6.2.10 Internal Errors / 内部错误
 
-[Page 741 — Internal Errors](images/ch06/ch06_pg0741.png)
-<br><em>Figure 6-?: [Page 741 — Internal Errors](images/ch06/ch06_pg0741.png)</em>
+![Page 741 — Internal Errors](images/ch06/ch06_pg0741.png)
+<br><em>Internal Errors | Internal Errors</em>
 
 Internal errors are device-specific errors that are not caused by TLPs received from the Link. These are typically reported through the AER Capability structure.
 
@@ -781,8 +781,8 @@ Internal errors are device-specific errors that are not caused by TLPs received 
 
 #### 6.2.11 Downstream Port Containment (DPC) / 下行端口遏制（DPC）
 
-[Page 742 — DPC](images/ch06/ch06_pg0742.png)
-<br><em>Figure 6-?: [Page 742 — DPC](images/ch06/ch06_pg0742.png)</em>
+![Page 742 — DPC](images/ch06/ch06_pg0742.png)
+<br><em>DPC | DPC</em>
 
 Downstream Port Containment (DPC) is an optional Extended Capability that provides automatic error containment for uncorrectable errors detected at a Downstream Port. When an uncorrectable error is detected:
 1. The Downstream Port disables the Link, preventing the propagation of corrupted data
@@ -832,8 +832,8 @@ Software can trigger DPC for testing or recovery purposes by writing to the DPC 
 
 ##### 6.2.11.5 DL_Active ERR_COR Signaling / DL_Active ERR_COR 信号
 
-[Page 749 — DL_Active ERR_COR Signaling, DPC Implementation Notes](images/ch06/ch06_pg0749.png)
-<br><em>Figure 6-?: [Page 749 — DL_Active ERR_COR Signaling, DPC Implementation Notes](images/ch06/ch06_pg0749.png)</em>
+![Page 749 — DL_Active ERR_COR Signaling, DPC Implementation Notes](images/ch06/ch06_pg0749.png)
+<br><em>DL_Active ERR_COR Signaling, DPC Implementation Notes | DL_Active ERR_COR Signaling, DPC Implementation Notes</em>
 
 Support for this feature is indicated by the DL_Active ERR_COR Signaling Supported bit in the DPC Capability register. The feature is enabled by the DL_ACTIVE ERR_COR Enable bit in the DPC Control Register. The DL_ACTIVE state is indicated by the Data Link Layer Link Active bit in the Link Status Register. DL_ACTIVE ERR_COR signaling is managed independently of Data Link Layer State Changed interrupts, and it is permitted to use both mechanisms concurrently.
 
@@ -867,8 +867,8 @@ For a given DL_ACTIVE event, if a Port is going to send both an ERR_COR Message 
 
 #### 6.3.1 Introduction and Scope / 引言与范围
 
-[Page 750 — Virtual Channel Introduction](images/ch06/ch06_pg0750.png)
-<br><em>Figure 6-?: [Page 750 — Virtual Channel Introduction](images/ch06/ch06_pg0750.png)</em>
+![Page 750 — Virtual Channel Introduction](images/ch06/ch06_pg0750.png)
+<br><em>Virtual Channel Introduction | Virtual Channel Introduction</em>
 
 The Virtual Channel mechanism provides a foundation for supporting differentiated services within the PCI Express fabric. It enables deployment of independent physical resources that together with traffic labeling are required for optimized handling of differentiated traffic. Traffic labeling is supported using Traffic Class TLP-level labels. The policy for traffic differentiation is determined by the TC/VC mapping and by the VC-based, Port-based, and Function-based arbitration mechanisms supported by certain VC capabilities. The TC/VC mapping depends on the platform application requirements. These requirements drive the choice of the arbitration algorithms and configurability/programmability of arbiters allows detailed tuning of the traffic servicing policy.
 
@@ -884,8 +884,8 @@ The definition of the Virtual Channel and associated Traffic Class mechanisms is
 
 #### 6.3.2 TC/VC Mapping and Example Usage / TC/VC 映射与使用示例
 
-[Page 751 — TC/VC Mapping Examples](images/ch06/ch06_pg0751.png)
-<br><em>Figure 6-?: [Page 751 — TC/VC Mapping Examples](images/ch06/ch06_pg0751.png)</em>
+![Page 751 — TC/VC Mapping Examples](images/ch06/ch06_pg0751.png)
+<br><em>TC/VC Mapping Examples | TC/VC Mapping Examples</em>
 
 A Virtual Channel is established when one or more TCs are associated with a physical resource designated by a VC ID. Every Traffic Class that is supported on a given path within the fabric must be mapped to one of the enabled Virtual Channels. Every Port must support the default TC0/VC0 pair — this is "hardwired". Any additional TC mapping or additional VC resource enablement is optional and is controlled by system software using the programming model described in Sections 7.9.1 and 7.9.2.
 
@@ -907,8 +907,8 @@ Multi-Port components (Switches and Root Complex) are required to support indepe
 
 #### 6.3.3 VC Arbitration / VC 仲裁
 
-[Page 752 — VC Arbitration Introduction](images/ch06/ch06_pg0752.png)
-<br><em>Figure 6-?: [Page 752 — VC Arbitration Introduction](images/ch06/ch06_pg0752.png)</em>
+![Page 752 — VC Arbitration Introduction](images/ch06/ch06_pg0752.png)
+<br><em>VC Arbitration Introduction | VC Arbitration Introduction</em>
 
 Arbitration is one of the key aspects of the Virtual Channel mechanism and is defined in a manner that fully enables configurability to the specific application. In general, the definition of the VC-based arbitration mechanism is driven by the following objectives: To prevent false transaction timeouts and to guarantee data flow forward progress; To provide differentiated services between data flows within the fabric; To provide guaranteed bandwidth with deterministic (and reasonably small) end-to-end latency between components.
 
@@ -918,8 +918,8 @@ Arbitration is one of the key aspects of the Virtual Channel mechanism and is de
 
 ##### 6.3.3.1 Traffic Flow and Switch Arbitration Model / 流量与交换机仲裁模型
 
-[Page 753 — Switch Arbitration Structure](images/ch06/ch06_pg0753.png)
-<br><em>Figure 6-?: [Page 753 — Switch Arbitration Structure](images/ch06/ch06_pg0753.png)</em>
+![Page 753 — Switch Arbitration Structure](images/ch06/ch06_pg0753.png)
+<br><em>Switch Arbitration Structure | Switch Arbitration Structure</em>
 
 The Switch arbitration model defines a required arbitration infrastructure and functionality within a Switch. This functionality is needed to support a set of arbitration policies that control traffic contention for an Egress Port from multiple Ingress Ports. The following two steps conceptually describe routing of traffic received by the Switch: First, the target Egress Port is determined based on address/routing information in the TLP header. Second, the target VC of the Egress Port is determined based on the TC/VC map of the Egress Port. Transactions that target the same VC in the Egress Port but are from different Ingress Ports must be arbitrated before they can be forwarded to the corresponding resource in the Egress Port. This arbitration is referred to as Port Arbitration. Once the traffic reaches the destination VC resource in the Egress Port, it is subject to arbitration for the shared Link. This stage of arbitration between different VCs at an Egress Port is called VC Arbitration of the Egress Port.
 
@@ -933,8 +933,8 @@ The Switch arbitration model defines a required arbitration infrastructure and f
 
 ##### 6.3.3.2 VC Arbitration — Arbitration Between VCs / VC 仲裁 — VC 之间的仲裁
 
-[Page 754-755 — VC Arbitration Methods](images/ch06/ch06_pg0755.png)
-<br><em>Figure 6-?: [Page 754-755 — VC Arbitration Methods](images/ch06/ch06_pg0755.png)</em>
+![Page 754-755 — VC Arbitration Methods](images/ch06/ch06_pg0755.png)
+<br><em>VC Arbitration Methods | VC Arbitration Methods</em>
 
 The availability of default prioritization does not restrict the type of algorithms that may be implemented to support VC arbitration — either implementation specific or one of the architecture-defined methods: Strict Priority (based on inherent prioritization, i.e., VC0 = lowest, VC7 = highest), Round Robin (RR — simplest form of arbitration where all VCs have equal priority), and Weighted RR (programmable weight factor determines the level of service).
 
@@ -958,8 +958,8 @@ For Switches, Port Arbitration refers to the arbitration at an Egress Port betwe
 
 ##### 6.3.3.4 Multi-Function Devices and Function Arbitration / 多功能设备与功能仲裁
 
-[Page 756 — Multi-Function Arbitration Model](images/ch06/ch06_pg0756.png)
-<br><em>Figure 6-?: [Page 756 — Multi-Function Arbitration Model](images/ch06/ch06_pg0756.png)</em>
+![Page 756 — Multi-Function Arbitration Model](images/ch06/ch06_pg0756.png)
+<br><em>Multi-Function Arbitration Model | Multi-Function Arbitration Model</em>
 
 The multi-Function arbitration model defines an optional arbitration infrastructure and functionality within a Multi-Function Device. This functionality is needed to support a set of arbitration policies that control traffic contention for the device's Upstream Egress Port from its multiple Functions. QoS for an Upstream request originating at a Function is managed as follows: First, a Function-specific mechanism applies a TC to the request. Next, if the Function contains a VC Extended Capability structure, it specifies the TC/VC mapping to one of the Function's VC resources. If the Function supports VC arbitration, this mechanism manages how the Function's multiple VC resources arbitrate for the conceptual internal link to the MF VC resources. Once a request packet conceptually arrives at MF VC resources, address/routing information in the TLP header determines whether the request goes Upstream or peer-to-peer to another Function. Finally, if the MF VC Extended Capability structure supports VC Arbitration, this mechanism governs how the MF VC's multiple VCs compete for the device's Upstream Egress Port.
 
@@ -969,8 +969,8 @@ The multi-Function arbitration model defines an optional arbitration infrastruct
 
 #### 6.3.4 Isochronous Support / 同步支持
 
-[Page 759 — Isochronous Support](images/ch06/ch06_pg0759.png)
-<br><em>Figure 6-?: [Page 759 — Isochronous Support](images/ch06/ch06_pg0759.png)</em>
+![Page 759 — Isochronous Support](images/ch06/ch06_pg0759.png)
+<br><em>Isochronous Support | Isochronous Support</em>
 
 Servicing isochronous data transfer requires a system to provide not only guaranteed data bandwidth but also deterministic service latency. The isochronous support mechanisms are defined to ensure that isochronous traffic receives its allocated bandwidth over a relevant period of time while also preventing starvation of the other traffic in the system. Isochronous support mechanisms apply to communication between Endpoint and Root Complex as well as to peer-to-peer communication.
 
@@ -996,8 +996,8 @@ The SVC (Single VC) and VC/MF VC capability coexistence rules ensure proper oper
 
 ### 6.4 Device Synchronization / 设备同步
 
-[Page 761 — Device Synchronization](images/ch06/ch06_pg0761.png)
-<br><em>Figure 6-?: [Page 761 — Device Synchronization](images/ch06/ch06_pg0761.png)</em>
+![Page 761 — Device Synchronization](images/ch06/ch06_pg0761.png)
+<br><em>Device Synchronization | Device Synchronization</em>
 
 Device Synchronization mechanisms ensure proper coordination between hardware and software during device state transitions. This includes mechanisms for ensuring that all outstanding transactions are completed before a device enters a low-power state or undergoes a reset.
 
@@ -1009,8 +1009,8 @@ Device Synchronization mechanisms ensure proper coordination between hardware an
 
 ### 6.5 Locked Transactions / 锁定事务
 
-[Page 762 — Locked Transactions](images/ch06/ch06_pg0762.png)
-<br><em>Figure 6-?: [Page 762 — Locked Transactions](images/ch06/ch06_pg0762.png)</em>
+![Page 762 — Locked Transactions](images/ch06/ch06_pg0762.png)
+<br><em>Locked Transactions | Locked Transactions</em>
 
 Locked Transactions support atomic read-modify-write sequences across the PCI Express fabric. This section defines the initiation and propagation of Locked Transactions, including rules for Switches, PCI Express/PCI Bridges, Root Complex, Legacy Endpoints, and PCI Express Endpoints.
 
@@ -1028,8 +1028,8 @@ Key rules include: Only Legacy Endpoints may support Lock semantics as a Complet
 
 ### 6.6 PCI Express Reset — Rules / PCI Express 复位 — 规则
 
-[Page 765 — Reset Rules](images/ch06/ch06_pg0765.png)
-<br><em>Figure 6-?: [Page 765 — Reset Rules](images/ch06/ch06_pg0765.png)</em>
+![Page 765 — Reset Rules](images/ch06/ch06_pg0765.png)
+<br><em>Reset Rules | Reset Rules</em>
 
 PCI Express defines two primary reset mechanisms: Conventional Reset (including Fundamental Reset and Hot Reset) and Function Level Reset (FLR). Conventional Reset affects the entire device and resets all Functions to their initial state. FLR allows software to reset individual Functions within a Multi-Function Device without affecting other Functions.
 
@@ -1047,8 +1047,8 @@ Fundamental Reset is asserted through a hardware sideband signal (PERST#). Hot R
 
 ### 6.7 PCI Express Native Hot-Plug / PCI Express 原生热插拔
 
-[Page 771 — Native Hot-Plug](images/ch06/ch06_pg0771.png)
-<br><em>Figure 6-?: [Page 771 — Native Hot-Plug](images/ch06/ch06_pg0771.png)</em>
+![Page 771 — Native Hot-Plug](images/ch06/ch06_pg0771.png)
+<br><em>Native Hot-Plug | Native Hot-Plug</em>
 
 PCI Express Native Hot-Plug provides a standardized mechanism for adding and removing devices from a running system without requiring system power-down. Elements of Hot-Plug include: Indicators (Attention Indicator, Power Indicator), Manually-operated Retention Latch (MRL), MRL Sensor, Electromechanical Interlock, Attention Button, Software User Interface, Slot Numbering, and Power Controller.
 
@@ -1072,8 +1072,8 @@ The System Firmware Intermediary (SFI) support provides mechanisms for firmware 
 
 ### 6.8 Power Budgeting Mechanism / 电源预算机制
 
-[Page 787 — Power Budgeting](images/ch06/ch06_pg0787.png)
-<br><em>Figure 6-?: [Page 787 — Power Budgeting](images/ch06/ch06_pg0787.png)</em>
+![Page 787 — Power Budgeting](images/ch06/ch06_pg0787.png)
+<br><em>Power Budgeting | Power Budgeting</em>
 
 The Power Budgeting Mechanism provides a standardized way for devices to report their power consumption characteristics and for system software to manage power allocation across multiple devices. This includes the System Power Budgeting Process Recommendations, Device Power Considerations, and Power Limit Mechanisms.
 
@@ -1085,8 +1085,8 @@ The Power Budgeting Mechanism provides a standardized way for devices to report 
 
 ### 6.9 Slot Power Limit Control / 插槽功率限制控制
 
-[Page 790 — Slot Power Limit](images/ch06/ch06_pg0790.png)
-<br><em>Figure 6-?: [Page 790 — Slot Power Limit](images/ch06/ch06_pg0790.png)</em>
+![Page 790 — Slot Power Limit](images/ch06/ch06_pg0790.png)
+<br><em>Slot Power Limit | Slot Power Limit</em>
 
 Slot Power Limit Control provides mechanisms for limiting the maximum power that can be consumed by a device in a slot. The Slot Power Limit value is communicated to the device during configuration, and the device must respect this limit. This mechanism is critical for ensuring system power integrity and preventing over-current conditions.
 
@@ -1098,8 +1098,8 @@ Slot Power Limit Control provides mechanisms for limiting the maximum power that
 
 ### 6.10 Root Complex Topology Discovery / 根复合体拓扑发现
 
-[Page 793 — RC Topology Discovery](images/ch06/ch06_pg0793.png)
-<br><em>Figure 6-?: [Page 793 — RC Topology Discovery](images/ch06/ch06_pg0793.png)</em>
+![Page 793 — RC Topology Discovery](images/ch06/ch06_pg0793.png)
+<br><em>RC Topology Discovery | RC Topology Discovery</em>
 
 Root Complex Topology Discovery defines the process by which system software discovers the internal topology of a Root Complex. This is important for understanding how PCI Express hierarchy domains are organized and for proper routing of transactions.
 
@@ -1111,8 +1111,8 @@ Root Complex Topology Discovery defines the process by which system software dis
 
 ### 6.11 Link Speed Management / 链路速度管理
 
-[Page 795 — Link Speed Management](images/ch06/ch06_pg0795.png)
-<br><em>Figure 6-?: [Page 795 — Link Speed Management](images/ch06/ch06_pg0795.png)</em>
+![Page 795 — Link Speed Management](images/ch06/ch06_pg0795.png)
+<br><em>Link Speed Management | Link Speed Management</em>
 
 Link Speed Management provides mechanisms for managing the operational speed of PCI Express Links. This includes capabilities for autonomous Link speed changes based on power management policies and bandwidth requirements.
 
@@ -1124,8 +1124,8 @@ Link Speed Management provides mechanisms for managing the operational speed of 
 
 ### 6.12 Access Control Services (ACS) / 访问控制服务（ACS）
 
-[Page 795-803 — ACS](images/ch06/ch06_pg0796.png)
-<br><em>Figure 6-?: [Page 795-803 — ACS](images/ch06/ch06_pg0796.png)</em>
+![Page 795-803 — ACS](images/ch06/ch06_pg0796.png)
+<br><em>ACS | ACS</em>
 
 Access Control Services (ACS) provide mechanisms for controlling peer-to-peer transactions within a PCI Express fabric. ACS defines component capability requirements, including: ACS Downstream Ports, Functions in SR-IOV Capable and Multi-Function Devices, and Functions in Single-Function Devices. Key features include: ACS Peer-to-Peer Control Interactions, ACS Enhanced Capability, ACS Violation Error Handling, and ACS Redirection Impacts on Ordering Rules.
 
@@ -1143,8 +1143,8 @@ ACS is essential for enabling secure virtualization environments by preventing u
 
 ### 6.13 Alternative Routing-ID Interpretation (ARI) / 替代路由 ID 解释（ARI）
 
-[Page 807 — ARI](images/ch06/ch06_pg0807.png)
-<br><em>Figure 6-?: [Page 807 — ARI](images/ch06/ch06_pg0807.png)</em>
+![Page 807 — ARI](images/ch06/ch06_pg0807.png)
+<br><em>ARI | ARI</em>
 
 Alternative Routing-ID Interpretation (ARI) extends the number of Functions that can be supported by a single Device beyond the traditional limit of 8. ARI enables each Function to use an 8-bit Function Number, supporting up to 256 Functions per Device. This is particularly important for SR-IOV devices that may need to expose many Virtual Functions.
 
@@ -1156,8 +1156,8 @@ Alternative Routing-ID Interpretation (ARI) extends the number of Functions that
 
 ### 6.14 Multicast Operations / 多播操作
 
-[Page 810 — Multicast](images/ch06/ch06_pg0810.png)
-<br><em>Figure 6-?: [Page 810 — Multicast](images/ch06/ch06_pg0810.png)</em>
+![Page 810 — Multicast](images/ch06/ch06_pg0810.png)
+<br><em>Multicast | Multicast</em>
 
 Multicast Operations allow a single TLP to be delivered to multiple recipients simultaneously. This is particularly useful for applications such as data replication and simultaneous firmware updates. The Multicast Capability structure defines multicast groups and the rules for processing multicast TLPs, including the MC_Overlay Mechanism for efficient multicast routing.
 
@@ -1169,8 +1169,8 @@ Multicast Operations allow a single TLP to be delivered to multiple recipients s
 
 ### 6.15 Atomic Operations (AtomicOps) / 原子操作
 
-[Page 816 — AtomicOps](images/ch06/ch06_pg0816.png)
-<br><em>Figure 6-?: [Page 816 — AtomicOps](images/ch06/ch06_pg0816.png)</em>
+![Page 816 — AtomicOps](images/ch06/ch06_pg0816.png)
+<br><em>AtomicOps | AtomicOps</em>
 
 Atomic Operations (AtomicOps) provide hardware-supported atomic transaction types including FetchAdd (fetch and add), Swap (unconditional swap), and CAS (compare and swap). These operations are essential for efficient implementation of synchronization primitives, lock-free data structures, and parallel algorithms in multi-core and multi-device environments.
 
@@ -1188,8 +1188,8 @@ AtomicOps are supported by Endpoints, Switches, and Root Complexes, with specifi
 
 ### 6.16 Dynamic Power Allocation (DPA) / 动态功率分配（DPA）
 
-[Page 821 — DPA](images/ch06/ch06_pg0821.png)
-<br><em>Figure 6-?: [Page 821 — DPA](images/ch06/ch06_pg0821.png)</em>
+![Page 821 — DPA](images/ch06/ch06_pg0821.png)
+<br><em>DPA | DPA</em>
 
 Dynamic Power Allocation (DPA) Capability allows a device to dynamically adjust its power consumption across different subsystems. DPA enables finer-grained power management by allowing power to be redistributed among a device's internal resources based on workload demands.
 
@@ -1201,8 +1201,8 @@ Dynamic Power Allocation (DPA) Capability allows a device to dynamically adjust 
 
 ### 6.17 TLP Processing Hints (TPH) / TLP 处理提示（TPH）
 
-[Page 822 — TPH](images/ch06/ch06_pg0822.png)
-<br><em>Figure 6-?: [Page 822 — TPH](images/ch06/ch06_pg0822.png)</em>
+![Page 822 — TPH](images/ch06/ch06_pg0822.png)
+<br><em>TPH | TPH</em>
 
 TLP Processing Hints (TPH) provide mechanisms for a Requester to convey caching and processing hints to the Completer and intermediate routing elements. Processing Hints indicate how the associated data should be cached or processed. Steering Tags direct data to specific processing resources. TPH improves system performance by enabling optimized cache utilization and data placement.
 
@@ -1214,8 +1214,8 @@ TLP Processing Hints (TPH) provide mechanisms for a Requester to convey caching 
 
 ### 6.18 Latency Tolerance Reporting (LTR) / 延迟容忍报告（LTR）
 
-[Page 825 — LTR](images/ch06/ch06_pg0825.png)
-<br><em>Figure 6-?: [Page 825 — LTR](images/ch06/ch06_pg0825.png)</em>
+![Page 825 — LTR](images/ch06/ch06_pg0825.png)
+<br><em>LTR | LTR</em>
 
 Latency Tolerance Reporting (LTR) enables Endpoints to report their latency tolerance to the Root Complex. This information allows the platform to optimize power management policies by determining how long an Endpoint can tolerate delays in service. LTR is critical for enabling aggressive platform power management without impacting device functionality.
 
@@ -1227,8 +1227,8 @@ Latency Tolerance Reporting (LTR) enables Endpoints to report their latency tole
 
 ### 6.19 Optimized Buffer Flush/Fill (OBFF) / 优化缓冲刷新/填充（OBFF）
 
-[Page 829 — OBFF](images/ch06/ch06_pg0829.png)
-<br><em>Figure 6-?: [Page 829 — OBFF](images/ch06/ch06_pg0829.png)</em>
+![Page 829 — OBFF](images/ch06/ch06_pg0829.png)
+<br><em>OBFF | OBFF</em>
 
 Optimized Buffer Flush/Fill (OBFF) provides a mechanism for the platform to inform Endpoints about optimal times for performing buffer flush and fill operations. This enables Endpoints to align their internal power management with platform-level power states, reducing overall system power consumption.
 
@@ -1240,8 +1240,8 @@ Optimized Buffer Flush/Fill (OBFF) provides a mechanism for the platform to info
 
 ### 6.20 PASID / 进程地址空间 ID（PASID）
 
-[Page 832 — PASID](images/ch06/ch06_pg0832.png)
-<br><em>Figure 6-?: [Page 832 — PASID](images/ch06/ch06_pg0832.png)</em>
+![Page 832 — PASID](images/ch06/ch06_pg0832.png)
+<br><em>PASID | PASID</em>
 
 Process Address Space ID (PASID) is a mechanism that enables multiple process address spaces to be distinguished on a single device Function. PASID is carried in the PASID TLP Prefix (Non-Flit Mode) or OHC (Flit Mode) containing the Process Address Space ID value. This is essential for enabling Shared Virtual Memory (SVM) and efficient accelerator integration, allowing each process to have its own virtual address space on a shared device.
 
@@ -1253,8 +1253,8 @@ Process Address Space ID (PASID) is a mechanism that enables multiple process ad
 
 ### 6.21 Precision Time Measurement (PTM) / 精确时间测量（PTM）
 
-[Page 837 — PTM](images/ch06/ch06_pg0837.png)
-<br><em>Figure 6-?: [Page 837 — PTM](images/ch06/ch06_pg0837.png)</em>
+![Page 837 — PTM](images/ch06/ch06_pg0837.png)
+<br><em>PTM | PTM</em>
 
 Precision Time Measurement (PTM) enables precise distribution of a master clock time across a PCI Express fabric. PTM defines the roles of PTM Requester, PTM Responder, and PTM Time Source (for Switches). This mechanism is critical for applications requiring tight timing coordination across multiple devices, such as audio/video synchronization, industrial control, and distributed data acquisition.
 
@@ -1266,8 +1266,8 @@ Precision Time Measurement (PTM) enables precise distribution of a master clock 
 
 ### 6.22 Readiness Notifications (RN) / 就绪通知（RN）
 
-[Page 847 — Readiness Notifications](images/ch06/ch06_pg0847.png)
-<br><em>Figure 6-?: [Page 847 — Readiness Notifications](images/ch06/ch06_pg0847.png)</em>
+![Page 847 — Readiness Notifications](images/ch06/ch06_pg0847.png)
+<br><em>Readiness Notifications | Readiness Notifications</em>
 
 Readiness Notifications (RN) provide mechanisms for Functions to report their operational readiness to system software. This includes Device Readiness Status (DRS), Function Readiness Status (FRS), and FRS Queuing mechanisms. RN enables more efficient device initialization by allowing software to wait for device readiness without polling.
 
@@ -1279,8 +1279,8 @@ Readiness Notifications (RN) provide mechanisms for Functions to report their op
 
 ### 6.23 Enhanced Allocation / 增强分配
 
-[Page 852 — Enhanced Allocation](images/ch06/ch06_pg0852.png)
-<br><em>Figure 6-?: [Page 852 — Enhanced Allocation](images/ch06/ch06_pg0852.png)</em>
+![Page 852 — Enhanced Allocation](images/ch06/ch06_pg0852.png)
+<br><em>Enhanced Allocation | Enhanced Allocation</em>
 
 Enhanced Allocation provides mechanisms for devices to request specific types and locations of memory resources from system firmware. This enables devices to express their resource requirements more precisely, leading to more efficient system resource allocation and improved compatibility with platform constraints.
 
@@ -1292,8 +1292,8 @@ Enhanced Allocation provides mechanisms for devices to request specific types an
 
 ### 6.24 Emergency Power Reduction State / 紧急降功耗状态
 
-[Page 854 — Emergency Power Reduction](images/ch06/ch06_pg0854.png)
-<br><em>Figure 6-?: [Page 854 — Emergency Power Reduction](images/ch06/ch06_pg0854.png)</em>
+![Page 854 — Emergency Power Reduction](images/ch06/ch06_pg0854.png)
+<br><em>Emergency Power Reduction | Emergency Power Reduction</em>
 
 Emergency Power Reduction State provides a mechanism for the platform to request that devices immediately reduce their power consumption to a minimal level. This is used in situations such as thermal emergencies or when backup power sources are engaged, allowing the system to maintain critical operations while reducing overall power draw.
 
@@ -1305,8 +1305,8 @@ Emergency Power Reduction State provides a mechanism for the platform to request
 
 ### 6.25 Hierarchy ID Message / 层次结构 ID 消息
 
-[Page 857 — Hierarchy ID Message](images/ch06/ch06_pg0857.png)
-<br><em>Figure 6-?: [Page 857 — Hierarchy ID Message](images/ch06/ch06_pg0857.png)</em>
+![Page 857 — Hierarchy ID Message](images/ch06/ch06_pg0857.png)
+<br><em>Hierarchy ID Message | Hierarchy ID Message</em>
 
 The Hierarchy ID Message provides a mechanism for components to discover and communicate their hierarchy domain identity. This message enables components within a PCI Express fabric to determine which hierarchy domain they belong to, which is important for proper routing and management in complex multi-hierarchy topologies.
 
